@@ -7,6 +7,7 @@ package GUI;
 import DTO.Employee_DTO;
 import javax.swing.*;
 import BUS.EmployeeManagement_BUS;
+import java.text.SimpleDateFormat;
 
 public class InsertEmp2 extends javax.swing.JFrame {
 
@@ -21,10 +22,11 @@ public class InsertEmp2 extends javax.swing.JFrame {
         txtFirstName.setText(newEmployee.getFirstname());
         txtLastName.setText(newEmployee.getLastname());
         txtGender.setText(newEmployee.getGender());
-        txtBirthday.setText(String.valueOf(newEmployee.getBirthday()));
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        txtBirthday.setText(sdf.format(newEmployee.getBirthday()));
         txtPhone.setText(newEmployee.getPhone());
         txtAddress.setText(newEmployee.getAddress());
-        txtStartDate.setText(String.valueOf(newEmployee.getStart_date()));
+        txtStartDate.setText(sdf.format(newEmployee.getStart_date()));
         txtSalary.setText(String.valueOf(newEmployee.getSalary()));
         txtRole.setText(newEmployee.getRole());
         txtEmpLoginID.disable();
@@ -72,6 +74,7 @@ public class InsertEmp2 extends javax.swing.JFrame {
         txtGender = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Insert");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -115,6 +118,11 @@ public class InsertEmp2 extends javax.swing.JFrame {
         txtEmpLoginID.setBackground(new java.awt.Color(255, 255, 255));
         txtEmpLoginID.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtEmpLoginID.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtEmpLoginID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmpLoginIDActionPerformed(evt);
+            }
+        });
         jPanel7.add(txtEmpLoginID, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 200, 30));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -170,6 +178,11 @@ public class InsertEmp2 extends javax.swing.JFrame {
         txtAddress.setBackground(new java.awt.Color(255, 255, 255));
         txtAddress.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtAddress.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtAddress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAddressActionPerformed(evt);
+            }
+        });
         jPanel7.add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 200, 30));
 
         btnDismiss.setBackground(new java.awt.Color(255, 153, 102));
@@ -256,6 +269,14 @@ public class InsertEmp2 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Invalid data!", "Error", JOptionPane.ERROR_MESSAGE);
         }    
     }//GEN-LAST:event_btnConfirmActionPerformed
+
+    private void txtAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAddressActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAddressActionPerformed
+
+    private void txtEmpLoginIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmpLoginIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmpLoginIDActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

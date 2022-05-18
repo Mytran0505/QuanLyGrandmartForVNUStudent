@@ -6,6 +6,7 @@ package GUI;
 
 import BUS.EmployeeManagement_BUS;
 import DTO.Employee_DTO;
+import java.text.SimpleDateFormat;
 import javax.swing.*;
 
 
@@ -15,7 +16,7 @@ public class UpdateEmp3 extends javax.swing.JFrame {
     Employee_DTO dtoEmployee;
     public UpdateEmp3(Employee_DTO employee) {
         initComponents();
-        dtoEmployee = busEmployeeManagement.getEmployeeInfo(employee);
+        dtoEmployee = employee;
         setResizable(false);
         setLocationRelativeTo(null);
         txtEmpID.setText(String.valueOf(dtoEmployee.getId()));
@@ -23,10 +24,11 @@ public class UpdateEmp3 extends javax.swing.JFrame {
         txtFirstName.setText(dtoEmployee.getFirstname());
         txtLastName.setText(dtoEmployee.getLastname());
         txtGender.setText(dtoEmployee.getGender());
-        txtBirthday.setText(String.valueOf(dtoEmployee.getBirthday()));
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        txtBirthday.setText(sdf.format(dtoEmployee.getBirthday()));
         txtPhone.setText(dtoEmployee.getPhone());
         txtAddress.setText(dtoEmployee.getAddress());
-        txtStartDate.setText(String.valueOf(dtoEmployee.getStart_date()));
+        txtStartDate.setText(sdf.format(dtoEmployee.getStart_date()));
         txtSalary.setText(String.valueOf(dtoEmployee.getSalary()));
         txtRole.setText(dtoEmployee.getRole());
         txtEmpID.disable();
@@ -78,6 +80,7 @@ public class UpdateEmp3 extends javax.swing.JFrame {
         txtEmpID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Update");
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -174,7 +177,7 @@ public class UpdateEmp3 extends javax.swing.JFrame {
         txtAddress.setBackground(new java.awt.Color(255, 255, 255));
         txtAddress.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtAddress.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPanel7.add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 200, 30));
+        jPanel7.add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 200, 30));
 
         btnDismiss.setBackground(new java.awt.Color(255, 153, 102));
         btnDismiss.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N

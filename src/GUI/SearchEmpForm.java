@@ -8,6 +8,8 @@ import BUS.EmployeeManagement_BUS;
 import DTO.Employee_DTO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -48,13 +50,15 @@ public class SearchEmpForm extends javax.swing.JFrame {
         tblSearch.setAutoCreateRowSorter(true);
         //không cho sửa dữ liệu trong bảng
         //tblSearch.setEnabled(false);
-        tblSearch.getColumnModel().getColumn(0).setPreferredWidth(120);
-        tblSearch.getColumnModel().getColumn(1).setPreferredWidth(120);
-        tblSearch.getColumnModel().getColumn(2).setPreferredWidth(160);
+        tblSearch.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tblSearch.getColumnModel().getColumn(0).setPreferredWidth(90);
+        tblSearch.getColumnModel().getColumn(1).setPreferredWidth(90);
+        tblSearch.getColumnModel().getColumn(2).setPreferredWidth(150);
         tblSearch.getColumnModel().getColumn(5).setPreferredWidth(120);
-        tblSearch.getColumnModel().getColumn(7).setPreferredWidth(110);
+        tblSearch.getColumnModel().getColumn(6).setPreferredWidth(100);
+        tblSearch.getColumnModel().getColumn(7).setPreferredWidth(220);
         tblSearch.getColumnModel().getColumn(8).setPreferredWidth(110);
-        tblSearch.getColumnModel().getColumn(10).setPreferredWidth(110);
+        tblSearch.getColumnModel().getColumn(10).setPreferredWidth(170);
         tblSearch.getSelectionModel().addListSelectionListener((ListSelectionEvent e) -> {
             if(tblSearch.getSelectedRow() >= 0){
                 Employee_DTO dtoEmployee = new Employee_DTO(Integer.valueOf(String.valueOf(tblSearch.getValueAt(tblSearch.getSelectedRow(), 0))));
@@ -62,7 +66,10 @@ public class SearchEmpForm extends javax.swing.JFrame {
                 new SearchEmp2(dtoEmployee).setVisible(true);
             }
         });
+        
     }
+    
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -80,6 +87,7 @@ public class SearchEmpForm extends javax.swing.JFrame {
         tblSearch = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Search");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel6.setBackground(new java.awt.Color(255, 153, 102));

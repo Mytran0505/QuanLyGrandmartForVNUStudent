@@ -3,6 +3,7 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="Search"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -200,20 +201,8 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="tblSearch">
               <Properties>
-                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="11" rowCount="1">
-                    <Column editable="true" title="Employee ID" type="java.lang.Object"/>
-                    <Column editable="true" title="Emp_login ID" type="java.lang.Object"/>
-                    <Column editable="true" title="First Name" type="java.lang.Object"/>
-                    <Column editable="true" title="Last Name" type="java.lang.Object"/>
-                    <Column editable="true" title="Gender" type="java.lang.Object"/>
-                    <Column editable="true" title="Birthday" type="java.lang.Object"/>
-                    <Column editable="true" title="Phone" type="java.lang.Object"/>
-                    <Column editable="true" title="Address" type="java.lang.Object"/>
-                    <Column editable="true" title="Start date" type="java.lang.Object"/>
-                    <Column editable="true" title="Salary" type="java.lang.Object"/>
-                    <Column editable="true" title="Role" type="java.lang.Object"/>
-                  </Table>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;        {null, null, null, null, null, null, null, null, null, null, null}&#xa;    },&#xa;    new String [] {&#xa;        &quot;Employee ID&quot;, &quot;Emp_login ID&quot;, &quot;First Name&quot;, &quot;Last Name&quot;, &quot;Gender&quot;, &quot;Birthday&quot;, &quot;Phone&quot;, &quot;Address&quot;, &quot;Start date&quot;, &quot;Salary&quot;, &quot;Role&quot;&#xa;    }&#xa;)" type="code"/>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">

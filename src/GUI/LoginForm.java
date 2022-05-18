@@ -58,7 +58,7 @@ public class LoginForm extends javax.swing.JFrame {
         Head2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         Head2.setForeground(new java.awt.Color(255, 255, 255));
         Head2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Head2.setText("MINIMARK FOR VNUHCM'S STUDENT SYSTEM");
+        Head2.setText("MINIMART FOR VNUHCM'S STUDENT SYSTEM");
 
         javax.swing.GroupLayout PanelHeadLayout = new javax.swing.GroupLayout(PanelHead);
         PanelHead.setLayout(PanelHeadLayout);

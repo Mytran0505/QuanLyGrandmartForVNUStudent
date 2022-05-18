@@ -6,6 +6,7 @@ package GUI;
 
 import BUS.EmployeeManagement_BUS;
 import DTO.Employee_DTO;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 
 
@@ -15,7 +16,7 @@ public class UpdateEmp2 extends javax.swing.JFrame {
     Employee_DTO dtoEmployee;
     public UpdateEmp2(Employee_DTO employee) {
             initComponents();
-            dtoEmployee = busEmployeeManagement.getInformation(employee.getId());
+            dtoEmployee = busEmployeeManagement.getEmployeeInfo(employee);
             setResizable(false);
             setLocationRelativeTo(null);
             txtEmpID.setText(String.valueOf(dtoEmployee.getId()));
@@ -67,6 +68,7 @@ public class UpdateEmp2 extends javax.swing.JFrame {
         dcBirthday = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Update");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel6.setBackground(new java.awt.Color(255, 153, 102));
@@ -264,7 +266,7 @@ public class UpdateEmp2 extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Information fields are not entered enough.", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
             }
             else{
-                Employee_DTO newEmployee = new Employee_DTO(0, txtFirstName.getText(), txtLastName.getText(), cbGender.getSelectedItem().toString(), dcBirthday.getDate() , txtPhone.getText(), txtAddress.getText(), dcStartDate.getDate(), Long.parseLong(txtSalary.getText()), cbRole.getSelectedItem().toString());
+                Employee_DTO newEmployee = new Employee_DTO(Integer.parseInt(txtEmpID.getText()), txtFirstName.getText(), txtLastName.getText(), cbGender.getSelectedItem().toString(), dcBirthday.getDate() , txtPhone.getText(), txtAddress.getText(), dcStartDate.getDate(), Long.parseLong(txtSalary.getText()), cbRole.getSelectedItem().toString());
                 setVisible(false);
                 new UpdateEmp3(newEmployee).setVisible(true);              
             }
@@ -275,9 +277,9 @@ public class UpdateEmp2 extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Information fields are not entered enough.", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
             }
             else{
-                Employee_DTO newEmployee = new Employee_DTO(0, txtFirstName.getText(), txtLastName.getText(), cbGender.getSelectedItem().toString(), dcBirthday.getDate() , txtPhone.getText(), txtAddress.getText(), dcStartDate.getDate(), Long.parseLong(txtSalary.getText()), Integer.parseInt(txtEmpLoginID.getText()), cbRole.getSelectedItem().toString());
+                Employee_DTO newEmployee = new Employee_DTO(Integer.parseInt(txtEmpID.getText()), txtFirstName.getText(), txtLastName.getText(), cbGender.getSelectedItem().toString(), dcBirthday.getDate() , txtPhone.getText(), txtAddress.getText(), dcStartDate.getDate(), Long.parseLong(txtSalary.getText()), Integer.parseInt(txtEmpLoginID.getText()), cbRole.getSelectedItem().toString());
                 setVisible(false);
-                new UpdateEmp3(dtoEmployee).setVisible(true);
+                new UpdateEmp3(newEmployee).setVisible(true);
             }
         }
     }//GEN-LAST:event_btnUpdateActionPerformed

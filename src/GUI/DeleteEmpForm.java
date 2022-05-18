@@ -8,6 +8,7 @@ import BUS.EmployeeManagement_BUS;
 import DTO.Employee_DTO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
@@ -45,11 +46,12 @@ public class DeleteEmpForm extends javax.swing.JFrame {
         tblSearch.setAutoCreateRowSorter(true);
         //không cho sửa dữ liệu trong bảng
         //tblSearch.setEnabled(false);
-        tblSearch.getColumnModel().getColumn(0).setPreferredWidth(120);
-        tblSearch.getColumnModel().getColumn(1).setPreferredWidth(120);
-        tblSearch.getColumnModel().getColumn(2).setPreferredWidth(160);
+        tblSearch.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tblSearch.getColumnModel().getColumn(0).setPreferredWidth(110);
+        tblSearch.getColumnModel().getColumn(1).setPreferredWidth(110);
+        tblSearch.getColumnModel().getColumn(2).setPreferredWidth(150);
         tblSearch.getColumnModel().getColumn(5).setPreferredWidth(120);
-        tblSearch.getColumnModel().getColumn(7).setPreferredWidth(110);
+        tblSearch.getColumnModel().getColumn(7).setPreferredWidth(220);
         tblSearch.getColumnModel().getColumn(8).setPreferredWidth(110);
         tblSearch.getColumnModel().getColumn(10).setPreferredWidth(110);
         tblSearch.getSelectionModel().addListSelectionListener((ListSelectionEvent e) -> {
@@ -77,6 +79,7 @@ public class DeleteEmpForm extends javax.swing.JFrame {
         tblSearch = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Delete");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel6.setBackground(new java.awt.Color(255, 153, 102));
