@@ -214,7 +214,7 @@ public class ManageEmployee extends javax.swing.JFrame {
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
             setVisible(false);
-            UpdateEmpForm upd = new UpdateEmpForm();
+            UpdateEmpForm upd = new UpdateEmpForm(dtoManager);
             upd.setVisible(true);
     }//GEN-LAST:event_btn_updateActionPerformed
 

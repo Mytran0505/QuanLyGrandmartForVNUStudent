@@ -325,14 +325,14 @@
             <Property name="text" type="java.lang.String" value="Print out"/>
           </Properties>
         </Component>
-        <Component class="org.netbeans.modules.form.InvalidComponent" name="jDateChooser1">
+        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="org.netbeans.modules.form.InvalidComponent" name="jDateChooser2">
+        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser2">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>

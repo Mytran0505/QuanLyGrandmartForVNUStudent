@@ -6,6 +6,8 @@ package GUI;
 
 import BUS.EmployeeManagement_BUS;
 import DTO.Employee_DTO;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 
@@ -18,7 +20,17 @@ public class InsertEmpForm extends javax.swing.JFrame {
         dtoManager = manager;
         setResizable(false);
         setLocationRelativeTo(null);
+        ActionListener cbActionListener = (ActionEvent e) -> {
+             if(cbRole.getSelectedItem().toString().equals("Security Guard") || cbRole.getSelectedItem().toString().equals("Sanitation Worker") || cbRole.getSelectedItem().toString().equals("Quality Checker")){
+                 txtEmpLoginID.disable();
+             }
+             else{
+                 txtEmpLoginID.enable();
+             }
+         };
+        cbRole.addActionListener(cbActionListener);
     }
+        
 
     private void clearForm(){
         txtEmpLoginID.setText("");
@@ -237,19 +249,9 @@ public class InsertEmpForm extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Information fields are not entered enough.", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
             }
             else{
-                int ret = JOptionPane.showConfirmDialog(null, "Confirm", "Do you want to insert?", JOptionPane.YES_NO_OPTION);
-                if(ret == JOptionPane.YES_OPTION){
-                    Employee_DTO newEmployee;
-                    newEmployee = new Employee_DTO(0, txtFirstName.getText(), txtLastName.getText(), cbGender.getSelectedItem().toString(), dcBirthday.getDate(), txtPhone.getText(), txtAddress.getText(), dcStartDate.getDate(), Long.parseLong(txtSalary.getText()),Integer.parseInt(txtEmpLoginID.getText()), cbRole.getSelectedItem().toString());
-                    //add new Employee
-                    if(busEmployeeManagement.insert(newEmployee)){
-                        JOptionPane.showMessageDialog(this, "Employee information is inserted successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                        clearForm();
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(this, "Invalid data!", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-                }    
+                Employee_DTO newEmployee = new Employee_DTO(0, txtFirstName.getText(), txtLastName.getText(), cbGender.getSelectedItem().toString(), dcBirthday.getDate(), txtPhone.getText(), txtAddress.getText(), dcStartDate.getDate(), Long.parseLong(txtSalary.getText()), cbRole.getSelectedItem().toString());
+                setVisible(false);
+                new InsertEmp2(newEmployee).setVisible(true);
             }  
         }
         else{
@@ -258,19 +260,9 @@ public class InsertEmpForm extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Information fields are not entered enough.", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
             }
             else{
-                int ret = JOptionPane.showConfirmDialog(null, "Confirm", "Do you want to insert?", JOptionPane.YES_NO_OPTION);
-                if(ret == JOptionPane.YES_OPTION){
-                    Employee_DTO newEmployee;
-                    newEmployee = new Employee_DTO(0, txtFirstName.getText(), txtLastName.getText(), cbGender.getSelectedItem().toString(), dcBirthday.getDate(), txtPhone.getText(), txtAddress.getText(), dcStartDate.getDate(), Long.parseLong(txtSalary.getText()), Integer.parseInt(txtEmpLoginID.getText()), cbRole.getSelectedItem().toString());
-                    //add new Employee
-                    if(busEmployeeManagement.insert(newEmployee)){
-                        JOptionPane.showMessageDialog(this, "Employee information is inserted successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                        clearForm();
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(this, "Invalid data!", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-                }    
+                Employee_DTO newEmployee = new Employee_DTO(0, txtFirstName.getText(), txtLastName.getText(), cbGender.getSelectedItem().toString(), dcBirthday.getDate(), txtPhone.getText(), txtAddress.getText(), dcStartDate.getDate(), Long.parseLong(txtSalary.getText()), Integer.parseInt(txtEmpLoginID.getText()), cbRole.getSelectedItem().toString());
+                setVisible(false);
+                new InsertEmp2(newEmployee).setVisible(true);
             }  
         }
     }//GEN-LAST:event_btnInsertActionPerformed

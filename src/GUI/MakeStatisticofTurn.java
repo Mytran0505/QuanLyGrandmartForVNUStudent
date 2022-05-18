@@ -36,8 +36,8 @@ public class MakeStatisticofTurn extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
-        jDateChooser1 = new org.netbeans.modules.form.InvalidComponent();
-        jDateChooser2 = new org.netbeans.modules.form.InvalidComponent();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -135,6 +135,10 @@ public class MakeStatisticofTurn extends javax.swing.JFrame {
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Print out");
 
+        jDateChooser1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jDateChooser2.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -215,8 +219,8 @@ public class MakeStatisticofTurn extends javax.swing.JFrame {
     private javax.swing.JButton btn_turnback;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton2;
-    private org.netbeans.modules.form.InvalidComponent jDateChooser1;
-    private org.netbeans.modules.form.InvalidComponent jDateChooser2;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
