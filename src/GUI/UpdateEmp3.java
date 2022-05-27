@@ -84,7 +84,7 @@ public class UpdateEmp3 extends javax.swing.JFrame {
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel6.setBackground(new java.awt.Color(255, 153, 102));
+        jPanel6.setBackground(new java.awt.Color(0, 204, 255));
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/emp.png"))); // NOI18N
@@ -111,7 +111,7 @@ public class UpdateEmp3 extends javax.swing.JFrame {
 
         jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, -1));
 
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel7.setBackground(new java.awt.Color(239, 250, 252));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -179,7 +179,7 @@ public class UpdateEmp3 extends javax.swing.JFrame {
         txtAddress.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jPanel7.add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 200, 30));
 
-        btnDismiss.setBackground(new java.awt.Color(255, 153, 102));
+        btnDismiss.setBackground(new java.awt.Color(0, 204, 255));
         btnDismiss.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnDismiss.setForeground(new java.awt.Color(255, 255, 255));
         btnDismiss.setText("Dismiss");
@@ -215,7 +215,7 @@ public class UpdateEmp3 extends javax.swing.JFrame {
         jLabel16.setText("Role:");
         jPanel7.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 120, 90, 30));
 
-        btnConfirm.setBackground(new java.awt.Color(255, 153, 102));
+        btnConfirm.setBackground(new java.awt.Color(0, 204, 255));
         btnConfirm.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnConfirm.setForeground(new java.awt.Color(255, 255, 255));
         btnConfirm.setText("Confirm");
@@ -288,6 +288,9 @@ public class UpdateEmp3 extends javax.swing.JFrame {
         else{
             JOptionPane.showMessageDialog(this, "Invalid data!", "Error", JOptionPane.INFORMATION_MESSAGE);
         }
+        setVisible(false);
+        UpdateEmpForm upd = new UpdateEmpForm(dtoEmployee);
+        upd.setVisible(true);
     }//GEN-LAST:event_btnConfirmActionPerformed
 
 

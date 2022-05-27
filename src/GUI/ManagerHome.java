@@ -17,7 +17,8 @@ public class ManagerHome extends javax.swing.JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         // Show the manager's name
-        lbManager.setText("Welcome to Manager Home, " + manager.getFirstname() + " " + manager.getLastname() + "!");
+        //lbManager.setText("Welcome to Manager Home, " + manager.getFirstname() + " " + manager.getLastname() + "!");
+        lbManager.setText("Welcome to Manager Home, Nguyen Thi My Tran!");
     }
 
   
@@ -46,7 +47,7 @@ public class ManagerHome extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(255, 153, 102));
+        jPanel2.setBackground(new java.awt.Color(0, 204, 255));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/manageuser.png"))); // NOI18N
@@ -56,7 +57,7 @@ public class ManagerHome extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setText("MANAGER HOME");
 
-        btn_logout.setBackground(new java.awt.Color(255, 255, 255));
+        btn_logout.setBackground(new java.awt.Color(239, 250, 252));
         btn_logout.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn_logout.setForeground(new java.awt.Color(0, 0, 0));
         btn_logout.setText("Log out");
@@ -90,11 +91,11 @@ public class ManagerHome extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, -1));
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBackground(new java.awt.Color(239, 250, 252));
 
         lbManager.setBackground(new java.awt.Color(255, 255, 255));
         lbManager.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
-        lbManager.setForeground(new java.awt.Color(255, 153, 102));
+        lbManager.setForeground(new java.awt.Color(51, 153, 255));
         lbManager.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbManager.setText("Welcome to Manager Home, User Name!");
         lbManager.setToolTipText("");
@@ -112,7 +113,7 @@ public class ManagerHome extends javax.swing.JFrame {
         jLabel5.setText(" Manage Employee Information");
         jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 91, 201, 48));
 
-        btn_ManageEmp.setBackground(new java.awt.Color(255, 153, 102));
+        btn_ManageEmp.setBackground(new java.awt.Color(0, 204, 255));
         btn_ManageEmp.setForeground(new java.awt.Color(255, 153, 102));
         btn_ManageEmp.setBorder(null);
         btn_ManageEmp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -137,7 +138,7 @@ public class ManagerHome extends javax.swing.JFrame {
         jLabel7.setText("Make Statistic of Turnover");
         jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 92, 200, 48));
 
-        btn_MakeStatistic.setBackground(new java.awt.Color(255, 153, 102));
+        btn_MakeStatistic.setBackground(new java.awt.Color(0, 204, 255));
         btn_MakeStatistic.setForeground(new java.awt.Color(255, 153, 102));
         btn_MakeStatistic.setBorder(null);
         btn_MakeStatistic.addActionListener(new java.awt.event.ActionListener() {

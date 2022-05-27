@@ -90,7 +90,7 @@ public class SearchEmpForm extends javax.swing.JFrame {
         setTitle("Search");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel6.setBackground(new java.awt.Color(255, 153, 102));
+        jPanel6.setBackground(new java.awt.Color(0, 204, 255));
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/emp.png"))); // NOI18N
@@ -100,7 +100,7 @@ public class SearchEmpForm extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("SEARCH EMPLOYEE INFORMATION");
 
-        btn_turnback.setBackground(new java.awt.Color(255, 255, 255));
+        btn_turnback.setBackground(new java.awt.Color(239, 250, 252));
         btn_turnback.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn_turnback.setForeground(new java.awt.Color(0, 0, 0));
         btn_turnback.setText("Turn back");
@@ -134,7 +134,7 @@ public class SearchEmpForm extends javax.swing.JFrame {
 
         getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, -1));
 
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel7.setBackground(new java.awt.Color(239, 250, 252));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -143,7 +143,7 @@ public class SearchEmpForm extends javax.swing.JFrame {
         txtSearch.setBackground(new java.awt.Color(255, 255, 255));
         txtSearch.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        btnSearch.setBackground(new java.awt.Color(255, 153, 102));
+        btnSearch.setBackground(new java.awt.Color(0, 204, 255));
         btnSearch.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnSearch.setForeground(new java.awt.Color(255, 255, 255));
         btnSearch.setText("Search");

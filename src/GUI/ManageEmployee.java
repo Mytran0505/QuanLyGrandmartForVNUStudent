@@ -49,12 +49,12 @@ public class ManageEmployee extends javax.swing.JFrame {
         setTitle("EmployeeManagement");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 153, 102));
+        jPanel1.setBackground(new java.awt.Color(0, 204, 255));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/emp.png"))); // NOI18N
 
-        btn_turnback.setBackground(new java.awt.Color(255, 255, 255));
+        btn_turnback.setBackground(new java.awt.Color(239, 250, 252));
         btn_turnback.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn_turnback.setForeground(new java.awt.Color(0, 0, 0));
         btn_turnback.setText("Turn back to home");
@@ -94,7 +94,7 @@ public class ManageEmployee extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, -1));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(239, 250, 252));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -107,7 +107,7 @@ public class ManageEmployee extends javax.swing.JFrame {
         jLabel3.setText("Insert Employee Information");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 60));
 
-        btn_insert.setBackground(new java.awt.Color(255, 153, 102));
+        btn_insert.setBackground(new java.awt.Color(0, 204, 255));
         btn_insert.setForeground(new java.awt.Color(255, 153, 102));
         btn_insert.setBorder(null);
         btn_insert.addActionListener(new java.awt.event.ActionListener() {
@@ -129,7 +129,7 @@ public class ManageEmployee extends javax.swing.JFrame {
         jLabel6.setText("Delete Employee Information");
         jPanel6.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 60));
 
-        btn_delete.setBackground(new java.awt.Color(255, 153, 102));
+        btn_delete.setBackground(new java.awt.Color(0, 204, 255));
         btn_delete.setForeground(new java.awt.Color(255, 153, 102));
         btn_delete.setBorder(null);
         btn_delete.addActionListener(new java.awt.event.ActionListener() {
@@ -151,7 +151,7 @@ public class ManageEmployee extends javax.swing.JFrame {
         jLabel8.setText("Update Employee Information");
         jPanel8.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 60));
 
-        btn_update.setBackground(new java.awt.Color(255, 153, 102));
+        btn_update.setBackground(new java.awt.Color(0, 204, 255));
         btn_update.setForeground(new java.awt.Color(255, 153, 102));
         btn_update.setBorder(null);
         btn_update.addActionListener(new java.awt.event.ActionListener() {
@@ -173,7 +173,7 @@ public class ManageEmployee extends javax.swing.JFrame {
         jLabel9.setText("Search For Employee Information");
         jPanel9.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 60));
 
-        btn_search.setBackground(new java.awt.Color(255, 153, 102));
+        btn_search.setBackground(new java.awt.Color(0, 204, 255));
         btn_search.setForeground(new java.awt.Color(255, 153, 102));
         btn_search.setBorder(null);
         btn_search.addActionListener(new java.awt.event.ActionListener() {

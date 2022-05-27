@@ -38,7 +38,7 @@ public class Employee_CON {
     public boolean update(Employee_DTO dtoEmployee){
         try {
             Connection con = DBConnection.getDBConnection();
-            String SQL = "UPDATE EMPLOYEE SET FIRST_NAME = ?, LAST_NAME = ?, GENDER = ?, BIRTHDAY = ?, PHONE = ?, ADDRESS = ?, START_DATE = ?, SALARY = ?, EMP_LOGIN_ID = ?, ROLE = ? WHERE EMPLOYEE_ID = ?";
+            String SQL = "UPDATE EMPLOYEE SET FIRST_NAME = ?, LAST_NAME = ?, GENDER = ?, BIRTHDAY = ?, PHONE = ?, ADDRESS = ?, START_DATE = ?, SALARY = ?, EMP_LOGIN_ID = ?, ROLE = ? WHERE EMP_ID = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setString(1, dtoEmployee.getFirstname());
             ps.setString(2, dtoEmployee.getLastname());
@@ -52,6 +52,7 @@ public class Employee_CON {
             ps.setLong(8, dtoEmployee.getSalary());
             ps.setInt(9, dtoEmployee.getEmp_id());
             ps.setString(10, dtoEmployee.getRole());
+            ps.setInt(11, dtoEmployee.getId());
             ps.executeUpdate();
             con.close();
             return true;
@@ -102,6 +103,7 @@ public class Employee_CON {
             Connection con = DBConnection.getDBConnection();
             String SQL = "SELECT * FROM EMPLOYEE WHERE EMP_ID = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, dtoEmployee.getId());
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 dtoEmployee = new Employee_DTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7), rs.getDate(8), rs.getLong(9), rs.getInt(10), rs.getString(11));
@@ -113,6 +115,23 @@ public class Employee_CON {
         }
         return dtoEmployee;
     }
+//    public Employee_DTO getEmployeeInformation(Employee_DTO dtoEmployee){
+//        try {
+//            Connection con = DBConnection.getDBConnection();
+//            String SQL = "SELECT EMP_ID, FIRST_NAME, LAST_NAME, GENDER, BIRTHDAY, PHONE, ADDRESS, START_DATE, SALARY, ROLE FROM EMPLOYEE WHERE EMP_ID = ?";
+//            PreparedStatement ps = con.prepareStatement(SQL);
+//            ps.setInt(1, dtoEmployee.getId());
+//            ResultSet rs = ps.executeQuery();
+//            while(rs.next()){
+//                dtoEmployee = new Employee_DTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7), rs.getDate(8), rs.getLong(9), rs.getString(10));
+//            }
+//            con.close();
+//        } 
+//        catch (SQLException e) {
+//            JOptionPane.showMessageDialog(null, e);
+//        }
+//        return dtoEmployee;
+//    }
     
     public Employee_DTO getEmployeeInfo(User_login_DTO dtoUserLogin){
         try {

@@ -43,7 +43,7 @@ public class MakeStatisticofTurn extends javax.swing.JFrame {
         setTitle("MakeStatisticsOfTurnover");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 153, 102));
+        jPanel1.setBackground(new java.awt.Color(0, 204, 255));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/statistic.png"))); // NOI18N
@@ -53,7 +53,7 @@ public class MakeStatisticofTurn extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setText("MAKE STATISTIC OF TURNOVER");
 
-        btn_turnback.setBackground(new java.awt.Color(255, 255, 255));
+        btn_turnback.setBackground(new java.awt.Color(239, 250, 252));
         btn_turnback.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn_turnback.setForeground(new java.awt.Color(0, 0, 0));
         btn_turnback.setText("Turn back to home"); // NOI18N
@@ -88,7 +88,7 @@ public class MakeStatisticofTurn extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 120));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(239, 250, 252));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
@@ -131,7 +131,7 @@ public class MakeStatisticofTurn extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 153, 102));
+        jButton2.setBackground(new java.awt.Color(0, 204, 255));
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Print out");

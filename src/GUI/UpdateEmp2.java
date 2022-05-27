@@ -66,12 +66,22 @@ public class UpdateEmp2 extends javax.swing.JFrame {
         txtEmpID = new javax.swing.JTextField();
         dcStartDate = new com.toedter.calendar.JDateChooser();
         dcBirthday = new com.toedter.calendar.JDateChooser();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Update");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel6.setBackground(new java.awt.Color(255, 153, 102));
+        jPanel6.setBackground(new java.awt.Color(0, 204, 255));
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/emp.png"))); // NOI18N
@@ -81,7 +91,7 @@ public class UpdateEmp2 extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("UPDATE EMPLOYEE INFORMATION");
 
-        btnTurnBack.setBackground(new java.awt.Color(255, 255, 255));
+        btnTurnBack.setBackground(new java.awt.Color(239, 250, 252));
         btnTurnBack.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnTurnBack.setForeground(new java.awt.Color(0, 0, 0));
         btnTurnBack.setText("Turn back");
@@ -115,7 +125,7 @@ public class UpdateEmp2 extends javax.swing.JFrame {
 
         getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, -1));
 
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel7.setBackground(new java.awt.Color(239, 250, 252));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtEmpLoginID.setBackground(new java.awt.Color(255, 255, 255));
@@ -218,7 +228,7 @@ public class UpdateEmp2 extends javax.swing.JFrame {
         jLabel16.setText("Role:");
         jPanel7.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 120, 90, 30));
 
-        btnUpdate.setBackground(new java.awt.Color(255, 153, 102));
+        btnUpdate.setBackground(new java.awt.Color(0, 204, 255));
         btnUpdate.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdate.setText("Update");
@@ -244,6 +254,56 @@ public class UpdateEmp2 extends javax.swing.JFrame {
 
         dcBirthday.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.add(dcBirthday, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 200, 30));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel3.setText("(*)");
+        jPanel7.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 120, -1, -1));
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel18.setText("(*)");
+        jPanel7.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel1.setText("(*)");
+        jPanel7.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 120, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel4.setText("(*)");
+        jPanel7.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, -1, -1));
+
+        jLabel22.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel22.setText("(*)");
+        jPanel7.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 40, -1, -1));
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel19.setText("(*)");
+        jPanel7.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 240, -1, -1));
+
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel20.setText("(*)");
+        jPanel7.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel2.setText("(*)");
+        jPanel7.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, -1, -1));
+
+        jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel21.setText("(*)");
+        jPanel7.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 80, -1, -1));
+
+        jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel23.setText("(*)");
+        jPanel7.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 280, -1, -1));
 
         getContentPane().add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 810, 440));
 
@@ -299,6 +359,7 @@ public class UpdateEmp2 extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbRole;
     private com.toedter.calendar.JDateChooser dcBirthday;
     private com.toedter.calendar.JDateChooser dcStartDate;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -307,6 +368,15 @@ public class UpdateEmp2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

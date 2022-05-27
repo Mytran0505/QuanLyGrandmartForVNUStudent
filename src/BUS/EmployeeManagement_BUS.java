@@ -22,4 +22,7 @@ public class EmployeeManagement_BUS {
     public ArrayList<Employee_DTO> getEmployeeList(){
         return conEmployee.getEmployeeList();
     }
+    public Employee_DTO getEmployeeInfo(Employee_DTO dtoEmployee){
+        return conEmployee.getEmployeeInfo(dtoEmployee);
+    }
 }
