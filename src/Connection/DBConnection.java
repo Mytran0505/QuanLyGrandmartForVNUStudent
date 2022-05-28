@@ -10,7 +10,7 @@ public class DBConnection {
     public static Connection getDBConnection(){
         try{
             Class.forName("oracle.jdbc.OracleDriver");
-            Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","C##DOAN_PTTK_HTTT","nhom7");
+            Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","DOAN_PTTK_HTTT","nhom7");
             return con;
         }
         catch(ClassNotFoundException | SQLException e)
