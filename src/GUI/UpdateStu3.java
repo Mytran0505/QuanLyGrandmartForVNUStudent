@@ -88,7 +88,7 @@ public class UpdateStu3 extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(0, 204, 255));
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/emp.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/08 - student icon.png"))); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
