@@ -4,7 +4,6 @@
  */
 package GUI;
 
-//Day code cua Tran
 import javax.swing.*;
 
 /**
