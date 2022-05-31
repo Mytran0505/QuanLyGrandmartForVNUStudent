@@ -8,8 +8,13 @@ import BUS.User_login_BUS;
 import DTO.Employee_DTO;
 import DTO.User_login_DTO;
 import javax.swing.*;
+<<<<<<< HEAD
 
 //day là code Tran
+=======
+//day la code cua Quyen
+
+>>>>>>> 03367ed87ab359572c16868a7d839439e0d9a1db
 public class LoginForm extends javax.swing.JFrame {
 
     User_login_BUS busUserLogin = new User_login_BUS();
@@ -51,7 +56,7 @@ public class LoginForm extends javax.swing.JFrame {
         Head2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         Head2.setForeground(new java.awt.Color(255, 255, 255));
         Head2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Head2.setText("MINIMART FOR VNUHCM'S STUDENT SYSTEM");
+        Head2.setText("GRANDMART FOR VNUHCM'S STUDENT SYSTEM");
 
         javax.swing.GroupLayout PanelHeadLayout = new javax.swing.GroupLayout(PanelHead);
         PanelHead.setLayout(PanelHeadLayout);
@@ -61,7 +66,7 @@ public class LoginForm extends javax.swing.JFrame {
                 .addComponent(Head1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Head2, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelHeadLayout.setVerticalGroup(
             PanelHeadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,18 +91,14 @@ public class LoginForm extends javax.swing.JFrame {
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Username:");
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Password:");
 
-        txtUsername.setBackground(new java.awt.Color(255, 255, 255));
-        txtUsername.setForeground(new java.awt.Color(0, 0, 0));
         txtUsername.setAlignmentX(2.0F);
         txtUsername.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtUsername.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -117,8 +118,6 @@ public class LoginForm extends javax.swing.JFrame {
             }
         });
 
-        txtPassword.setBackground(new java.awt.Color(255, 255, 255));
-        txtPassword.setForeground(new java.awt.Color(0, 0, 0));
         txtPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
