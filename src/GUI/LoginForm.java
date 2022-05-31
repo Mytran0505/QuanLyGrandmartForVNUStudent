@@ -9,7 +9,7 @@ import DTO.Employee_DTO;
 import DTO.User_login_DTO;
 import javax.swing.*;
 
-
+//day là code Tran
 public class LoginForm extends javax.swing.JFrame {
 
     User_login_BUS busUserLogin = new User_login_BUS();
