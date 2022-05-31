@@ -8,13 +8,7 @@ import BUS.User_login_BUS;
 import DTO.Employee_DTO;
 import DTO.User_login_DTO;
 import javax.swing.*;
-<<<<<<< HEAD
 
-//day là code Tran
-=======
-//day la code cua Quyen
-
->>>>>>> 03367ed87ab359572c16868a7d839439e0d9a1db
 public class LoginForm extends javax.swing.JFrame {
 
     User_login_BUS busUserLogin = new User_login_BUS();
