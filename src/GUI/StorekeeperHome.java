@@ -1,14 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package GUI;
 
-/**
- *
- * @author LENOVO
- */
+import DTO.Employee_DTO;
+
+
 public class StorekeeperHome extends javax.swing.JFrame {
+    
+    Employee_DTO dtoStorekeeper = null;
+    public StorekeeperHome(Employee_DTO storekeeper){
+        initComponents();
+        dtoStorekeeper = storekeeper;
+        setResizable(false);
+        setLocationRelativeTo(null);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -269,10 +273,7 @@ public class StorekeeperHome extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_MakeStatisticOfImportedProActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-   
+  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_MakeStatisticOfImportedPro;
     private javax.swing.JButton btn_MakeStatisticOfInventoryPro;

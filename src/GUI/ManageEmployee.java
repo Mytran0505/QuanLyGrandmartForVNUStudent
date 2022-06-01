@@ -78,7 +78,7 @@ public class ManageEmployee extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_turnback)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,7 +92,7 @@ public class ManageEmployee extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, -1));
 
         jPanel2.setBackground(new java.awt.Color(239, 250, 252));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -104,7 +104,7 @@ public class ManageEmployee extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Insert Employee Information");
+        jLabel3.setText("<html><center>Insert Employee <br>Information</center></html>");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 60));
 
         btn_insert.setBackground(new java.awt.Color(0, 204, 255));
@@ -117,7 +117,7 @@ public class ManageEmployee extends javax.swing.JFrame {
         });
         jPanel3.add(btn_insert, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 60));
 
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 270, -1));
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 86, 270, -1));
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -126,7 +126,7 @@ public class ManageEmployee extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Delete Employee Information");
+        jLabel6.setText("<html><center>Delete Employee <br>Information</center></html>");
         jPanel6.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 60));
 
         btn_delete.setBackground(new java.awt.Color(0, 204, 255));
@@ -139,7 +139,7 @@ public class ManageEmployee extends javax.swing.JFrame {
         });
         jPanel6.add(btn_delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 60));
 
-        jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 270, 63));
+        jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 86, 270, 63));
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -148,7 +148,7 @@ public class ManageEmployee extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Update Employee Information");
+        jLabel8.setText("<html><center>Update Employee <br>Information</center></html>");
         jPanel8.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 60));
 
         btn_update.setBackground(new java.awt.Color(0, 204, 255));
@@ -161,7 +161,7 @@ public class ManageEmployee extends javax.swing.JFrame {
         });
         jPanel8.add(btn_update, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 60));
 
-        jPanel2.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, -1, -1));
+        jPanel2.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 191, -1, -1));
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -170,7 +170,7 @@ public class ManageEmployee extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Search For Employee Information");
+        jLabel9.setText("<html><center>Search Employee <br>Information</center></html>");
         jPanel9.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 60));
 
         btn_search.setBackground(new java.awt.Color(0, 204, 255));
@@ -183,9 +183,9 @@ public class ManageEmployee extends javax.swing.JFrame {
         });
         jPanel9.add(btn_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 60));
 
-        jPanel2.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, -1, -1));
+        jPanel2.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 191, -1, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 800, 350));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 790, 340));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -13,7 +13,7 @@ import javax.swing.*;
 public class UpdateEmp3 extends javax.swing.JFrame {
 
     EmployeeManagement_BUS busEmployeeManagement = new EmployeeManagement_BUS();
-    Employee_DTO dtoEmployee;
+    Employee_DTO dtoEmployee = null;
     public UpdateEmp3(Employee_DTO employee) {
         initComponents();
         dtoEmployee = employee;

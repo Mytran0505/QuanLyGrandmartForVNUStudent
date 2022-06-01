@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 public class SearchEmp2 extends javax.swing.JFrame {
 
     EmployeeManagement_BUS busEmployeeManagement = new EmployeeManagement_BUS();
-    Employee_DTO dtoEmployee;
+    Employee_DTO dtoEmployee = null;
     public SearchEmp2(Employee_DTO employee) {
         initComponents();
         dtoEmployee = busEmployeeManagement.getInformation(employee.getId());

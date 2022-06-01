@@ -18,7 +18,7 @@ public class ManagerHome extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         // Show the manager's name
         //lbManager.setText("Welcome to Manager Home, " + manager.getFirstname() + " " + manager.getLastname() + "!");
-        lbManager.setText("Welcome to Manager Home, Nguyen Thi My Tran!");
+        lbManager.setText("Welcome to Manager Home!");
     }
 
   
