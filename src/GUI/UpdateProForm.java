@@ -4,16 +4,23 @@
  */
 package GUI;
 
+import DTO.Employee_DTO;
+import DTO.Product_DTO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author LENOVO
  */
 public class UpdateProForm extends javax.swing.JFrame {
 
+    Product_DTO dtoProduct = null;
+    Employee_DTO dtoStorekeeper = null;
+    
     /**
      * Creates new form UpdateProForm
      */
-    public UpdateProForm() {
+    public UpdateProForm(Product_DTO dtoProduct) {
         initComponents();
     }
 
@@ -172,7 +179,13 @@ public class UpdateProForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_turnback2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_turnback2ActionPerformed
-
+        int ret = JOptionPane.showConfirmDialog(null, "Confirm", "Do you want to turn back?", JOptionPane.YES_NO_OPTION);
+        if(ret == JOptionPane.YES_OPTION)
+        {
+            setVisible(false);
+            ManageProduct emp = new ManageProduct(dtoStorekeeper);
+            emp.setVisible(true);
+        }
     }//GEN-LAST:event_btn_turnback2ActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed

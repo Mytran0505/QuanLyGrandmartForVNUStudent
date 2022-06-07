@@ -4,19 +4,26 @@
  */
 package GUI;
 
+import DTO.Employee_DTO;
+import DTO.Product_DTO;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author LENOVO
  */
 public class ManageProduct extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ManageProduct
-     */
-    public ManageProduct() {
+    Product_DTO dtoProduct = null;
+    Employee_DTO dtoStorekeeper = null;
+    ArrayList<Product_DTO> list = new ArrayList<>();
+    public ManageProduct(Employee_DTO storekeeper) {
         initComponents();
+        dtoStorekeeper = storekeeper;
+        setResizable(false);
+        setLocationRelativeTo(null);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -189,29 +196,39 @@ public class ManageProduct extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_insertActionPerformed
-       
+            setVisible(false);
+            InsertProForm ins = new InsertProForm(dtoProduct);
+            ins.setVisible(true);
     }//GEN-LAST:event_btn_insertActionPerformed
 
     private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
-        
+            setVisible(false);
+            DeleteProForm del = new DeleteProForm(dtoProduct);
+            del.setVisible(true);
     }//GEN-LAST:event_btn_deleteActionPerformed
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
-        
+            setVisible(false);
+            UpdateProForm upd = new UpdateProForm(dtoProduct);
+            upd.setVisible(true);
     }//GEN-LAST:event_btn_updateActionPerformed
 
     private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
-        
+            setVisible(false);
+            SearchProForm sear = new SearchProForm(dtoProduct);
+            sear.setVisible(true);
     }//GEN-LAST:event_btn_searchActionPerformed
 
     private void btn_turnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_turnbackActionPerformed
-       
+       int ret = JOptionPane.showConfirmDialog(null, "Confirm", "Do you want to turn back?", JOptionPane.YES_NO_OPTION);
+        if(ret == JOptionPane.YES_OPTION)
+        {
+            setVisible(false);
+            StorekeeperHome home = new StorekeeperHome(dtoStorekeeper);
+            home.setVisible(true);
+        }
     }//GEN-LAST:event_btn_turnbackActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_delete;

@@ -4,16 +4,23 @@
  */
 package GUI;
 
+import BUS.EmployeeManagement_BUS;
+import DTO.Product_DTO;
+import DTO.Employee_DTO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author LENOVO
  */
 public class InsertProForm extends javax.swing.JFrame {
-
+    
+    Product_DTO dtoProduct = null;
+    Employee_DTO dtoStorekeeper = null;
     /**
      * Creates new form InsertProForm
      */
-    public InsertProForm() {
+    public InsertProForm(Product_DTO dtoProduct) {
         initComponents();
     }
 
@@ -74,78 +81,63 @@ public class InsertProForm extends javax.swing.JFrame {
         jPanel7.setBackground(new java.awt.Color(239, 250, 252));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtProName.setBackground(new java.awt.Color(255, 255, 255));
         txtProName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtProName.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jPanel7.add(txtProName, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 200, 30));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Product name:");
         jPanel7.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 127, 30));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Country:");
         jPanel7.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 127, 30));
 
-        txtCountry.setBackground(new java.awt.Color(255, 255, 255));
         txtCountry.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtCountry.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jPanel7.add(txtCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 200, 30));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Original price");
         jPanel7.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 127, 30));
 
-        txtSPrice.setBackground(new java.awt.Color(255, 255, 255));
         txtSPrice.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtSPrice.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jPanel7.add(txtSPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 200, 30));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Sale price");
         jPanel7.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 127, 30));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("MFG:");
         jPanel7.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 127, 30));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("EXP:");
         jPanel7.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 127, 30));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Imported Quantity:");
         jPanel7.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, 160, 30));
 
-        txtProType.setBackground(new java.awt.Color(255, 255, 255));
         txtProType.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtProType.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jPanel7.add(txtProType, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 40, 200, 30));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Product type:");
         jPanel7.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, 140, 30));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("VAT:");
         jPanel7.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 90, 30));
 
-        txtVAT.setBackground(new java.awt.Color(255, 255, 255));
         txtVAT.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtVAT.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jPanel7.add(txtVAT, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 80, 200, 30));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Imported date:");
         jPanel7.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 120, 130, 30));
 
@@ -161,11 +153,9 @@ public class InsertProForm extends javax.swing.JFrame {
         jPanel7.add(btnInsert, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, 130, 60));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Supplier ID:");
         jPanel7.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 127, 30));
 
-        txtSupID.setBackground(new java.awt.Color(255, 255, 255));
         txtSupID.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtSupID.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jPanel7.add(txtSupID, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, 200, 30));
@@ -224,14 +214,12 @@ public class InsertProForm extends javax.swing.JFrame {
         jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 0, 51));
         jLabel23.setText("(*)");
-        jPanel7.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, -1, -1));
+        jPanel7.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, -1, -1));
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(0, 0, 0));
         jLabel24.setText("Remaining quantity:");
         jPanel7.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, 170, 30));
 
-        txtRemainingQuantity.setBackground(new java.awt.Color(255, 255, 255));
         txtRemainingQuantity.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtRemainingQuantity.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jPanel7.add(txtRemainingQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 200, 200, 30));
@@ -241,7 +229,6 @@ public class InsertProForm extends javax.swing.JFrame {
         jLabel25.setText("(*)");
         jPanel7.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 160, -1, -1));
 
-        txtOPrice.setBackground(new java.awt.Color(255, 255, 255));
         txtOPrice.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtOPrice.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jPanel7.add(txtOPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 200, 30));
@@ -249,7 +236,6 @@ public class InsertProForm extends javax.swing.JFrame {
         dcMFG.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.add(dcMFG, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 200, 30));
 
-        txtImportedQuantity.setBackground(new java.awt.Color(255, 255, 255));
         txtImportedQuantity.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtImportedQuantity.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jPanel7.add(txtImportedQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 160, 200, 30));
@@ -268,7 +254,6 @@ public class InsertProForm extends javax.swing.JFrame {
 
         btnTurnBack.setBackground(new java.awt.Color(239, 250, 252));
         btnTurnBack.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnTurnBack.setForeground(new java.awt.Color(0, 0, 0));
         btnTurnBack.setText("Turn back");
         btnTurnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -308,7 +293,13 @@ public class InsertProForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInsertActionPerformed
 
     private void btnTurnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTurnBackActionPerformed
-       
+        int ret = JOptionPane.showConfirmDialog(null, "Confirm", "Do you want to turn back?", JOptionPane.YES_NO_OPTION);
+        if(ret == JOptionPane.YES_OPTION)
+        {
+            setVisible(false);
+            ManageProduct emp = new ManageProduct(dtoStorekeeper);
+            emp.setVisible(true);
+        }
     }//GEN-LAST:event_btnTurnBackActionPerformed
 
     /**

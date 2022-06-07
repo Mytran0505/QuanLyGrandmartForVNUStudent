@@ -4,12 +4,22 @@
  */
 package GUI;
 
+import DTO.Employee_DTO;
+import DTO.Product_DTO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author LENOVO
  */
 public class DeleteProForm extends javax.swing.JFrame {
-
+    
+    Product_DTO dtoProduct = null;
+    Employee_DTO dtoStorekeeper = null;
+    
+    public DeleteProForm(Product_DTO dtoProduct){
+        initComponents();
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -143,7 +153,13 @@ public class DeleteProForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btn_turnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_turnbackActionPerformed
-        
+        int ret = JOptionPane.showConfirmDialog(null, "Confirm", "Do you want to turn back?", JOptionPane.YES_NO_OPTION);
+        if(ret == JOptionPane.YES_OPTION)
+        {
+            setVisible(false);
+            ManageProduct emp = new ManageProduct(dtoStorekeeper);
+            emp.setVisible(true);
+        }
     }//GEN-LAST:event_btn_turnbackActionPerformed
 
     /**

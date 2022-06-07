@@ -4,17 +4,52 @@
  */
 package GUI;
 
+import BUS.ProductManagement_BUS;
+import DTO.Product_DTO;
+import DTO.Employee_DTO;
+
 /**
  *
  * @author DELL
  */
 public class SearchPro2 extends javax.swing.JFrame {
-
+    
+    ProductManagement_BUS busProductManagement = new ProductManagement_BUS();
+    Product_DTO dtoProduct = null;
     /**
      * Creates new form SearchProduct2
      */
-    public SearchPro2() {
+    public SearchPro2(Product_DTO dtoProduct) {
         initComponents();
+        dtoProduct = busProductManagement.getInformation(dtoProduct.getPro_id());
+        setResizable(false);
+        setLocationRelativeTo(null);
+        txtProID.setText(String.valueOf(dtoProduct.getPro_id()));
+        txtSupID.setText(String.valueOf(dtoProduct.getSup_id()));
+        txtProName.setText(dtoProduct.getName());
+        txtCountry.setText(dtoProduct.getCountry());
+        txtOriginalPrice.setText(String.valueOf(dtoProduct.getOriginal_price()));
+        txtSalePrice.setText(String.valueOf(dtoProduct.getSale_price()));
+        txtMFG.setText(String.valueOf(dtoProduct.getMFG()));
+        txtEXP.setText(String.valueOf(dtoProduct.getEXP()));
+        txtProType.setText(dtoProduct.getType());
+        txtVAT.setText(String.valueOf(dtoProduct.getVAT()));
+        txtImportedDate.setText(String.valueOf(dtoProduct.getImported_date()));
+        txtImportedQuantity.setText(String.valueOf(dtoProduct.getImported_quantity()));
+        txtRemainingQuantity.setText(String.valueOf(dtoProduct.getRemaining_quantity()));
+        txtProID.disable();
+        txtSupID.disable();
+        txtProName.disable();
+        txtCountry.disable();
+        txtOriginalPrice.disable();
+        txtSalePrice.disable();
+        txtMFG.disable();
+        txtEXP.disable();
+        txtProType.disable();
+        txtVAT.disable();
+        txtImportedDate.disable();
+        txtImportedQuantity.disable();
+        txtRemainingQuantity.disable();
     }
 
     /**
@@ -358,6 +393,9 @@ public class SearchPro2 extends javax.swing.JFrame {
 
     private void btn_turnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_turnbackActionPerformed
         // TODO add your handling code here:
+        setVisible(false);
+        SearchProForm searchForm = new SearchProForm(dtoProduct);
+        searchForm.setVisible(true);
     }//GEN-LAST:event_btn_turnbackActionPerformed
 
     private void txtSupIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSupIDActionPerformed
@@ -407,38 +445,6 @@ public class SearchPro2 extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SearchPro2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SearchPro2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SearchPro2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SearchPro2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SearchPro2().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_turnback;
