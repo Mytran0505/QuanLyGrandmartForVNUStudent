@@ -6,7 +6,7 @@ package GUI;
 
 import BUS.ProductManagement_BUS;
 import DTO.Product_DTO;
-import DTO.Employee_DTO;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -16,33 +16,51 @@ public class SearchPro2 extends javax.swing.JFrame {
     
     ProductManagement_BUS busProductManagement = new ProductManagement_BUS();
     Product_DTO dtoProduct = null;
-    /**
-     * Creates new form SearchProduct2
-     */
+
     public SearchPro2(Product_DTO dtoProduct) {
         initComponents();
         dtoProduct = busProductManagement.getInformation(dtoProduct.getPro_id());
         setResizable(false);
         setLocationRelativeTo(null);
-        txtProID.setText(String.valueOf(dtoProduct.getPro_id()));
-        txtSupID.setText(String.valueOf(dtoProduct.getSup_id()));
-        txtProName.setText(dtoProduct.getName());
-        txtCountry.setText(dtoProduct.getCountry());
-        txtOriginalPrice.setText(String.valueOf(dtoProduct.getOriginal_price()));
-        txtSalePrice.setText(String.valueOf(dtoProduct.getSale_price()));
-        txtMFG.setText(String.valueOf(dtoProduct.getMFG()));
-        txtEXP.setText(String.valueOf(dtoProduct.getEXP()));
-        txtProType.setText(dtoProduct.getType());
-        txtVAT.setText(String.valueOf(dtoProduct.getVAT()));
-        txtImportedDate.setText(String.valueOf(dtoProduct.getImported_date()));
-        txtImportedQuantity.setText(String.valueOf(dtoProduct.getImported_quantity()));
-        txtRemainingQuantity.setText(String.valueOf(dtoProduct.getRemaining_quantity()));
+        if(dtoProduct.getEXP() == null)
+        {
+            txtProID.setText(String.valueOf(dtoProduct.getPro_id()));
+            txtSupID.setText(String.valueOf(dtoProduct.getSup_id()));
+            txtProName.setText(dtoProduct.getName());
+            txtCountry.setText(dtoProduct.getCountry());
+            txtOPrice.setText(String.valueOf(dtoProduct.getOriginal_price()));
+            txtSPrice.setText(String.valueOf(dtoProduct.getSale_price()));
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            txtMFG.setText(sdf.format(dtoProduct.getMFG()));
+            txtProType.setText(dtoProduct.getType());
+            txtVAT.setText(String.valueOf(dtoProduct.getVAT()));
+            txtImportedDate.setText(sdf.format(dtoProduct.getImported_date()));
+            txtImportedQuantity.setText(String.valueOf(dtoProduct.getImported_quantity()));
+            txtRemainingQuantity.setText(String.valueOf(dtoProduct.getRemaining_quantity()));;
+        }
+        else
+        {
+            txtProID.setText(String.valueOf(dtoProduct.getPro_id()));
+            txtSupID.setText(String.valueOf(dtoProduct.getSup_id()));
+            txtProName.setText(dtoProduct.getName());
+            txtCountry.setText(dtoProduct.getCountry());
+            txtOPrice.setText(String.valueOf(dtoProduct.getOriginal_price()));
+            txtSPrice.setText(String.valueOf(dtoProduct.getSale_price()));
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            txtMFG.setText(sdf.format(dtoProduct.getMFG()));
+            txtEXP.setText(sdf.format(dtoProduct.getEXP()));
+            txtProType.setText(dtoProduct.getType());
+            txtVAT.setText(String.valueOf(dtoProduct.getVAT()));
+            txtImportedDate.setText(sdf.format(dtoProduct.getImported_date()));
+            txtImportedQuantity.setText(String.valueOf(dtoProduct.getImported_quantity()));
+            txtRemainingQuantity.setText(String.valueOf(dtoProduct.getRemaining_quantity()));;
+        }
         txtProID.disable();
         txtSupID.disable();
         txtProName.disable();
         txtCountry.disable();
-        txtOriginalPrice.disable();
-        txtSalePrice.disable();
+        txtOPrice.disable();
+        txtSPrice.disable();
         txtMFG.disable();
         txtEXP.disable();
         txtProType.disable();
@@ -77,8 +95,8 @@ public class SearchPro2 extends javax.swing.JFrame {
         txtProID = new javax.swing.JTextField();
         txtSupID = new javax.swing.JTextField();
         txtProName = new javax.swing.JTextField();
-        txtOriginalPrice = new javax.swing.JTextField();
-        txtSalePrice = new javax.swing.JTextField();
+        txtOPrice = new javax.swing.JTextField();
+        txtSPrice = new javax.swing.JTextField();
         txtMFG = new javax.swing.JTextField();
         txtEXP = new javax.swing.JTextField();
         txtCountry = new javax.swing.JTextField();
@@ -181,17 +199,17 @@ public class SearchPro2 extends javax.swing.JFrame {
             }
         });
 
-        txtOriginalPrice.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtOriginalPrice.addActionListener(new java.awt.event.ActionListener() {
+        txtOPrice.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtOPrice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtOriginalPriceActionPerformed(evt);
+                txtOPriceActionPerformed(evt);
             }
         });
 
-        txtSalePrice.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtSalePrice.addActionListener(new java.awt.event.ActionListener() {
+        txtSPrice.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtSPrice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSalePriceActionPerformed(evt);
+                txtSPriceActionPerformed(evt);
             }
         });
 
@@ -287,11 +305,11 @@ public class SearchPro2 extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtOriginalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtOPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSalePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtSPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -370,11 +388,11 @@ public class SearchPro2 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtOriginalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtOPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSalePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtSPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -406,13 +424,13 @@ public class SearchPro2 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtProNameActionPerformed
 
-    private void txtOriginalPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOriginalPriceActionPerformed
+    private void txtOPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOPriceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtOriginalPriceActionPerformed
+    }//GEN-LAST:event_txtOPriceActionPerformed
 
-    private void txtSalePriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSalePriceActionPerformed
+    private void txtSPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSPriceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtSalePriceActionPerformed
+    }//GEN-LAST:event_txtSPriceActionPerformed
 
     private void txtMFGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMFGActionPerformed
         // TODO add your handling code here:
@@ -470,12 +488,12 @@ public class SearchPro2 extends javax.swing.JFrame {
     private javax.swing.JTextField txtImportedDate;
     private javax.swing.JTextField txtImportedQuantity;
     private javax.swing.JTextField txtMFG;
-    private javax.swing.JTextField txtOriginalPrice;
+    private javax.swing.JTextField txtOPrice;
     private javax.swing.JTextField txtProID;
     private javax.swing.JTextField txtProName;
     private javax.swing.JTextField txtProType;
     private javax.swing.JTextField txtRemainingQuantity;
-    private javax.swing.JTextField txtSalePrice;
+    private javax.swing.JTextField txtSPrice;
     private javax.swing.JTextField txtSupID;
     private javax.swing.JTextField txtVAT;
     // End of variables declaration//GEN-END:variables

@@ -4,17 +4,60 @@
  */
 package GUI;
 
+import BUS.ProductManagement_BUS;
+import DTO.Product_DTO;
+import java.util.Calendar;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author LENOVO
  */
 public class UpdatePro2 extends javax.swing.JFrame {
 
+    ProductManagement_BUS busProductManagement = new ProductManagement_BUS();
+    Product_DTO dtoProduct = null;
+    
     /**
      * Creates new form UpdatePro2
      */
-    public UpdatePro2() {
+    public UpdatePro2(Product_DTO product) {
         initComponents();
+        dtoProduct = busProductManagement.getProductInfo(product);
+        setResizable(false);
+        setLocationRelativeTo(null);
+        if(dtoProduct.getEXP() == null)
+        {
+            txtProID.setText(String.valueOf(dtoProduct.getPro_id()));
+            txtSupID.setText(String.valueOf(dtoProduct.getSup_id()));
+            txtProName.setText(dtoProduct.getName());
+            txtCountry.setText(dtoProduct.getCountry());
+            txtOPrice.setText(String.valueOf(dtoProduct.getOriginal_price()));
+            txtSPrice.setText(String.valueOf(dtoProduct.getSale_price()));
+            dcMFG.setDate(dtoProduct.getMFG());
+            txtProType.setText(dtoProduct.getType());
+            txtVAT.setText(String.valueOf(dtoProduct.getVAT()));
+            dcImportedDate.setDate(dtoProduct.getImported_date());
+            txtImportedQuantity.setText(String.valueOf(dtoProduct.getImported_quantity()));
+            txtRemainingQuantity.setText(String.valueOf(dtoProduct.getRemaining_quantity()));;
+        }
+        else
+        {
+            txtProID.setText(String.valueOf(dtoProduct.getPro_id()));
+            txtSupID.setText(String.valueOf(dtoProduct.getSup_id()));
+            txtProName.setText(dtoProduct.getName());
+            txtCountry.setText(dtoProduct.getCountry());
+            txtOPrice.setText(String.valueOf(dtoProduct.getOriginal_price()));
+            txtSPrice.setText(String.valueOf(dtoProduct.getSale_price()));
+            dcMFG.setDate(dtoProduct.getMFG());
+            dcEXP.setDate(dtoProduct.getEXP());
+            txtProType.setText(dtoProduct.getType());
+            txtVAT.setText(String.valueOf(dtoProduct.getVAT()));
+            dcImportedDate.setDate(dtoProduct.getImported_date());
+            txtImportedQuantity.setText(String.valueOf(dtoProduct.getImported_quantity()));
+            txtRemainingQuantity.setText(String.valueOf(dtoProduct.getRemaining_quantity()));;
+        }
+        txtProID.disable();       
     }
 
     /**
@@ -31,20 +74,20 @@ public class UpdatePro2 extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         btnTurnBack = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
-        txtProName1 = new javax.swing.JTextField();
+        txtProName = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        txtCountry1 = new javax.swing.JTextField();
+        txtCountry = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        txtSPrice1 = new javax.swing.JTextField();
+        txtSPrice = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        txtProType1 = new javax.swing.JTextField();
+        txtProType = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        txtVAT1 = new javax.swing.JTextField();
+        txtVAT = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         btnUpdate = new javax.swing.JButton();
         jLabel27 = new javax.swing.JLabel();
@@ -85,7 +128,6 @@ public class UpdatePro2 extends javax.swing.JFrame {
 
         btnTurnBack.setBackground(new java.awt.Color(239, 250, 252));
         btnTurnBack.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnTurnBack.setForeground(new java.awt.Color(0, 0, 0));
         btnTurnBack.setText("Turn back");
         btnTurnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,78 +162,63 @@ public class UpdatePro2 extends javax.swing.JFrame {
         jPanel8.setBackground(new java.awt.Color(239, 250, 252));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtProName1.setBackground(new java.awt.Color(255, 255, 255));
-        txtProName1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtProName1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPanel8.add(txtProName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 200, 30));
+        txtProName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtProName.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jPanel8.add(txtProName, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 200, 30));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Product name:");
         jPanel8.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 127, 30));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Country:");
         jPanel8.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 127, 30));
 
-        txtCountry1.setBackground(new java.awt.Color(255, 255, 255));
-        txtCountry1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtCountry1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPanel8.add(txtCountry1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 200, 30));
+        txtCountry.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtCountry.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jPanel8.add(txtCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 200, 30));
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Original price");
         jPanel8.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 127, 30));
 
-        txtSPrice1.setBackground(new java.awt.Color(255, 255, 255));
-        txtSPrice1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtSPrice1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPanel8.add(txtSPrice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 200, 30));
+        txtSPrice.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtSPrice.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jPanel8.add(txtSPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 200, 30));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Sale price");
         jPanel8.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 127, 30));
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setText("MFG:");
         jPanel8.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 127, 30));
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("EXP:");
         jPanel8.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 127, 30));
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(0, 0, 0));
         jLabel23.setText("Imported Quantity:");
         jPanel8.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, 160, 30));
 
-        txtProType1.setBackground(new java.awt.Color(255, 255, 255));
-        txtProType1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtProType1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPanel8.add(txtProType1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 40, 200, 30));
+        txtProType.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtProType.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jPanel8.add(txtProType, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 40, 200, 30));
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(0, 0, 0));
         jLabel24.setText("Product type:");
         jPanel8.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, 140, 30));
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
         jLabel25.setText("VAT:");
         jPanel8.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 90, 30));
 
-        txtVAT1.setBackground(new java.awt.Color(255, 255, 255));
-        txtVAT1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtVAT1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPanel8.add(txtVAT1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 80, 200, 30));
+        txtVAT.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtVAT.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jPanel8.add(txtVAT, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 80, 200, 30));
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
         jLabel26.setText("Imported date:");
         jPanel8.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 120, 130, 30));
 
@@ -207,11 +234,9 @@ public class UpdatePro2 extends javax.swing.JFrame {
         jPanel8.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, 130, 60));
 
         jLabel27.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
         jLabel27.setText("Supplier ID:");
         jPanel8.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 127, 30));
 
-        txtSupID.setBackground(new java.awt.Color(255, 255, 255));
         txtSupID.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtSupID.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jPanel8.add(txtSupID, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 200, 30));
@@ -270,14 +295,12 @@ public class UpdatePro2 extends javax.swing.JFrame {
         jLabel33.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(255, 0, 51));
         jLabel33.setText("(*)");
-        jPanel8.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 320, -1, -1));
+        jPanel8.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, -1, -1));
 
         jLabel34.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel34.setForeground(new java.awt.Color(0, 0, 0));
         jLabel34.setText("Remaining quantity:");
         jPanel8.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, 170, 30));
 
-        txtRemainingQuantity.setBackground(new java.awt.Color(255, 255, 255));
         txtRemainingQuantity.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtRemainingQuantity.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jPanel8.add(txtRemainingQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 200, 200, 30));
@@ -287,7 +310,6 @@ public class UpdatePro2 extends javax.swing.JFrame {
         jLabel35.setText("(*)");
         jPanel8.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 160, -1, -1));
 
-        txtOPrice.setBackground(new java.awt.Color(255, 255, 255));
         txtOPrice.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtOPrice.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jPanel8.add(txtOPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 200, 30));
@@ -295,17 +317,14 @@ public class UpdatePro2 extends javax.swing.JFrame {
         dcMFG.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.add(dcMFG, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 200, 30));
 
-        txtImportedQuantity.setBackground(new java.awt.Color(255, 255, 255));
         txtImportedQuantity.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtImportedQuantity.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jPanel8.add(txtImportedQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 160, 200, 30));
 
         jLabel37.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel37.setForeground(new java.awt.Color(0, 0, 0));
         jLabel37.setText("Product ID:");
         jPanel8.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 127, 30));
 
-        txtProID.setBackground(new java.awt.Color(255, 255, 255));
         txtProID.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtProID.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jPanel8.add(txtProID, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, 200, 30));
@@ -316,11 +335,29 @@ public class UpdatePro2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTurnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTurnBackActionPerformed
-
+        setVisible(false);
+        UpdateProForm updateForm = new UpdateProForm(dtoProduct);
+        updateForm.setVisible(true);
     }//GEN-LAST:event_btnTurnBackActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-
+        if(txtSupID.getText().equals("") || txtProName.getText().equals("") || txtCountry.getText().equals("") || txtOPrice.getText().equals("") || txtSPrice.getText().equals("") || dcMFG.getCalendar() == null || txtProType.getText().equals("") || txtVAT.getText().equals("") || dcImportedDate.getCalendar() == null || txtImportedQuantity.getText().equals("") || txtRemainingQuantity.getText().equals("") )
+        {
+            JOptionPane.showMessageDialog(this, "Information fields are not entered enough.", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            if(dcEXP.getCalendar() == null){
+                Product_DTO dtoProduct = new Product_DTO(Integer.parseInt(txtProID.getText()), Integer.parseInt(txtSupID.getText()), txtProName.getText(), txtCountry.getText(), Long.parseLong(txtOPrice.getText()), Long.parseLong(txtSPrice.getText()), dcMFG.getDate(), txtProType.getText(), Integer.parseInt(txtVAT.getText()), dcImportedDate.getDate(), Integer.parseInt(txtImportedQuantity.getText()), Integer.parseInt(txtRemainingQuantity.getText()));
+                setVisible(false);
+                new UpdatePro3(dtoProduct).setVisible(true);
+            }
+            else{
+                Product_DTO dtoProduct = new Product_DTO(Integer.parseInt(txtProID.getText()), Integer.parseInt(txtSupID.getText()), txtProName.getText(), txtCountry.getText(), Long.parseLong(txtOPrice.getText()), Long.parseLong(txtSPrice.getText()), dcMFG.getDate(), dcEXP.getDate(), txtProType.getText(), Integer.parseInt(txtVAT.getText()), dcImportedDate.getDate(), Integer.parseInt(txtImportedQuantity.getText()), Integer.parseInt(txtRemainingQuantity.getText()));
+                setVisible(false);
+                new UpdatePro3(dtoProduct).setVisible(true);
+            }
+            
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**
@@ -329,21 +366,12 @@ public class UpdatePro2 extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnInsert;
     private javax.swing.JButton btnTurnBack;
     private javax.swing.JButton btnUpdate;
     private com.toedter.calendar.JDateChooser dcEXP;
     private com.toedter.calendar.JDateChooser dcImportedDate;
     private com.toedter.calendar.JDateChooser dcMFG;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -368,26 +396,18 @@ public class UpdatePro2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JTextField txtCountry;
-    private javax.swing.JTextField txtCountry1;
     private javax.swing.JTextField txtImportedQuantity;
     private javax.swing.JTextField txtOPrice;
     private javax.swing.JTextField txtProID;
     private javax.swing.JTextField txtProName;
-    private javax.swing.JTextField txtProName1;
     private javax.swing.JTextField txtProType;
-    private javax.swing.JTextField txtProType1;
     private javax.swing.JTextField txtRemainingQuantity;
     private javax.swing.JTextField txtSPrice;
-    private javax.swing.JTextField txtSPrice1;
     private javax.swing.JTextField txtSupID;
     private javax.swing.JTextField txtVAT;
-    private javax.swing.JTextField txtVAT1;
     // End of variables declaration//GEN-END:variables
 }

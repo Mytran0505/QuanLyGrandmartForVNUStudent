@@ -4,9 +4,16 @@
  */
 package GUI;
 
+import BUS.ProductManagement_BUS;
 import DTO.Employee_DTO;
 import DTO.Product_DTO;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.RowFilter;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -14,14 +21,64 @@ import javax.swing.JOptionPane;
  */
 public class UpdateProForm extends javax.swing.JFrame {
 
+    ProductManagement_BUS busProductManagement = new ProductManagement_BUS();
     Product_DTO dtoProduct = null;
     Employee_DTO dtoStorekeeper = null;
+    ArrayList<Product_DTO> list = new ArrayList<>();
     
     /**
      * Creates new form UpdateProForm
      */
-    public UpdateProForm(Product_DTO dtoProduct) {
+    public UpdateProForm(Product_DTO product) {
         initComponents();
+        dtoProduct = product;
+        setResizable(false);
+        setLocationRelativeTo(null);
+        createTable();
+    }
+    
+    DefaultTableModel tblProductModel;
+    public void createTable(){
+        tblProductModel = new DefaultTableModel();
+        //Tạo bảng
+        String title[] = {"Product ID", "Supplier ID", "Product name", "Country", "Original price", "Sale price", "MFG", "EXP", "Product type", "VAT", "Imported date", "Imported quantity", "Remaining quantity"};
+        tblProductModel.setColumnIdentifiers(title);
+        tblProductModel.setRowCount(0);
+        //Get all employee information
+        list = busProductManagement.getProductList();
+        //Load employee information into the table
+        for(int i = 0; i < list.size(); i++){
+            Product_DTO dtoProduct = list.get(i);
+            String[] rows = {String.valueOf(dtoProduct.getPro_id()), String.valueOf(dtoProduct.getSup_id()), dtoProduct.getName(), dtoProduct.getCountry(), String.valueOf(dtoProduct.getOriginal_price()), String.valueOf(dtoProduct.getSale_price()), dtoProduct.getMFG().toString(), String.valueOf(dtoProduct.getEXP()), dtoProduct.getType(), String.valueOf(dtoProduct.getVAT()), dtoProduct.getImported_date().toString(), String.valueOf(dtoProduct.getImported_quantity()), String.valueOf(dtoProduct.getRemaining_quantity())}; 
+            tblProductModel.addRow(rows);
+        }
+        tblSearch.setModel(tblProductModel);
+        //cho phép sắp xếp từng cột
+        tblSearch.setAutoCreateRowSorter(true);
+        //không cho sửa dữ liệu trong bảng
+        //tblSearch.setEnabled(false);
+        tblSearch.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tblSearch.getColumnModel().getColumn(0).setPreferredWidth(80);
+        tblSearch.getColumnModel().getColumn(1).setPreferredWidth(80);
+        tblSearch.getColumnModel().getColumn(2).setPreferredWidth(110);
+        tblSearch.getColumnModel().getColumn(3).setPreferredWidth(90);
+        tblSearch.getColumnModel().getColumn(4).setPreferredWidth(90);
+        tblSearch.getColumnModel().getColumn(5).setPreferredWidth(90);
+        tblSearch.getColumnModel().getColumn(6).setPreferredWidth(90);
+        tblSearch.getColumnModel().getColumn(7).setPreferredWidth(90);
+        tblSearch.getColumnModel().getColumn(8).setPreferredWidth(120);
+        tblSearch.getColumnModel().getColumn(9).setPreferredWidth(50);
+        tblSearch.getColumnModel().getColumn(10).setPreferredWidth(90);
+        tblSearch.getColumnModel().getColumn(11).setPreferredWidth(120);
+        tblSearch.getColumnModel().getColumn(12).setPreferredWidth(120);
+        tblSearch.getSelectionModel().addListSelectionListener((ListSelectionEvent e) -> {
+            if(tblSearch.getSelectedRow() >= 0){
+                Product_DTO dtoProduct = new Product_DTO(Integer.valueOf(String.valueOf(tblSearch.getValueAt(tblSearch.getSelectedRow(), 0))));
+                setVisible(false);
+                new UpdatePro2(dtoProduct).setVisible(true);
+            }
+        });
+        
     }
 
     /**
@@ -189,7 +246,15 @@ public class UpdateProForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_turnback2ActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-
+        DefaultTableModel searchTable = (DefaultTableModel) tblSearch.getModel();
+        //khởi tạo row sorter với tất cả dữ liệu trên tblSearch
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(searchTable);
+        tblSearch.setRowSorter(sorter);//chỉ định bộ lọc cho tblSearch
+        String search = txtSearch.getText();
+        sorter.setRowFilter(RowFilter.regexFilter(search));//sử dụng đối tượng Rowfilter để lọc dựa trên giá trị trong textfield
+        if(tblSearch.getRowCount() < 1){
+            JOptionPane.showMessageDialog(this, "No match result.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnSearchActionPerformed
 
     /**

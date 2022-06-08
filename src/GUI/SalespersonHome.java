@@ -1,16 +1,20 @@
 package GUI;
 
+import DTO.Product_DTO;
 import DTO.Employee_DTO;
+import javax.swing.JOptionPane;
 
 
 public class SalespersonHome extends javax.swing.JFrame {
 
     Employee_DTO dtoSalesperson = null;
+    Product_DTO dtoProduct = null;
     public SalespersonHome(Employee_DTO salesperson) {
         initComponents();
         dtoSalesperson = salesperson;
         setResizable(false);
         setLocationRelativeTo(null);
+        lbSalesperson.setText("Welcome to Storekeeper Home!");
     }
 
     
@@ -24,11 +28,11 @@ public class SalespersonHome extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btn_logout = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        lbManager = new javax.swing.JLabel();
+        lbSalesperson = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        btn_ManageEmp = new javax.swing.JButton();
+        btn_LookUpPro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -47,7 +51,6 @@ public class SalespersonHome extends javax.swing.JFrame {
 
         btn_logout.setBackground(new java.awt.Color(239, 250, 252));
         btn_logout.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btn_logout.setForeground(new java.awt.Color(0, 0, 0));
         btn_logout.setText("Log out");
         btn_logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,12 +84,12 @@ public class SalespersonHome extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(239, 250, 252));
 
-        lbManager.setBackground(new java.awt.Color(255, 255, 255));
-        lbManager.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
-        lbManager.setForeground(new java.awt.Color(51, 153, 255));
-        lbManager.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbManager.setText("Welcome to Salesperson Home!");
-        lbManager.setToolTipText("");
+        lbSalesperson.setBackground(new java.awt.Color(255, 255, 255));
+        lbSalesperson.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
+        lbSalesperson.setForeground(new java.awt.Color(51, 153, 255));
+        lbSalesperson.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbSalesperson.setText("Welcome to Salesperson Home!");
+        lbSalesperson.setToolTipText("");
 
         jPanel4.setBackground(new java.awt.Color(239, 250, 252));
         jPanel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -102,22 +105,22 @@ public class SalespersonHome extends javax.swing.JFrame {
         jLabel5.setText("<html><center>Look up product <br>Information</center></html>");
         jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 91, 201, 50));
 
-        btn_ManageEmp.setBackground(new java.awt.Color(0, 204, 255));
-        btn_ManageEmp.setForeground(new java.awt.Color(255, 153, 102));
-        btn_ManageEmp.setBorder(null);
-        btn_ManageEmp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btn_ManageEmp.addActionListener(new java.awt.event.ActionListener() {
+        btn_LookUpPro.setBackground(new java.awt.Color(0, 204, 255));
+        btn_LookUpPro.setForeground(new java.awt.Color(255, 153, 102));
+        btn_LookUpPro.setBorder(null);
+        btn_LookUpPro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_LookUpPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ManageEmpActionPerformed(evt);
+                btn_LookUpProActionPerformed(evt);
             }
         });
-        jPanel4.add(btn_ManageEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 170, 140));
+        jPanel4.add(btn_LookUpPro, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 170, 140));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbManager, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+            .addComponent(lbSalesperson, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -127,7 +130,7 @@ public class SalespersonHome extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbManager, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbSalesperson, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 45, Short.MAX_VALUE))
@@ -141,16 +144,24 @@ public class SalespersonHome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_logoutActionPerformed
-      
+        int ret = JOptionPane.showConfirmDialog(null, "Confirm", "Do you want to log out?", JOptionPane.YES_NO_OPTION);
+        if(ret == JOptionPane.YES_OPTION)
+        {
+            setVisible(false);
+            LoginForm Login = new LoginForm();
+            Login.setVisible(true);
+        }
     }//GEN-LAST:event_btn_logoutActionPerformed
 
-    private void btn_ManageEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ManageEmpActionPerformed
-     
-    }//GEN-LAST:event_btn_ManageEmpActionPerformed
+    private void btn_LookUpProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LookUpProActionPerformed
+        LookUpProductInformation pro = new LookUpProductInformation(dtoProduct);
+        pro.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_btn_LookUpProActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_ManageEmp;
+    private javax.swing.JButton btn_LookUpPro;
     private javax.swing.JButton btn_logout;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -160,6 +171,6 @@ public class SalespersonHome extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JLabel lbManager;
+    private javax.swing.JLabel lbSalesperson;
     // End of variables declaration//GEN-END:variables
 }
