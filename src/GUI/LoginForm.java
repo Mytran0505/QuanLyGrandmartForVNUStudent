@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package GUI;
 
 import BUS.User_login_BUS;
@@ -191,7 +187,7 @@ public class LoginForm extends javax.swing.JFrame {
             User_login_DTO dtoUserLogin = busUserLogin.getUserLogin(username);
             // Check user login information 
             if(dtoUserLogin == null) {
-                JOptionPane.showMessageDialog(this, "Username is incorrect.",  "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Username or password is incorrect",  "Error", JOptionPane.ERROR_MESSAGE);
             }
             else{
                 //Check password
@@ -220,7 +216,7 @@ public class LoginForm extends javax.swing.JFrame {
                     this.setVisible(false);
                 }
                 else{
-                    JOptionPane.showMessageDialog(this, "Password is incorrect.",  "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Username or password is incorrect",  "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
