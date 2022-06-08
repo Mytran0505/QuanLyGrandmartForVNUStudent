@@ -15,19 +15,37 @@ public class InsertPro2 extends javax.swing.JFrame {
         newProduct = busProductManagement.getProductInfo(product);
         setResizable(false);
         setLocationRelativeTo(null);
-        txtSupID.setText(String.valueOf(newProduct.getSup_id()));
-        txtProName.setText(newProduct.getName());
-        txtCountry.setText(newProduct.getCountry());
-        txtOPrice.setText(String.valueOf(newProduct.getOriginal_price()));
-        txtSPrice.setText(String.valueOf(newProduct.getSale_price()));
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        txtMFG.setText(sdf.format(newProduct.getMFG()));
-        txtEXP.setText(sdf.format(newProduct.getEXP()));
-        txtProType.setText(newProduct.getType());
-        txtVAT.setText(String.valueOf(newProduct.getVAT()));
-        txtImportedDate.setText(sdf.format(newProduct.getImported_date()));
-        txtImportedQuantity.setText(String.valueOf(newProduct.getImported_quantity()));
-        txtRemainingQuantity.setText(String.valueOf(newProduct.getRemaining_quantity()));;
+        if(newProduct.getEXP() == null)
+        {
+            txtSupID.setText(String.valueOf(newProduct.getSup_id()));
+            txtProName.setText(newProduct.getName());
+            txtCountry.setText(newProduct.getCountry());
+            txtOPrice.setText(String.valueOf(newProduct.getOriginal_price()));
+            txtSPrice.setText(String.valueOf(newProduct.getSale_price()));
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            txtMFG.setText(sdf.format(newProduct.getMFG()));
+            txtProType.setText(newProduct.getType());
+            txtVAT.setText(String.valueOf(newProduct.getVAT()));
+            txtImportedDate.setText(sdf.format(newProduct.getImported_date()));
+            txtImportedQuantity.setText(String.valueOf(newProduct.getImported_quantity()));
+            txtRemainingQuantity.setText(String.valueOf(newProduct.getRemaining_quantity()));;
+        }
+        else
+        {
+            txtSupID.setText(String.valueOf(newProduct.getSup_id()));
+            txtProName.setText(newProduct.getName());
+            txtCountry.setText(newProduct.getCountry());
+            txtOPrice.setText(String.valueOf(newProduct.getOriginal_price()));
+            txtSPrice.setText(String.valueOf(newProduct.getSale_price()));
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            txtMFG.setText(sdf.format(newProduct.getMFG()));
+            txtEXP.setText(sdf.format(newProduct.getEXP()));
+            txtProType.setText(newProduct.getType());
+            txtVAT.setText(String.valueOf(newProduct.getVAT()));
+            txtImportedDate.setText(sdf.format(newProduct.getImported_date()));
+            txtImportedQuantity.setText(String.valueOf(newProduct.getImported_quantity()));
+            txtRemainingQuantity.setText(String.valueOf(newProduct.getRemaining_quantity()));;
+        }
         txtSupID.disable();
         txtProName.disable();
         txtCountry.disable();

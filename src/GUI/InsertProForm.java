@@ -7,6 +7,8 @@ package GUI;
 import BUS.ProductManagement_BUS;
 import DTO.Product_DTO;
 import DTO.Employee_DTO;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -308,7 +310,7 @@ public class InsertProForm extends javax.swing.JFrame {
         }
         else{
             if(dcEXP.getCalendar() == null){
-                Product_DTO newProduct = new Product_DTO(0, Integer.parseInt(txtSupID.getText()), txtProName.getText(), txtCountry.getText(), Long.parseLong(txtOPrice.getText()), Long.parseLong(txtSPrice.getText()), dcMFG.getDate(), /*String.valueOf(dcEXP.getDate()),*/ txtProType.getText(), Integer.parseInt(txtVAT.getText()), dcImportedDate.getDate(), Integer.parseInt(txtImportedQuantity.getText()), Integer.parseInt(txtRemainingQuantity.getText()));
+                Product_DTO newProduct = new Product_DTO(0, Integer.parseInt(txtSupID.getText()), txtProName.getText(), txtCountry.getText(), Long.parseLong(txtOPrice.getText()), Long.parseLong(txtSPrice.getText()), dcMFG.getDate(), txtProType.getText(), Integer.parseInt(txtVAT.getText()), dcImportedDate.getDate(), Integer.parseInt(txtImportedQuantity.getText()), Integer.parseInt(txtRemainingQuantity.getText()));
                 setVisible(false);
                 new InsertPro2(newProduct).setVisible(true);
             }
