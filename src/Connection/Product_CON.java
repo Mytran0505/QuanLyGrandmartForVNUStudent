@@ -21,8 +21,13 @@ public class Product_CON {
             ps.setLong(5, dtoProduct.getSale_price());
             Date sqlMFG = new java.sql.Date(dtoProduct.getMFG().getTime());
             ps.setDate(6, sqlMFG);
-            Date sqlEXP = new java.sql.Date(dtoProduct.getEXP().getTime());
-            ps.setDate(7, sqlEXP);
+            if(dtoProduct.getEXP() == null){
+                ps.setDate(7, null);
+            }
+            else{
+                Date sqlEXP = new java.sql.Date(dtoProduct.getEXP().getTime());
+                ps.setDate(7, sqlEXP);
+            }
             ps.setString(8, dtoProduct.getType());
             ps.setInt(9, dtoProduct.getVAT());
             Date sqlImportedDate = new java.sql.Date(dtoProduct.getImported_date().getTime());
