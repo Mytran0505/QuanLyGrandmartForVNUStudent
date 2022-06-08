@@ -12,7 +12,7 @@ public class Product_CON {
         try {
             Connection con = DBConnection.getDBConnection();
             String SQL = "INSERT INTO PRODUCT (PRODUCT_ID, SUPPLIER_ID, PRODUCT_NAME, COUNTRY, ORIGINAL_PRICE, SALE_PRICE, MFG, EXP, PRODUCT_TYPE, VAT, IMPORTED_DATE, IMPORTED_QUANTITY, REMAINING_QUANTITY)"
-                    + "VALUES (PRODUCT_ID_SEQUENCE.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    + "VALUES (PRODUCT_ID_SEQUCENCE.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, dtoProduct.getSup_id());
             ps.setString(2, dtoProduct.getName());
