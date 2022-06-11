@@ -1,20 +1,47 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package GUI;
 
-import DTO.Employee_DTO;
+import BUS.StudentManagement_BUS;
+import DTO.Student_DTO;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author TRAN NGUYEN
- */
-public class UpdateStu3 extends javax.swing.JFrame {
 
+public class UpdateStu3 extends javax.swing.JFrame {
+    Student_DTO dtoStudent = null;
+    StudentManagement_BUS busStudentManagement = new StudentManagement_BUS();
+
+    public UpdateStu3(Student_DTO newStudent){
+        initComponents();
+        dtoStudent = newStudent;
+        setResizable(false);
+        setLocationRelativeTo(null);
+        txtStuID.setText(String.valueOf(dtoStudent.getStudentID()));
+        txtFirstName.setText(newStudent.getFirstname());
+        txtLastName.setText(newStudent.getLastname());
+        txtGender.setText(newStudent.getGender());
+        txtAddress.setText(newStudent.getAddress());
+        txtPhone.setText(newStudent.getPhone());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        txtBirthday.setText(sdf.format(newStudent.getBirthday()));
+        txtRegDate.setText(sdf.format(newStudent.getRegistrationDate()));
+        txtSpentMoney.setText(String.valueOf(newStudent.getSpentMoney()));
+        txtPoint.setText(String.valueOf(newStudent.getPoint()));
+        txtSchoolName.setText(newStudent.getSchoolName());
+        txtStuID.disable();
+        txtFirstName.disable();
+        txtLastName.disable();
+        txtGender.disable();
+        txtAddress.disable();
+        txtPhone.disable();
+        txtBirthday.disable();
+        txtRegDate.disable();
+        txtSpentMoney.disable();
+        txtPoint.disable();
+        txtSchoolName.disable();
+    }
     
-        @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -249,11 +276,21 @@ public class UpdateStu3 extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBirthdayActionPerformed
 
     private void btnDismissActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDismissActionPerformed
-        
+        setVisible(false);
+        UpdateStu2 up2 = new UpdateStu2(dtoStudent);
+        up2.setVisible(true);
     }//GEN-LAST:event_btnDismissActionPerformed
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
-        
+        if(busStudentManagement.update(dtoStudent)){
+            JOptionPane.showMessageDialog(this, "Student information is updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Invalid data!", "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
+        setVisible(false);
+        UpdateStudent1 up = new UpdateStudent1(dtoStudent);
+        up.setVisible(true);
     }//GEN-LAST:event_btnConfirmActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

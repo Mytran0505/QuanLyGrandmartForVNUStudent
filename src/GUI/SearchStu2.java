@@ -1,17 +1,42 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package GUI;
 
-import DTO.Employee_DTO;
-import javax.swing.JOptionPane;
+import BUS.StudentManagement_BUS;
+import DTO.Student_DTO;
 
-/**
- *
- * @author LENOVO
- */
+
 public class SearchStu2 extends javax.swing.JFrame {
+    StudentManagement_BUS busStudentManagement = new StudentManagement_BUS();
+    Student_DTO dtoStudent ;
+    public SearchStu2(Student_DTO student) {
+        initComponents();
+        dtoStudent = busStudentManagement.getInformation(student.getStudentID());
+        setResizable(false);
+        setLocationRelativeTo(null);
+        txtStuID.setText(String.valueOf(dtoStudent.getStudentID()));
+        txtFirstName.setText(dtoStudent.getFirstname());
+        txtLastName.setText(dtoStudent.getLastname());
+        txtGender.setText(dtoStudent.getGender());
+        txtAddress.setText(dtoStudent.getAddress());
+        txtPhone.setText(dtoStudent.getPhone());
+        txtBirthday.setText(String.valueOf(dtoStudent.getBirthday()));
+        txtRegDate.setText(String.valueOf(dtoStudent.getRegistrationDate()));
+        txtSpentMoney.setText(String.valueOf(dtoStudent.getSpentMoney()));
+        txtPoint.setText(String.valueOf(dtoStudent.getPoint()));
+        txtSchoolName.setText(dtoStudent.getSchoolName());
+        txtStuID.disable();
+        txtFirstName.disable();
+        txtLastName.disable();
+        txtGender.disable();
+        txtAddress.disable();
+        txtPhone.disable();
+        txtBirthday.disable();
+        txtRegDate.disable();
+        txtSpentMoney.disable();
+        txtPoint.disable();
+        txtSchoolName.disable();
+
+    }
 
 
     @SuppressWarnings("unchecked")
@@ -222,7 +247,9 @@ public class SearchStu2 extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBirthdayActionPerformed
 
     private void btn_turnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_turnbackActionPerformed
-       
+        setVisible(false);
+        SearchStuForm searchForm = new SearchStuForm(dtoStudent);
+        searchForm.setVisible(true);
     }//GEN-LAST:event_btn_turnbackActionPerformed
    
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,18 +1,40 @@
 package GUI;
 
-/**
- *
- * @author T.A.Huy
- */
-public class DeleteStudent2 extends javax.swing.JFrame {
+import BUS.StudentManagement_BUS;
+import DTO.Student_DTO;
+import javax.swing.JOptionPane;
 
-    /**
-     * Creates new form DeleteStudent2
-     */
-    public DeleteStudent2() {
+
+public class DeleteStudent2 extends javax.swing.JFrame {
+    Student_DTO dtoStudent = null;
+    StudentManagement_BUS busStudentManagement = new StudentManagement_BUS();
+    public DeleteStudent2(Student_DTO newStudent) {
         initComponents();
+        dtoStudent = busStudentManagement.getInformation(newStudent.getStudentID());
         setResizable(false);
         setLocationRelativeTo(null);
+        txtFirstName.setText(dtoStudent.getFirstname());
+        txtLastName.setText(dtoStudent.getLastname());
+        txtRegDate.setText(dtoStudent.getLastname());
+        txtGender.setText(dtoStudent.getGender());
+        txtAddress.setText(dtoStudent.getAddress());
+        txtPhone.setText(dtoStudent.getPhone());
+        txtBirthday.setText(String.valueOf(dtoStudent.getBirthday()));
+        txtRegDate.setText(String.valueOf(dtoStudent.getRegistrationDate()));
+        txtSpentMoney.setText(String.valueOf(dtoStudent.getSpentMoney()));
+        txtPoint.setText(String.valueOf(dtoStudent.getPoint()));
+        txtSchoolName.setText(dtoStudent.getSchoolName());
+        txtFirstName.disable();
+        txtLastName.disable();
+        txtRegDate.disable();
+        txtGender.disable();
+        txtAddress.disable();
+        txtPhone.disable();
+        txtBirthday.disable();
+        txtRegDate.disable();
+        txtSpentMoney.disable();
+        txtPoint.disable();
+        txtSchoolName.disable();
     }
 
     /**
@@ -40,16 +62,16 @@ public class DeleteStudent2 extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        txtLastName = new javax.swing.JTextField();
-        txtEmpLoginID = new javax.swing.JTextField();
+        txtRegDate = new javax.swing.JTextField();
+        txtSchoolName = new javax.swing.JTextField();
         txtFirstName = new javax.swing.JTextField();
         txtAddress = new javax.swing.JTextField();
         txtPhone = new javax.swing.JTextField();
-        txtSalary = new javax.swing.JTextField();
-        txtSalary2 = new javax.swing.JTextField();
-        txtLastName1 = new javax.swing.JTextField();
-        txtLastName2 = new javax.swing.JTextField();
-        txtLastName3 = new javax.swing.JTextField();
+        txtPoint = new javax.swing.JTextField();
+        txtSpentMoney = new javax.swing.JTextField();
+        txtLastName = new javax.swing.JTextField();
+        txtGender = new javax.swing.JTextField();
+        txtBirthday = new javax.swing.JTextField();
         btnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -154,15 +176,15 @@ public class DeleteStudent2 extends javax.swing.JFrame {
         jLabel17.setText("Registration date:");
         jPanel7.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, 140, 30));
 
-        txtLastName.setBackground(new java.awt.Color(255, 255, 255));
-        txtLastName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtLastName.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPanel7.add(txtLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 60, 200, 30));
+        txtRegDate.setBackground(new java.awt.Color(255, 255, 255));
+        txtRegDate.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtRegDate.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jPanel7.add(txtRegDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 60, 200, 30));
 
-        txtEmpLoginID.setBackground(new java.awt.Color(255, 255, 255));
-        txtEmpLoginID.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtEmpLoginID.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPanel7.add(txtEmpLoginID, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 200, 30));
+        txtSchoolName.setBackground(new java.awt.Color(255, 255, 255));
+        txtSchoolName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtSchoolName.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jPanel7.add(txtSchoolName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 200, 30));
 
         txtFirstName.setBackground(new java.awt.Color(255, 255, 255));
         txtFirstName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -179,30 +201,30 @@ public class DeleteStudent2 extends javax.swing.JFrame {
         txtPhone.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jPanel7.add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 200, 30));
 
-        txtSalary.setBackground(new java.awt.Color(255, 255, 255));
-        txtSalary.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtSalary.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPanel7.add(txtSalary, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 140, 200, 30));
+        txtPoint.setBackground(new java.awt.Color(255, 255, 255));
+        txtPoint.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtPoint.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jPanel7.add(txtPoint, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 140, 200, 30));
 
-        txtSalary2.setBackground(new java.awt.Color(255, 255, 255));
-        txtSalary2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtSalary2.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPanel7.add(txtSalary2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 100, 200, 30));
+        txtSpentMoney.setBackground(new java.awt.Color(255, 255, 255));
+        txtSpentMoney.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtSpentMoney.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jPanel7.add(txtSpentMoney, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 100, 200, 30));
 
-        txtLastName1.setBackground(new java.awt.Color(255, 255, 255));
-        txtLastName1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtLastName1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPanel7.add(txtLastName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 200, 30));
+        txtLastName.setBackground(new java.awt.Color(255, 255, 255));
+        txtLastName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtLastName.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jPanel7.add(txtLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 200, 30));
 
-        txtLastName2.setBackground(new java.awt.Color(255, 255, 255));
-        txtLastName2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtLastName2.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPanel7.add(txtLastName2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 200, 30));
+        txtGender.setBackground(new java.awt.Color(255, 255, 255));
+        txtGender.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtGender.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jPanel7.add(txtGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 200, 30));
 
-        txtLastName3.setBackground(new java.awt.Color(255, 255, 255));
-        txtLastName3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtLastName3.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPanel7.add(txtLastName3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 200, 30));
+        txtBirthday.setBackground(new java.awt.Color(255, 255, 255));
+        txtBirthday.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtBirthday.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jPanel7.add(txtBirthday, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 200, 30));
 
         btnDelete.setBackground(new java.awt.Color(0, 204, 255));
         btnDelete.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -223,48 +245,27 @@ public class DeleteStudent2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_turnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_turnbackActionPerformed
-
+        setVisible(false);
+        DeleteStudent1 deleteForm = new DeleteStudent1(dtoStudent);
+        deleteForm.setVisible(true);
     }//GEN-LAST:event_btn_turnbackActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-
+        int ret = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this student information?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if(ret == JOptionPane.YES_OPTION)
+        {
+            if(busStudentManagement.delete(dtoStudent)){
+                JOptionPane.showMessageDialog(this, "Student information has been deleted successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                setVisible(false);
+                new DeleteStudent1(dtoStudent).setVisible(true);
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Cannot student customers!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DeleteStudent2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DeleteStudent2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DeleteStudent2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DeleteStudent2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DeleteStudent2().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
@@ -285,14 +286,14 @@ public class DeleteStudent2 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JTextField txtAddress;
-    private javax.swing.JTextField txtEmpLoginID;
+    private javax.swing.JTextField txtBirthday;
     private javax.swing.JTextField txtFirstName;
+    private javax.swing.JTextField txtGender;
     private javax.swing.JTextField txtLastName;
-    private javax.swing.JTextField txtLastName1;
-    private javax.swing.JTextField txtLastName2;
-    private javax.swing.JTextField txtLastName3;
     private javax.swing.JTextField txtPhone;
-    private javax.swing.JTextField txtSalary;
-    private javax.swing.JTextField txtSalary2;
+    private javax.swing.JTextField txtPoint;
+    private javax.swing.JTextField txtRegDate;
+    private javax.swing.JTextField txtSchoolName;
+    private javax.swing.JTextField txtSpentMoney;
     // End of variables declaration//GEN-END:variables
 }

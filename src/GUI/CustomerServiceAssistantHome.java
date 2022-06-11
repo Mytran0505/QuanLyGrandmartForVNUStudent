@@ -1,6 +1,8 @@
 package GUI;
 
+import DTO.Student_DTO;
 import DTO.Employee_DTO;
+import javax.swing.JOptionPane;
 
 
 public class CustomerServiceAssistantHome extends javax.swing.JFrame {
@@ -28,7 +30,7 @@ public class CustomerServiceAssistantHome extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        btn_ManageEmp = new javax.swing.JButton();
+        btn_ManageStu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -102,16 +104,16 @@ public class CustomerServiceAssistantHome extends javax.swing.JFrame {
         jLabel5.setText("<html><center>Manage Student <br>Information</center></html>");
         jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 91, 201, 50));
 
-        btn_ManageEmp.setBackground(new java.awt.Color(0, 204, 255));
-        btn_ManageEmp.setForeground(new java.awt.Color(255, 153, 102));
-        btn_ManageEmp.setBorder(null);
-        btn_ManageEmp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btn_ManageEmp.addActionListener(new java.awt.event.ActionListener() {
+        btn_ManageStu.setBackground(new java.awt.Color(0, 204, 255));
+        btn_ManageStu.setForeground(new java.awt.Color(255, 153, 102));
+        btn_ManageStu.setBorder(null);
+        btn_ManageStu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_ManageStu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ManageEmpActionPerformed(evt);
+                btn_ManageStuActionPerformed(evt);
             }
         });
-        jPanel4.add(btn_ManageEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 170, 140));
+        jPanel4.add(btn_ManageStu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 170, 140));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -141,16 +143,24 @@ public class CustomerServiceAssistantHome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_logoutActionPerformed
-
+        int ret = JOptionPane.showConfirmDialog(null, "Confirm", "Do you want to log out?", JOptionPane.YES_NO_OPTION);
+        if(ret == JOptionPane.YES_OPTION)
+        {
+            setVisible(false);
+            LoginForm Login = new LoginForm();
+            Login.setVisible(true);
+        }
     }//GEN-LAST:event_btn_logoutActionPerformed
 
-    private void btn_ManageEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ManageEmpActionPerformed
-
-    }//GEN-LAST:event_btn_ManageEmpActionPerformed
+    private void btn_ManageStuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ManageStuActionPerformed
+            ManageStudentInformation stu = new ManageStudentInformation(dtoCustomerService);
+            stu.setVisible(true);
+            setVisible(false);
+    }//GEN-LAST:event_btn_ManageStuActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_ManageEmp;
+    private javax.swing.JButton btn_ManageStu;
     private javax.swing.JButton btn_logout;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

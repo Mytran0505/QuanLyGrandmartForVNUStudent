@@ -1,25 +1,41 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package GUI;
 
-/**
- *
- * @author TRAN NGUYEN
- */
-public class UpdateStu2 extends javax.swing.JFrame {
+import BUS.StudentManagement_BUS;
+import DTO.Student_DTO;
+import javax.swing.JOptionPane;
 
-        @SuppressWarnings("unchecked")
+public class UpdateStu2 extends javax.swing.JFrame {
+    Student_DTO dtoStudent = null;
+    StudentManagement_BUS busStudentManagement = new StudentManagement_BUS();
+    public UpdateStu2(Student_DTO newStudent){
+        initComponents();
+        dtoStudent = busStudentManagement.getStudentInfo(newStudent);
+        setResizable(false);
+        setLocationRelativeTo(null);
+        txtStuID.setText(String.valueOf(dtoStudent.getStudentID()));
+        txtFirstName.setText(dtoStudent.getFirstname());
+        txtLastName.setText(dtoStudent.getLastname());
+        cbGender.setSelectedItem(dtoStudent.getGender());
+        txtAddress.setText(dtoStudent.getAddress());
+        txtPhone.setText(dtoStudent.getPhone());
+        dcBirthday.setDate(dtoStudent.getBirthday());
+        dcRegDate.setDate(dtoStudent.getRegistrationDate());
+        txtSpentMoney.setText(String.valueOf(dtoStudent.getSpentMoney()));
+        txtPoint.setText(String.valueOf(dtoStudent.getPoint()));
+        txtSchoolName.setText(dtoStudent.getSchoolName());
+        txtStuID.disable();
+    }
+
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtAddress = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
         txtFirstName = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        txtAddres = new javax.swing.JTextField();
+        txtAddress = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         cbGender = new javax.swing.JComboBox<>();
@@ -54,10 +70,6 @@ public class UpdateStu2 extends javax.swing.JFrame {
         jLabel27 = new javax.swing.JLabel();
         btnTurnBack = new javax.swing.JButton();
 
-        txtAddress.setBackground(new java.awt.Color(255, 255, 255));
-        txtAddress.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtAddress.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel8.setBackground(new java.awt.Color(239, 250, 252));
@@ -78,10 +90,10 @@ public class UpdateStu2 extends javax.swing.JFrame {
         jLabel10.setText("Last name:");
         jPanel8.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 127, 30));
 
-        txtAddres.setBackground(new java.awt.Color(255, 255, 255));
-        txtAddres.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtAddres.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPanel8.add(txtAddres, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 200, 30));
+        txtAddress.setBackground(new java.awt.Color(255, 255, 255));
+        txtAddress.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtAddress.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jPanel8.add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 200, 30));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
@@ -306,23 +318,31 @@ public class UpdateStu2 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void cbGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbGenderActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbGenderActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        
+        if(txtFirstName.getText().equals("") || txtLastName.getText().equals("") || cbGender.getSelectedIndex()<1 || txtAddress.getText().equals("") || txtPhone.getText().equals("") || dcBirthday.getCalendar() == null || txtSchoolName.getText().equals("") || dcRegDate.getCalendar()==null || txtSpentMoney.getText().equals("") || txtPoint.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Information fields are not entered enough.", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
+            Student_DTO newStudent = new Student_DTO (0, txtFirstName.getText(), txtLastName.getText(), cbGender.getSelectedItem().toString(), txtAddress.getText(), txtPhone.getText(), dcBirthday.getDate(), dcRegDate.getDate(), Integer.parseInt(txtSpentMoney.getText()), Integer.parseInt(txtPoint.getText()), txtSchoolName.getText());
+            setVisible(false);
+            new UpdateStu3(newStudent).setVisible(true);
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnTurnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTurnBackActionPerformed
-       
+        setVisible(false);
+        UpdateStudent1 updateForm = new UpdateStudent1(dtoStudent);
+        updateForm.setVisible(true);
     }//GEN-LAST:event_btnTurnBackActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -356,7 +376,6 @@ public class UpdateStu2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JTextField txtAddres;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtLastName;

@@ -1,11 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package GUI;
 
-import BUS.EmployeeManagement_BUS;
+import BUS.StudentManagement_BUS;
 import DTO.Employee_DTO;
+import DTO.Student_DTO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -19,33 +17,34 @@ import javax.swing.table.TableRowSorter;
 
 public class SearchStuForm extends javax.swing.JFrame {
 
-    EmployeeManagement_BUS busEmployeeManagement = new EmployeeManagement_BUS();
-    Employee_DTO dtoManager = null;
-    ArrayList<Employee_DTO> list = new ArrayList<>();
-    public SearchStuForm(Employee_DTO manager) {
+    StudentManagement_BUS busStudentManagement = new StudentManagement_BUS();
+    Student_DTO dtoStudent = null;
+    Employee_DTO dtoCustomer = null;
+    ArrayList<Student_DTO> list = new ArrayList<>();
+    public SearchStuForm(Student_DTO newStudent) {
         initComponents();
-        dtoManager = manager;
+        dtoStudent = newStudent;
         setResizable(false);
         setLocationRelativeTo(null);
         createTable();
     }
     
-    DefaultTableModel tblEmployeeModel;
+    DefaultTableModel tblStudentModel;
     public void createTable(){
-        tblEmployeeModel = new DefaultTableModel();
+        tblStudentModel = new DefaultTableModel();
         //Tạo bảng
-        String title[] = {"Employee ID", "Emp login ID", "First name", "Last name", "Gender", "Birthday", "Phone", "Adress", "Start date", "Salary", "Role"};
-        tblEmployeeModel.setColumnIdentifiers(title);
-        tblEmployeeModel.setRowCount(0);
-        //Get all employee information
-        list = busEmployeeManagement.getEmployeeList();
-        //Load employee information into the table
+        String title[] = {"StudentID", "First Name", "Last Name", "Gender", "Address", "Phone", "Birthday", "Registration date", "Spent money", "Point", "School Name"};
+        tblStudentModel.setColumnIdentifiers(title);
+        tblStudentModel.setRowCount(0);
+        //Get all student information
+        list = busStudentManagement.getStudentList();
+        //Load student information into the table
         for(int i = 0; i < list.size(); i++){
-            Employee_DTO dtoEmployee = list.get(i);
-            String[] rows = {String.valueOf(dtoEmployee.getId()), String.valueOf(dtoEmployee.getEmp_id()), dtoEmployee.getFirstname(), dtoEmployee.getLastname(), dtoEmployee.getGender(), dtoEmployee.getBirthday().toString(), dtoEmployee.getPhone(), dtoEmployee.getAddress(), dtoEmployee.getStart_date().toString(),String.valueOf(dtoEmployee.getSalary()), dtoEmployee.getRole()}; 
-            tblEmployeeModel.addRow(rows);
+            Student_DTO dtoStudent2 = list.get(i);
+            String[] rows = {String.valueOf(dtoStudent2.getStudentID()), dtoStudent2.getFirstname(), dtoStudent2.getLastname(), dtoStudent2.getGender(), dtoStudent2.getAddress(), dtoStudent2.getPhone(), dtoStudent2.getBirthday().toString(), dtoStudent2.getRegistrationDate().toString(),String.valueOf(dtoStudent2.getSpentMoney()) , String.valueOf(dtoStudent2.getPoint()), dtoStudent2.getSchoolName()}; 
+            tblStudentModel.addRow(rows);
         }
-        tblSearch.setModel(tblEmployeeModel);
+        tblSearch.setModel(tblStudentModel);
         //cho phép sắp xếp từng cột
         tblSearch.setAutoCreateRowSorter(true);
         //không cho sửa dữ liệu trong bảng
@@ -61,15 +60,14 @@ public class SearchStuForm extends javax.swing.JFrame {
         tblSearch.getColumnModel().getColumn(10).setPreferredWidth(170);
         tblSearch.getSelectionModel().addListSelectionListener((ListSelectionEvent e) -> {
             if(tblSearch.getSelectedRow() >= 0){
-                Employee_DTO dtoEmployee = new Employee_DTO(Integer.valueOf(String.valueOf(tblSearch.getValueAt(tblSearch.getSelectedRow(), 0))));
+                Student_DTO dtoStudent2 = new Student_DTO(Integer.valueOf(String.valueOf(tblSearch.getValueAt(tblSearch.getSelectedRow(), 0))));
                 setVisible(false);
-                new SearchEmp2(dtoEmployee).setVisible(true);
+                new SearchStu2(dtoStudent2).setVisible(true);
             }
         });
         
     }
-    
-    
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -204,8 +202,8 @@ public class SearchStuForm extends javax.swing.JFrame {
         if(ret == JOptionPane.YES_OPTION)
         {
             setVisible(false);
-            ManageEmployee emp = new ManageEmployee(dtoManager);
-            emp.setVisible(true);
+            ManageStudentInformation stu = new ManageStudentInformation(dtoCustomer);
+            stu.setVisible(true);
         }
     }//GEN-LAST:event_btn_turnbackActionPerformed
 
@@ -221,6 +219,7 @@ public class SearchStuForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No match result.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnSearchActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSearch;
