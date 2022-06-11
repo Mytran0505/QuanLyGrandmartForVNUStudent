@@ -1,19 +1,22 @@
-
 package GUI;
 
+
+import DTO.Bill_DTO;
 import DTO.Employee_DTO;
 import javax.swing.*;
 
 
 public class ManageBillInf extends javax.swing.JFrame {
     
-    Employee_DTO dtoEmployee;
-    public ManageBillInf() {
+    Employee_DTO dtoCashier = null;
+    Bill_DTO dtoBill = null;
+    public ManageBillInf(Bill_DTO bill, Employee_DTO cashier) {
         initComponents();
+        dtoBill = bill;
+        dtoCashier = cashier;
         setResizable(false);
         setLocationRelativeTo(null);
     }
-
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -199,69 +202,35 @@ public class ManageBillInf extends javax.swing.JFrame {
         if(ret == JOptionPane.YES_OPTION)
         {
             setVisible(false);
-            CashierHome bill = new CashierHome(dtoEmployee);
+            CashierHome bill = new CashierHome(dtoCashier);
             bill.setVisible(true);
         }
     }//GEN-LAST:event_btn_turnbackActionPerformed
 
     private void btn_insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_insertActionPerformed
         setVisible(false);
-        InsBill1 ins = new InsBill1();
+        InsBill1 ins = new InsBill1(dtoBill, dtoCashier);
         ins.setVisible(true);
     }//GEN-LAST:event_btn_insertActionPerformed
 
     private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
         setVisible(false);
-        DelBill1 del = new DelBill1();
+        DelBill1 del = new DelBill1(dtoBill);
         del.setVisible(true);
     }//GEN-LAST:event_btn_deleteActionPerformed
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
         setVisible(false);
-        UpBill1 upd = new UpBill1();
+        UpBill1 upd = new UpBill1(dtoBill);
         upd.setVisible(true);
     }//GEN-LAST:event_btn_updateActionPerformed
 
     private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
         setVisible(false);
-        SearchBill1 sear = new SearchBill1();
+        SearchBill1 sear = new SearchBill1(dtoBill, dtoCashier);
         sear.setVisible(true);
     }//GEN-LAST:event_btn_searchActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManageBillInf.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManageBillInf.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManageBillInf.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManageBillInf.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ManageBillInf().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_delete;

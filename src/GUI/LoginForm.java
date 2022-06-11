@@ -3,6 +3,8 @@ package GUI;
 import BUS.User_login_BUS;
 import DTO.Employee_DTO;
 import DTO.User_login_DTO;
+import java.awt.Insets;
+import java.awt.event.KeyEvent;
 import javax.swing.*;
 
 
@@ -47,7 +49,7 @@ public class LoginForm extends javax.swing.JFrame {
         Head2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         Head2.setForeground(new java.awt.Color(255, 255, 255));
         Head2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Head2.setText("MINIMART FOR VNUHCM'S STUDENT SYSTEM");
+        Head2.setText("GRANDMART FOR VNUHCM'S STUDENT SYSTEM");
 
         javax.swing.GroupLayout PanelHeadLayout = new javax.swing.GroupLayout(PanelHead);
         PanelHead.setLayout(PanelHeadLayout);
@@ -97,11 +99,6 @@ public class LoginForm extends javax.swing.JFrame {
         txtUsername.setAlignmentX(2.0F);
         txtUsername.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtUsername.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        txtUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsernameActionPerformed(evt);
-            }
-        });
 
         btnLogin.setBackground(new java.awt.Color(0, 153, 255));
         btnLogin.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -171,12 +168,7 @@ public class LoginForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsernameActionPerformed
-
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
         if(txtUsername.getText().equals("") || txtPassword.getPassword().equals("")){
             JOptionPane.showMessageDialog(this, "Required fields are empty", "Please enter enough username and password...!", JOptionPane.ERROR_MESSAGE);
         }
@@ -196,24 +188,31 @@ public class LoginForm extends javax.swing.JFrame {
                     if(busUserLogin.getRole(dtoUserLogin).equals("Manager")){
                         Employee_DTO dtoEmployee = busUserLogin.getEmployeeInfo(dtoUserLogin);
                         new ManagerHome(dtoEmployee).setVisible(true);
+                        this.setVisible(false);
                     }
-                    if(busUserLogin.getRole(dtoUserLogin).equals("Cashier")){
+                    else if(busUserLogin.getRole(dtoUserLogin).equals("Cashier")){
                         Employee_DTO dtoEmployee = busUserLogin.getEmployeeInfo(dtoUserLogin);
                         new CashierHome(dtoEmployee).setVisible(true);
+                        this.setVisible(false);
                     }
-                    if(busUserLogin.getRole(dtoUserLogin).equals("Storekeeper")){
+                    else if(busUserLogin.getRole(dtoUserLogin).equals("Storekeeper")){
                         Employee_DTO dtoEmployee = busUserLogin.getEmployeeInfo(dtoUserLogin);
                         new StorekeeperHome(dtoEmployee).setVisible(true);
+                        this.setVisible(false);
                     }
-                    if(busUserLogin.getRole(dtoUserLogin).equals("Salesperson")){
+                    else if(busUserLogin.getRole(dtoUserLogin).equals("Salesperson")){
                         Employee_DTO dtoEmployee = busUserLogin.getEmployeeInfo(dtoUserLogin);
                         new SalespersonHome(dtoEmployee).setVisible(true);
+                        this.setVisible(false);
                     }
-                    if(busUserLogin.getRole(dtoUserLogin).equals("Customer Service Assistant")){
+                    else if(busUserLogin.getRole(dtoUserLogin).equals("Customer Service Assistant")){
                         Employee_DTO dtoEmployee = busUserLogin.getEmployeeInfo(dtoUserLogin);
                         new CustomerServiceAssistantHome(dtoEmployee).setVisible(true);
+                        this.setVisible(false);
                     }
-                    this.setVisible(false);
+                    else{
+                        JOptionPane.showMessageDialog(this, "Username or password is incorrect",  "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
                 else{
                     JOptionPane.showMessageDialog(this, "Username or password is incorrect",  "Error", JOptionPane.ERROR_MESSAGE);

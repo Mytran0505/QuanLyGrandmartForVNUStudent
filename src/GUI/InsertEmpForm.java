@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package GUI;
 
 import BUS.EmployeeManagement_BUS;
@@ -196,11 +192,6 @@ public class InsertEmpForm extends javax.swing.JFrame {
         txtEmpLoginID.setBackground(new java.awt.Color(255, 255, 255));
         txtEmpLoginID.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtEmpLoginID.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtEmpLoginID.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtEmpLoginIDCaretUpdate(evt);
-            }
-        });
         jPanel7.add(txtEmpLoginID, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 200, 30));
 
         txtFirstName.setBackground(new java.awt.Color(255, 255, 255));
@@ -216,21 +207,11 @@ public class InsertEmpForm extends javax.swing.JFrame {
         txtPhone.setBackground(new java.awt.Color(255, 255, 255));
         txtPhone.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtPhone.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtPhone.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtPhoneCaretUpdate(evt);
-            }
-        });
         jPanel7.add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 200, 30));
 
         txtSalary.setBackground(new java.awt.Color(255, 255, 255));
         txtSalary.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtSalary.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtSalary.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtSalaryCaretUpdate(evt);
-            }
-        });
         jPanel7.add(txtSalary, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, 200, 30));
 
         btnInsert.setBackground(new java.awt.Color(0, 204, 255));
@@ -318,6 +299,9 @@ public class InsertEmpForm extends javax.swing.JFrame {
             {
                 JOptionPane.showMessageDialog(this, "Information fields are not entered enough.", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
             }
+            else if(!txtPhone.getText().matches("[0-9]*") || !txtSalary.getText().matches("[0-9]*")){
+                JOptionPane.showMessageDialog(this, " Invalid data!", "Error!", JOptionPane.ERROR_MESSAGE);
+            }
             else{
                 Employee_DTO newEmployee = new Employee_DTO(0, txtFirstName.getText(), txtLastName.getText(), cbGender.getSelectedItem().toString(), dcBirthday.getDate(), txtPhone.getText(), txtAddress.getText(), dcStartDate.getDate(), Long.parseLong(txtSalary.getText()), cbRole.getSelectedItem().toString());
                 setVisible(false);
@@ -328,6 +312,9 @@ public class InsertEmpForm extends javax.swing.JFrame {
             if(txtEmpLoginID.getText().equals("") || txtFirstName.getText().equals("") || txtLastName.getText().equals("") || cbGender.getSelectedIndex() < 1 || dcBirthday.getCalendar() == null || txtPhone.getText().equals("") || txtAddress.getText().equals("") || dcStartDate.getCalendar() == null || txtSalary.getText().equals("") || cbRole.getSelectedIndex() < 1 )
             {
                 JOptionPane.showMessageDialog(this, "Information fields are not entered enough.", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
+            }
+            else if(!txtPhone.getText().matches("[0-9]*") || !txtSalary.getText().matches("[0-9]*")){
+                JOptionPane.showMessageDialog(this, " Invalid data!", "Error!", JOptionPane.ERROR_MESSAGE);
             }
             else{
                 Employee_DTO newEmployee = new Employee_DTO(0, txtFirstName.getText(), txtLastName.getText(), cbGender.getSelectedItem().toString(), dcBirthday.getDate(), txtPhone.getText(), txtAddress.getText(), dcStartDate.getDate(), Long.parseLong(txtSalary.getText()), Integer.parseInt(txtEmpLoginID.getText()), cbRole.getSelectedItem().toString());
@@ -346,27 +333,6 @@ public class InsertEmpForm extends javax.swing.JFrame {
             emp.setVisible(true);
         }
     }//GEN-LAST:event_btn_turnbackActionPerformed
-
-    private void txtPhoneCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtPhoneCaretUpdate
-        String text = txtPhone.getText();
-        if(!text.matches("[0-9]*")){
-            JOptionPane.showMessageDialog(this, "Invalid data!", "Error!", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_txtPhoneCaretUpdate
-
-    private void txtEmpLoginIDCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtEmpLoginIDCaretUpdate
-        String text = txtEmpLoginID.getText();
-        if(!text.matches("[0-9]*")){
-            JOptionPane.showMessageDialog(this, "Invalid data!", "Error!", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_txtEmpLoginIDCaretUpdate
-
-    private void txtSalaryCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtSalaryCaretUpdate
-        String text = txtSalary.getText();
-        if(!text.matches("[0-9]*")){
-            JOptionPane.showMessageDialog(this, "Invalid data!", "Error!", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_txtSalaryCaretUpdate
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInsert;

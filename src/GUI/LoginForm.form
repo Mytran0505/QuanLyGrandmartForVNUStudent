@@ -83,7 +83,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="MINIMART FOR VNUHCM&apos;S STUDENT SYSTEM"/>
+            <Property name="text" type="java.lang.String" value="GRANDMART FOR VNUHCM&apos;S STUDENT SYSTEM"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -237,9 +237,6 @@
               <Color id="Text Cursor"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtUsernameActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnLogin">
           <Properties>

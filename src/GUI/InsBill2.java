@@ -4,6 +4,8 @@
  */
 package GUI;
 
+import DTO.Bill_DTO;
+import DTO.Employee_DTO;
 import javax.swing.*;
 
 /**
@@ -12,9 +14,8 @@ import javax.swing.*;
  */
 public class InsBill2 extends javax.swing.JFrame {
 
-    /**
-     * Creates new form InsBill2
-     */
+    Bill_DTO dtoBill = null;
+    Employee_DTO dtoCashier = null;
     public InsBill2() {
         initComponents();
         setResizable(false);
@@ -460,7 +461,7 @@ public class InsBill2 extends javax.swing.JFrame {
         if(ret == JOptionPane.YES_OPTION)
         {
             setVisible(false);
-            ManageBillInf bill = new ManageBillInf();
+            ManageBillInf bill = new ManageBillInf(dtoBill, dtoCashier);
             bill.setVisible(true);
         }
     }//GEN-LAST:event_btn_turnbackActionPerformed
@@ -471,7 +472,7 @@ public class InsBill2 extends javax.swing.JFrame {
 
     private void btn_DismissActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DismissActionPerformed
         setVisible(false);
-        InsBill1 bill1 = new InsBill1();
+        InsBill1 bill1 = new InsBill1(dtoBill, dtoCashier);
         bill1.setVisible(true);
     }//GEN-LAST:event_btn_DismissActionPerformed
 
