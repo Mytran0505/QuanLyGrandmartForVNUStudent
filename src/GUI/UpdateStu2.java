@@ -331,7 +331,7 @@ public class UpdateStu2 extends javax.swing.JFrame {
         }
         else
         {
-            Student_DTO newStudent = new Student_DTO (0, txtFirstName.getText(), txtLastName.getText(), cbGender.getSelectedItem().toString(), txtAddress.getText(), txtPhone.getText(), dcBirthday.getDate(), dcRegDate.getDate(), Integer.parseInt(txtSpentMoney.getText()), Integer.parseInt(txtPoint.getText()), txtSchoolName.getText());
+            Student_DTO newStudent = new Student_DTO (Integer.parseInt(txtStuID.getText()), txtFirstName.getText(), txtLastName.getText(), cbGender.getSelectedItem().toString(), txtAddress.getText(), txtPhone.getText(), dcBirthday.getDate(), dcRegDate.getDate(), Integer.parseInt(txtSpentMoney.getText()), Integer.parseInt(txtPoint.getText()), txtSchoolName.getText());
             setVisible(false);
             new UpdateStu3(newStudent).setVisible(true);
         }

@@ -4,6 +4,13 @@
  */
 package GUI;
 
+import BUS.MakeStatistic_BUS;
+import DTO.Employee_DTO;
+import DTO.Statictis_DTO;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author DELL
@@ -13,8 +20,28 @@ public class SoldPro_Each extends javax.swing.JFrame {
     /**
      * Creates new form MakeStatisticsOfSoldPro
      */
-    public SoldPro_Each() {
+    ArrayList<Statictis_DTO> list = new ArrayList<>();
+    MakeStatistic_BUS busMakeStatistic = new MakeStatistic_BUS();    
+    Employee_DTO dtoStorekeeper = null;
+    public SoldPro_Each(Employee_DTO storekeeper) {
         initComponents();
+        dtoStorekeeper = storekeeper;
+        setResizable(false);
+        setLocationRelativeTo(null);   
+        createTable();
+    }
+    DefaultTableModel tblStatisticsModel;
+    public void createTable(){
+        tblStatisticsModel = new DefaultTableModel();
+        //Tạo bảng
+        String title[] = {"Product ID", "Product name","Unit price","Amount","Total money"};
+        tblStatisticsModel.setColumnIdentifiers(title);
+        tblStatisticsModel.setRowCount(0);
+        tblStatistics.setModel(tblStatisticsModel);
+        //cho phép sắp xếp từng cột
+        tblStatistics.setAutoCreateRowSorter(true);
+        //không cho sửa dữ liệu trong bảng
+        tblStatistics.setEnabled(false); 
     }
 
     /**
@@ -36,7 +63,7 @@ public class SoldPro_Each extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         dcEndDate = new com.toedter.calendar.JDateChooser();
         jLabel19 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtProID = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btn_MakeStatistics = new javax.swing.JButton();
@@ -110,8 +137,8 @@ public class SoldPro_Each extends javax.swing.JFrame {
         jLabel19.setText("Start date:");
         jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 90, 30));
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, 230, 30));
+        txtProID.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel2.add(txtProID, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, 230, 30));
 
         jPanel3.setBackground(new java.awt.Color(239, 252, 250));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -126,6 +153,11 @@ public class SoldPro_Each extends javax.swing.JFrame {
         btn_MakeStatistics.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn_MakeStatistics.setForeground(new java.awt.Color(255, 255, 255));
         btn_MakeStatistics.setBorder(null);
+        btn_MakeStatistics.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_MakeStatisticsActionPerformed(evt);
+            }
+        });
         jPanel3.add(btn_MakeStatistics, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 80));
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 30, -1, 80));
@@ -152,49 +184,42 @@ public class SoldPro_Each extends javax.swing.JFrame {
 
     private void btn_turnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_turnbackActionPerformed
         // TODO add your handling code here:
+        int ret = JOptionPane.showConfirmDialog(null, "Confirm", "Do you want to turn back?", JOptionPane.YES_NO_OPTION);
+        if(ret == JOptionPane.YES_OPTION)
+        {
+            setVisible(false);
+            MakeStatisticsOfSoldPro pro = new MakeStatisticsOfSoldPro(dtoStorekeeper);
+            pro.setVisible(true);
+        }
     }//GEN-LAST:event_btn_turnbackActionPerformed
+
+    private void btn_MakeStatisticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MakeStatisticsActionPerformed
+        // TODO add your handling code here:
+        if(dcStartDate.getCalendar() == null || dcEndDate.getCalendar()==null)
+            JOptionPane.showMessageDialog(this, "Required start/end date are empty", "Please enter product id!", JOptionPane.ERROR_MESSAGE);
+        else{
+            java.util.Date d1 = dcStartDate.getDate();
+            java.sql.Date sqlStartDate = new java.sql.Date(d1.getTime());
+            java.util.Date d2 = dcEndDate.getDate();
+            java.sql.Date sqlEndDate = new java.sql.Date(d2.getTime());
+            tblStatisticsModel.setRowCount(0);
+            list = busMakeStatistic.getEachProductForMakeStatisticsSold(Integer.parseInt(txtProID.getText()), sqlStartDate, sqlEndDate);
+            //Load employee information into the table
+            for(int i = 0; i < list.size(); i++){
+                Statictis_DTO dtoStatistics = list.get(i);
+                String[] rows = {String.valueOf(dtoStatistics.getPro_id()),dtoStatistics.getName(),String.valueOf(dtoStatistics.getSale_price()), String.valueOf(dtoStatistics.getAmount()), String.valueOf(dtoStatistics.getTotalSoldPro())}; 
+                tblStatisticsModel.addRow(rows);
+            }
+            if(tblStatisticsModel.getRowCount() < 1){
+                JOptionPane.showMessageDialog(this, "No match result.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btn_MakeStatisticsActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SoldPro_Each.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SoldPro_Each.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SoldPro_Each.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SoldPro_Each.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SoldPro_Each().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_MakeStatistics;
@@ -211,7 +236,7 @@ public class SoldPro_Each extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tblStatistics;
+    private javax.swing.JTextField txtProID;
     // End of variables declaration//GEN-END:variables
 }

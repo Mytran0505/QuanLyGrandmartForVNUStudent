@@ -4,6 +4,13 @@
  */
 package GUI;
 
+import BUS.MakeStatistic_BUS;
+import DTO.Employee_DTO;
+import DTO.Statictis_DTO;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author DELL
@@ -13,8 +20,36 @@ public class ProInventory_All extends javax.swing.JFrame {
     /**
      * Creates new form MakeStatisticsOfSoldPro
      */
-    public ProInventory_All() {
+    Employee_DTO dtoStorekeeper = null;
+    MakeStatistic_BUS busMakeStatistic = new MakeStatistic_BUS();
+    ArrayList<Statictis_DTO> list = new ArrayList<>();
+
+    public ProInventory_All(Employee_DTO storekeeper) {
         initComponents();
+        dtoStorekeeper = storekeeper;
+        setResizable(false);
+        setLocationRelativeTo(null);   
+        createTable();
+    }
+    DefaultTableModel tblProductModel;
+    public void createTable(){
+        tblProductModel = new DefaultTableModel();
+        //Tạo bảng
+        String title[] = {"Product ID", "Product name","Imported date","Remaining quantity"};
+        tblProductModel.setColumnIdentifiers(title);
+        tblProductModel.setRowCount(0);
+        tblStatistics.setModel(tblProductModel);
+        list = busMakeStatistic.getAllProductListForMakeStatisticsInventory();
+        //Load employee information into the table
+        for(int i = 0; i < list.size(); i++){
+            Statictis_DTO dtoStatistic = list.get(i);
+            String[] rows = {String.valueOf(dtoStatistic.getPro_id()),dtoStatistic.getName(),dtoStatistic.getImported_date().toString(),String.valueOf(dtoStatistic.getRemaining_quantity())}; 
+            tblProductModel.addRow(rows);
+        }
+        //cho phép sắp xếp từng cột
+        tblStatistics.setAutoCreateRowSorter(true);
+        //không cho sửa dữ liệu trong bảng
+        tblStatistics.setEnabled(false); 
     }
 
     /**
@@ -125,73 +160,19 @@ public class ProInventory_All extends javax.swing.JFrame {
 
     private void btn_turnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_turnbackActionPerformed
         // TODO add your handling code here:
+        int ret = JOptionPane.showConfirmDialog(null, "Confirm", "Do you want to turn back?", JOptionPane.YES_NO_OPTION);
+        if(ret == JOptionPane.YES_OPTION)
+        {
+            setVisible(false);
+            MakeStatisticsOfProInventory pro = new MakeStatisticsOfProInventory(dtoStorekeeper);
+            pro.setVisible(true);
+        }
     }//GEN-LAST:event_btn_turnbackActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProInventory_All.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProInventory_All.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProInventory_All.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProInventory_All.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ProInventory_All().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_PrintOut;

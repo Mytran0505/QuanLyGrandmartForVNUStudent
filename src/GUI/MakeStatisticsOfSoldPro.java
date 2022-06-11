@@ -4,6 +4,9 @@
  */
 package GUI;
 
+import DTO.Employee_DTO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author DELL
@@ -13,8 +16,12 @@ public class MakeStatisticsOfSoldPro extends javax.swing.JFrame {
     /**
      * Creates new form MakeStatisticsOfSoldPro
      */
-    public MakeStatisticsOfSoldPro() {
+    Employee_DTO dtoStorekeeper = null;
+    public MakeStatisticsOfSoldPro(Employee_DTO storekeeper) {
         initComponents();
+        dtoStorekeeper = storekeeper;
+        setResizable(false);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -100,6 +107,11 @@ public class MakeStatisticsOfSoldPro extends javax.swing.JFrame {
         btn_EachPro.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn_EachPro.setForeground(new java.awt.Color(255, 255, 255));
         btn_EachPro.setBorder(null);
+        btn_EachPro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_EachProActionPerformed(evt);
+            }
+        });
         jPanel3.add(btn_EachPro, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 80));
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 300, 80));
@@ -117,6 +129,11 @@ public class MakeStatisticsOfSoldPro extends javax.swing.JFrame {
         btn_AllPro.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn_AllPro.setForeground(new java.awt.Color(255, 255, 255));
         btn_AllPro.setBorder(null);
+        btn_AllPro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AllProActionPerformed(evt);
+            }
+        });
         jPanel4.add(btn_AllPro, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 80));
 
         jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 300, 80));
@@ -128,42 +145,33 @@ public class MakeStatisticsOfSoldPro extends javax.swing.JFrame {
 
     private void btn_turnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_turnbackActionPerformed
         // TODO add your handling code here:
+        int ret = JOptionPane.showConfirmDialog(null, "Confirm", "Do you want to turn back?", JOptionPane.YES_NO_OPTION);
+        if(ret == JOptionPane.YES_OPTION)
+        {
+            setVisible(false);
+            StorekeeperHome home = new StorekeeperHome(dtoStorekeeper);
+            home.setVisible(true);
+        }
     }//GEN-LAST:event_btn_turnbackActionPerformed
+
+    private void btn_EachProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EachProActionPerformed
+        // TODO add your handling code here:
+        SoldPro_Each pro = new SoldPro_Each(dtoStorekeeper);
+        pro.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_btn_EachProActionPerformed
+
+    private void btn_AllProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AllProActionPerformed
+        // TODO add your handling code here:
+        SoldPro_All pro = new SoldPro_All(dtoStorekeeper);
+        pro.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_btn_AllProActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MakeStatisticsOfSoldPro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MakeStatisticsOfSoldPro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MakeStatisticsOfSoldPro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MakeStatisticsOfSoldPro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MakeStatisticsOfSoldPro().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_AllPro;

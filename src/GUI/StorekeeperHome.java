@@ -269,15 +269,23 @@ public class StorekeeperHome extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ManageProActionPerformed
 
     private void btn_MakeStatisticsOfSoldProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MakeStatisticsOfSoldProActionPerformed
-
+        MakeStatisticsOfSoldPro pro = new MakeStatisticsOfSoldPro(dtoStorekeeper);
+        pro.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_btn_MakeStatisticsOfSoldProActionPerformed
 
     private void btn_MakeStatisticOfInventoryProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MakeStatisticOfInventoryProActionPerformed
         // TODO add your handling code here:
+        MakeStatisticsOfProInventory pro = new MakeStatisticsOfProInventory(dtoStorekeeper);
+        pro.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_btn_MakeStatisticOfInventoryProActionPerformed
 
     private void btn_MakeStatisticOfImportedProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MakeStatisticOfImportedProActionPerformed
         // TODO add your handling code here:
+        MakeStatisticsOfImportedProduct pro = new MakeStatisticsOfImportedProduct(dtoStorekeeper);
+        pro.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_btn_MakeStatisticOfImportedProActionPerformed
 
 
