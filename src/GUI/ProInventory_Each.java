@@ -179,8 +179,8 @@ public class ProInventory_Each extends javax.swing.JFrame {
 
     private void btn_MakeStatisticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MakeStatisticsActionPerformed
         // TODO add your handling code here:
-        if(txtProID.getText().equals(""))
-            JOptionPane.showMessageDialog(this, "Required fields are empty", "Please enter product id!", JOptionPane.ERROR_MESSAGE);
+        if(txtProID.getText().equals("")||!txtProID.getText().matches("[0-9]*"))
+            JOptionPane.showMessageDialog(this, "Wrong data, please check and enter again", "Please enter product id!", JOptionPane.ERROR_MESSAGE);
         else{
             tblProductModel.setRowCount(0);
             list = busMakeStatistic.EachProductForMakeStatistcisOfInventory(Integer.parseInt(txtProID.getText()));

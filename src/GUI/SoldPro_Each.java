@@ -196,8 +196,8 @@ public class SoldPro_Each extends javax.swing.JFrame {
 
     private void btn_MakeStatisticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MakeStatisticsActionPerformed
         // TODO add your handling code here:
-        if(dcStartDate.getCalendar() == null || dcEndDate.getCalendar()==null)
-            JOptionPane.showMessageDialog(this, "Required start/end date are empty", "Please enter product id!", JOptionPane.ERROR_MESSAGE);
+        if(dcStartDate.getCalendar() == null || dcEndDate.getCalendar()==null||txtProID.getText().equals("")||!txtProID.getText().matches("[0-9]*"))
+            JOptionPane.showMessageDialog(this, "Wrong data, please check and enter again", "Please enter again!", JOptionPane.ERROR_MESSAGE);
         else{
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             tblStatisticsModel.setRowCount(0);

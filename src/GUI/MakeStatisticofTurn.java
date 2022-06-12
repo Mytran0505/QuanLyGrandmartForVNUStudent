@@ -51,7 +51,7 @@ public class MakeStatisticofTurn extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblStatistics = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtTotalTurnover = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         dcStartDate = new com.toedter.calendar.JDateChooser();
         dcEndDate = new com.toedter.calendar.JDateChooser();
@@ -127,13 +127,13 @@ public class MakeStatisticofTurn extends javax.swing.JFrame {
         jLabel5.setText("Total turnover:");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, -1, 33));
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField3.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField3.setText("0");
-        jTextField3.setBorder(null);
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 290, 164, 33));
+        txtTotalTurnover.setBackground(new java.awt.Color(255, 255, 255));
+        txtTotalTurnover.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        txtTotalTurnover.setForeground(new java.awt.Color(0, 0, 0));
+        txtTotalTurnover.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtTotalTurnover.setText("0");
+        txtTotalTurnover.setBorder(null);
+        jPanel2.add(txtTotalTurnover, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 290, 164, 33));
 
         jButton2.setBackground(new java.awt.Color(0, 204, 255));
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -193,11 +193,14 @@ public class MakeStatisticofTurn extends javax.swing.JFrame {
             tblStatisticsModel.setRowCount(0);
             list = busMakeStatistic.MakeStatisticsOfTurnover(sdf.format(dcStartDate.getDate()), sdf.format(dcEndDate.getDate()));
             //Load employee information into the table
+            long TotalTurnover =0;
             for(int i = 0; i < list.size(); i++){
                 Statictis_DTO dtoStatistics = list.get(i);
                 String[] rows = {String.valueOf(dtoStatistics.getBill_id()),dtoStatistics.getBill_date().toString(),String.valueOf(dtoStatistics.getTolalTurnover())}; 
                 tblStatisticsModel.addRow(rows);
+                TotalTurnover += dtoStatistics.getTolalTurnover();
             }
+            txtTotalTurnover.setText(String.valueOf(TotalTurnover));
             if(tblStatisticsModel.getRowCount() < 1){
                 JOptionPane.showMessageDialog(this, "No match result.", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -222,7 +225,7 @@ public class MakeStatisticofTurn extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTable tblStatistics;
+    private javax.swing.JTextField txtTotalTurnover;
     // End of variables declaration//GEN-END:variables
 }
