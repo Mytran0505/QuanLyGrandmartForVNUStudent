@@ -90,6 +90,7 @@ public class InsertProForm extends javax.swing.JFrame {
         btnTurnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Insert Product Information");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel7.setBackground(new java.awt.Color(239, 250, 252));
@@ -308,6 +309,9 @@ public class InsertProForm extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(this, "Information fields are not entered enough.", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
         }
+        else if(!txtSupID.getText().matches("[0-9]*") || !txtOPrice.getText().matches("[0-9]*") || !txtSPrice.getText().matches("[0-9]*") || !txtVAT.getText().matches("[0-9]*") ||  !txtImportedQuantity.getText().matches("[0-9]*") || !txtRemainingQuantity.getText().matches("[0-9]*")){
+                JOptionPane.showMessageDialog(this, " Invalid data!", "Error!", JOptionPane.ERROR_MESSAGE);
+            }
         else{
             if(dcEXP.getCalendar() == null){
                 Product_DTO newProduct = new Product_DTO(0, Integer.parseInt(txtSupID.getText()), txtProName.getText(), txtCountry.getText(), Long.parseLong(txtOPrice.getText()), Long.parseLong(txtSPrice.getText()), dcMFG.getDate(), txtProType.getText(), Integer.parseInt(txtVAT.getText()), dcImportedDate.getDate(), Integer.parseInt(txtImportedQuantity.getText()), Integer.parseInt(txtRemainingQuantity.getText()));

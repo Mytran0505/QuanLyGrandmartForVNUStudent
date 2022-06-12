@@ -102,6 +102,7 @@ public class UpdateProForm extends javax.swing.JFrame {
         tblSearch = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Update Product Information");
 
         jPanel8.setBackground(new java.awt.Color(0, 204, 255));
 
@@ -115,7 +116,6 @@ public class UpdateProForm extends javax.swing.JFrame {
 
         btn_turnback2.setBackground(new java.awt.Color(239, 250, 252));
         btn_turnback2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btn_turnback2.setForeground(new java.awt.Color(0, 0, 0));
         btn_turnback2.setText("Turn back");
         btn_turnback2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,10 +148,8 @@ public class UpdateProForm extends javax.swing.JFrame {
         jPanel9.setBackground(new java.awt.Color(239, 250, 252));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Search bar:");
 
-        txtSearch.setBackground(new java.awt.Color(255, 255, 255));
         txtSearch.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         btnSearch.setBackground(new java.awt.Color(0, 204, 255));
@@ -264,18 +262,10 @@ public class UpdateProForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSearch;
-    private javax.swing.JButton btn_turnback;
-    private javax.swing.JButton btn_turnback1;
     private javax.swing.JButton btn_turnback2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;

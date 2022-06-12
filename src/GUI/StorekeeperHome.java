@@ -12,7 +12,7 @@ public class StorekeeperHome extends javax.swing.JFrame {
         dtoStorekeeper = storekeeper;
         setResizable(false);
         setLocationRelativeTo(null);
-        lbStorekeeper.setText("Welcome to Storekeeper Home!");
+        lb_Storekeeper.setText("Welcome to Storekeeper Home!");
     }
 
     @SuppressWarnings("unchecked")
@@ -23,9 +23,9 @@ public class StorekeeperHome extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btn_logout = new javax.swing.JButton();
+        btn_Logout = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        lbStorekeeper = new javax.swing.JLabel();
+        lb_Storekeeper = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -44,6 +44,7 @@ public class StorekeeperHome extends javax.swing.JFrame {
         btn_MakeStatisticOfImportedPro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Storekeeper Home");
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -57,12 +58,12 @@ public class StorekeeperHome extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setText("STOREKEEPER HOME");
 
-        btn_logout.setBackground(new java.awt.Color(239, 250, 252));
-        btn_logout.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btn_logout.setText("Log out");
-        btn_logout.addActionListener(new java.awt.event.ActionListener() {
+        btn_Logout.setBackground(new java.awt.Color(239, 250, 252));
+        btn_Logout.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btn_Logout.setText("Log out");
+        btn_Logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_logoutActionPerformed(evt);
+                btn_LogoutActionPerformed(evt);
             }
         });
 
@@ -75,7 +76,7 @@ public class StorekeeperHome extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
-                .addComponent(btn_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_Logout, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -83,7 +84,7 @@ public class StorekeeperHome extends javax.swing.JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 20, Short.MAX_VALUE)
-                .addComponent(btn_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_Logout, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -92,12 +93,12 @@ public class StorekeeperHome extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(239, 250, 252));
 
-        lbStorekeeper.setBackground(new java.awt.Color(255, 255, 255));
-        lbStorekeeper.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
-        lbStorekeeper.setForeground(new java.awt.Color(51, 153, 255));
-        lbStorekeeper.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbStorekeeper.setText("Welcome to Storekeeper Home, User Name!");
-        lbStorekeeper.setToolTipText("");
+        lb_Storekeeper.setBackground(new java.awt.Color(255, 255, 255));
+        lb_Storekeeper.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
+        lb_Storekeeper.setForeground(new java.awt.Color(51, 153, 255));
+        lb_Storekeeper.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_Storekeeper.setText("Welcome to Storekeeper Home!");
+        lb_Storekeeper.setToolTipText("");
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -109,8 +110,12 @@ public class StorekeeperHome extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText(" Manage Product Information");
-        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 91, 201, 48));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Manage Product Information");
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel5.setFocusable(false);
+        jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 200, 48));
 
         btn_ManagePro.setBackground(new java.awt.Color(0, 204, 255));
         btn_ManagePro.setForeground(new java.awt.Color(255, 153, 102));
@@ -210,14 +215,14 @@ public class StorekeeperHome extends javax.swing.JFrame {
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(lbStorekeeper, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lb_Storekeeper, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbStorekeeper, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lb_Storekeeper, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,14 +258,14 @@ public class StorekeeperHome extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_logoutActionPerformed
+    private void btn_LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LogoutActionPerformed
         int ret = JOptionPane.showConfirmDialog(null, "Confirm", "Do you want to log out?", JOptionPane.YES_NO_OPTION);
         if (ret == JOptionPane.YES_OPTION) {
             setVisible(false);
             LoginForm Login = new LoginForm();
             Login.setVisible(true);
         }
-    }//GEN-LAST:event_btn_logoutActionPerformed
+    }//GEN-LAST:event_btn_LogoutActionPerformed
 
     private void btn_ManageProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ManageProActionPerformed
         ManageProduct pro = new ManageProduct(dtoStorekeeper);
@@ -269,32 +274,24 @@ public class StorekeeperHome extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ManageProActionPerformed
 
     private void btn_MakeStatisticsOfSoldProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MakeStatisticsOfSoldProActionPerformed
-        MakeStatisticsOfSoldPro pro = new MakeStatisticsOfSoldPro(dtoStorekeeper);
-        pro.setVisible(true);
-        setVisible(false);
+
     }//GEN-LAST:event_btn_MakeStatisticsOfSoldProActionPerformed
 
     private void btn_MakeStatisticOfInventoryProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MakeStatisticOfInventoryProActionPerformed
         // TODO add your handling code here:
-        MakeStatisticsOfProInventory pro = new MakeStatisticsOfProInventory(dtoStorekeeper);
-        pro.setVisible(true);
-        setVisible(false);
     }//GEN-LAST:event_btn_MakeStatisticOfInventoryProActionPerformed
 
     private void btn_MakeStatisticOfImportedProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MakeStatisticOfImportedProActionPerformed
         // TODO add your handling code here:
-        MakeStatisticsOfImportedProduct pro = new MakeStatisticsOfImportedProduct(dtoStorekeeper);
-        pro.setVisible(true);
-        setVisible(false);
     }//GEN-LAST:event_btn_MakeStatisticOfImportedProActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Logout;
     private javax.swing.JButton btn_MakeStatisticOfImportedPro;
     private javax.swing.JButton btn_MakeStatisticOfInventoryPro;
     private javax.swing.JButton btn_MakeStatisticsOfSoldPro;
     private javax.swing.JButton btn_ManagePro;
-    private javax.swing.JButton btn_logout;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -312,6 +309,6 @@ public class StorekeeperHome extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JLabel lbStorekeeper;
+    private javax.swing.JLabel lb_Storekeeper;
     // End of variables declaration//GEN-END:variables
 }
