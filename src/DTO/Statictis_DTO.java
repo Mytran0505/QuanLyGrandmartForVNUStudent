@@ -53,27 +53,60 @@ public class Statictis_DTO {
         this.tolalTurnover = tolalTurnover;
     }
 
-    
-    public int getBill_id() {
-        return bill_id;
+    public void setPro_id(int pro_id) {
+        this.pro_id = pro_id;
     }
 
     public void setBill_id(int bill_id) {
         this.bill_id = bill_id;
     }
 
-    public Date getBill_date() {
-        return bill_date;
-    }
-
     public void setBill_date(Date bill_date) {
         this.bill_date = bill_date;
     }
 
-    
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSale_price(long sale_price) {
+        this.sale_price = sale_price;
+    }
+
+    public void setImported_date(Date imported_date) {
+        this.imported_date = imported_date;
+    }
+
+    public void setImported_quantity(int imported_quantity) {
+        this.imported_quantity = imported_quantity;
+    }
+
+    public void setRemaining_quantity(int remaining_quantity) {
+        this.remaining_quantity = remaining_quantity;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public void setTotalSoldPro(long totalSoldPro) {
+        this.totalSoldPro = totalSoldPro;
+    }
+
+    public void setTolalTurnover(long tolalTurnover) {
+        this.tolalTurnover = tolalTurnover;
+    }
 
     public int getPro_id() {
         return pro_id;
+    }
+
+    public int getBill_id() {
+        return bill_id;
+    }
+
+    public Date getBill_date() {
+        return bill_date;
     }
 
     public String getName() {
@@ -104,47 +137,11 @@ public class Statictis_DTO {
         return totalSoldPro;
     }
 
-    public void setTotalSoldPro(long totalSoldPro) {
-        this.totalSoldPro = totalSoldPro;
-    }
-
     public long getTolalTurnover() {
         return tolalTurnover;
     }
 
-    public void setTolalTurnover(long tolalTurnover) {
-        this.tolalTurnover = tolalTurnover;
-    }
-
-   
-
-    public void setPro_id(int pro_id) {
-        this.pro_id = pro_id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setSale_price(long sale_price) {
-        this.sale_price = sale_price;
-    }
-
-    public void setImported_date(Date imported_date) {
-        this.imported_date = imported_date;
-    }
-
-    public void setImported_quantity(int imported_quantity) {
-        this.imported_quantity = imported_quantity;
-    }
-
-    public void setRemaining_quantity(int remaining_quantity) {
-        this.remaining_quantity = remaining_quantity;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-  
+    
+    
     
 }

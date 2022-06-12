@@ -7,6 +7,7 @@ package GUI;
 import BUS.MakeStatistic_BUS;
 import DTO.Employee_DTO;
 import DTO.Statictis_DTO;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -177,7 +178,7 @@ public class SoldPro_All extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Print out");
+        jLabel2.setText("Export PDF");
         jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 50));
 
         btn_PrintOut.setBackground(new java.awt.Color(51, 204, 255));
@@ -209,12 +210,9 @@ public class SoldPro_All extends javax.swing.JFrame {
         if(dcStartDate.getCalendar() == null || dcEndDate.getCalendar()==null)
             JOptionPane.showMessageDialog(this, "Required start/end date are empty", "Please enter product id!", JOptionPane.ERROR_MESSAGE);
         else{
-            java.util.Date d1 = dcStartDate.getDate();
-            java.sql.Date sqlStartDate = new java.sql.Date(d1.getTime());
-            java.util.Date d2 = dcEndDate.getDate();
-            java.sql.Date sqlEndDate = new java.sql.Date(d2.getTime());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             tblStatisticsModel.setRowCount(0);
-            list = busMakeStatistic.getAllProductForMakeStatisticsSold(sqlStartDate, sqlEndDate);
+            list = busMakeStatistic.getAllProductForMakeStatisticsSold(sdf.format(dcStartDate.getDate()), sdf.format(dcEndDate.getDate()));
             //Load employee information into the table
             for(int i = 0; i < list.size(); i++){
                 Statictis_DTO dtoStatistics = list.get(i);

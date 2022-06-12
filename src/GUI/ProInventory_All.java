@@ -142,7 +142,7 @@ public class ProInventory_All extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Print out");
+        jLabel2.setText("Export PDF");
         jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 50));
 
         btn_PrintOut.setBackground(new java.awt.Color(51, 204, 255));

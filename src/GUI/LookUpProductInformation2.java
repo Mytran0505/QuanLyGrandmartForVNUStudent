@@ -214,15 +214,15 @@ public class LookUpProductInformation2 extends javax.swing.JFrame {
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel17.setText("Product type:");
-        jPanel7.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, 140, 30));
+        jPanel7.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 140, 30));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel14.setText("VAT:");
-        jPanel7.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 140, 30));
+        jPanel7.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, 140, 30));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel16.setText("Imported date:");
-        jPanel7.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 120, 140, 30));
+        jPanel7.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 140, 30));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setText("Product ID:");
@@ -242,7 +242,7 @@ public class LookUpProductInformation2 extends javax.swing.JFrame {
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel18.setText("Imported quantity:");
-        jPanel7.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, 160, 30));
+        jPanel7.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 160, 30));
 
         txtImportedQuantity.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtImportedQuantity.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -250,7 +250,7 @@ public class LookUpProductInformation2 extends javax.swing.JFrame {
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel19.setText("Remaining quantity:");
-        jPanel7.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, 160, 30));
+        jPanel7.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, 180, 30));
 
         txtRemainingQuantity.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtRemainingQuantity.setHorizontalAlignment(javax.swing.JTextField.LEFT);

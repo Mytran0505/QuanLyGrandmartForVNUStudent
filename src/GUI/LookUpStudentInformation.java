@@ -1,6 +1,7 @@
 package GUI;
 
 import BUS.StudentManagement_BUS;
+import DTO.Employee_DTO;
 import DTO.Student_DTO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -13,6 +14,7 @@ import javax.swing.table.TableRowSorter;
 
 public class LookUpStudentInformation extends javax.swing.JFrame {
     Student_DTO dtoStudent = null;
+    Employee_DTO dtocashier =null;
     StudentManagement_BUS busStudentManagement = new StudentManagement_BUS();
     ArrayList<Student_DTO> list = new ArrayList<>();
 
@@ -196,7 +198,7 @@ public class LookUpStudentInformation extends javax.swing.JFrame {
         if(ret == JOptionPane.YES_OPTION)
         {
             setVisible(false);
-            CashierHome look = new CashierHome(dtoStudent);
+            CashierHome look = new CashierHome(dtocashier);
             look.setVisible(true);
         }
     }//GEN-LAST:event_btn_turnbackActionPerformed

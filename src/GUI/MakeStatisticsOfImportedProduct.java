@@ -170,7 +170,7 @@ public class MakeStatisticsOfImportedProduct extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Print out");
+        jLabel2.setText("Export PDF");
         jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 50));
 
         btn_PrintOut.setBackground(new java.awt.Color(51, 204, 255));
@@ -202,11 +202,9 @@ public class MakeStatisticsOfImportedProduct extends javax.swing.JFrame {
         if(dcDateImported.getCalendar()== null)
             JOptionPane.showMessageDialog(this, "Required fields are empty", "Please enter imported date!", JOptionPane.ERROR_MESSAGE);
         else {
-            java.sql.Date sqldate = new java.sql.Date(dcDateImported.getDate().getTime());
-            java.util.Date d = dcDateImported.getDate();
-            java.sql.Date sqlDate = new java.sql.Date(d.getTime());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             tblStatisticsModel.setRowCount(0);        
-            list = busMakeStatistic.getProductListForMakeStatisticsImported(sqlDate);
+            list = busMakeStatistic.getProductListForMakeStatisticsImported(sdf.format(dcDateImported.getDate()));
             //Load employee information into the table
             for(int i = 0; i < list.size(); i++){
                 Statictis_DTO dtoStatistics = list.get(i);

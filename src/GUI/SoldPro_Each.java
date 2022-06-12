@@ -7,6 +7,7 @@ package GUI;
 import BUS.MakeStatistic_BUS;
 import DTO.Employee_DTO;
 import DTO.Statictis_DTO;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -198,12 +199,9 @@ public class SoldPro_Each extends javax.swing.JFrame {
         if(dcStartDate.getCalendar() == null || dcEndDate.getCalendar()==null)
             JOptionPane.showMessageDialog(this, "Required start/end date are empty", "Please enter product id!", JOptionPane.ERROR_MESSAGE);
         else{
-            java.util.Date d1 = dcStartDate.getDate();
-            java.sql.Date sqlStartDate = new java.sql.Date(d1.getTime());
-            java.util.Date d2 = dcEndDate.getDate();
-            java.sql.Date sqlEndDate = new java.sql.Date(d2.getTime());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             tblStatisticsModel.setRowCount(0);
-            list = busMakeStatistic.getEachProductForMakeStatisticsSold(Integer.parseInt(txtProID.getText()), sqlStartDate, sqlEndDate);
+            list = busMakeStatistic.getEachProductForMakeStatisticsSold(Integer.parseInt(txtProID.getText()), sdf.format(dcStartDate.getDate()), sdf.format(dcEndDate.getDate()));
             //Load employee information into the table
             for(int i = 0; i < list.size(); i++){
                 Statictis_DTO dtoStatistics = list.get(i);

@@ -13,13 +13,13 @@ import javax.swing.JOptionPane;
  */
 public class MakeStatistic_CON {  
     
-    public ArrayList<Statictis_DTO> getProductListForMakeStatisticsImported(Date date){
+    public ArrayList<Statictis_DTO> getProductListForMakeStatisticsImported(String date){
         ArrayList<Statictis_DTO> productList = new ArrayList<>();
         try {
             Connection con = DBConnection.getDBConnection();
-            String SQL = "SELECT PRODUCT_ID, PRODUCT_NAME,IMPORTED_QUANTITY FROM PRODUCT WHERE IMPORTED_DATE = TO_DATE('?', 'MM/DD/YYYY')";
+            String SQL = "SELECT PRODUCT_ID, PRODUCT_NAME,IMPORTED_QUANTITY FROM PRODUCT WHERE IMPORTED_DATE = TO_DATE(?, 'yyyy-MM-dd')";
             PreparedStatement ps = con.prepareStatement(SQL);        
-            ps.setDate(1, date); 
+            ps.setString(1, date); 
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Statictis_DTO dtoPro = new Statictis_DTO(rs.getInt(1), rs.getString(2), rs.getInt(3));
@@ -73,19 +73,19 @@ public class MakeStatistic_CON {
 
  
     
-    public ArrayList<Statictis_DTO> getAllProductForMakeStatisticsSold(Date date1, Date date2){
+    public ArrayList<Statictis_DTO> getAllProductForMakeStatisticsSold(String date1, String date2){
         ArrayList<Statictis_DTO> productList = new ArrayList<>();
         try {
             Connection con = DBConnection.getDBConnection();
             String SQL =    "SELECT P.PRODUCT_ID, PRODUCT_NAME, SALE_PRICE, SUM(AMOUNT), SUM(AMOUNT)*SALE_PRICE\n" +
                             "FROM PRODUCT P, BILL_DETAILS BD, BILL B\n" +
                             "WHERE P.PRODUCT_ID = BD.PRODUCT_ID AND BD.BILL_ID = B.BILL_ID\n" +
-                            "      AND BILL_DATE BETWEEN TO_DATE('?', 'dd/mm/yyyy') and TO_DATE('?', 'dd/mm/yyyy')\n" +
+                            "      AND BILL_DATE BETWEEN TO_DATE(?, 'yyyy-MM-dd') and TO_DATE(?, 'yyyy-MM-dd')\n" +
                             "GROUP BY P.PRODUCT_ID, PRODUCT_NAME, SALE_PRICE\n" +
-                            "ORDER BY  P.PRODUCT_ID;";
+                            "ORDER BY  P.PRODUCT_ID";
             PreparedStatement ps = con.prepareStatement(SQL);     
-            ps.setDate(1, date1); 
-            ps.setDate(2, date2); 
+            ps.setString(1, date1); 
+            ps.setString(2, date2); 
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Statictis_DTO dtoStatistics = new Statictis_DTO(rs.getInt(1), rs.getString(2), rs.getLong(3), rs.getInt(4), rs.getLong(5));
@@ -99,20 +99,20 @@ public class MakeStatistic_CON {
         return productList;
     }  
     
-    public ArrayList<Statictis_DTO> getEachProductForMakeStatisticsSold(int id, Date date1, Date date2){
+    public ArrayList<Statictis_DTO> getEachProductForMakeStatisticsSold(int id, String date1, String date2){
         ArrayList<Statictis_DTO> productList = new ArrayList<>();
         try {
             Connection con = DBConnection.getDBConnection();
             String SQL =    "SELECT P.PRODUCT_ID, PRODUCT_NAME, SALE_PRICE, SUM(AMOUNT), SUM(AMOUNT)*SALE_PRICE\n" +
                             "FROM PRODUCT P, BILL_DETAILS BD, BILL B\n" +
-                            "WHERE P.PRODUCT_ID = BD.PRODUCT_ID AND BD.BILL_ID = B.BILL_ID AND P.PRODUCT_ID =? \n" +
-                            "      AND BILL_DATE BETWEEN TO_DATE('?', 'dd/mm/yyyy') and TO_DATE('?', 'dd/mm/yyyy')\n" +
+                            "WHERE P.PRODUCT_ID = BD.PRODUCT_ID AND BD.BILL_ID = B.BILL_ID AND P.PRODUCT_ID = ? \n" +
+                            "      AND BILL_DATE BETWEEN TO_DATE(?, 'yyyy-MM-dd') and TO_DATE(?, 'yyyy-MM-dd')\n" +
                             "GROUP BY P.PRODUCT_ID, PRODUCT_NAME, SALE_PRICE\n" +
-                            "ORDER BY  P.PRODUCT_ID;";
+                            "ORDER BY  P.PRODUCT_ID";
             PreparedStatement ps = con.prepareStatement(SQL);    
             ps.setInt(1, id);
-            ps.setDate(2, date1); 
-            ps.setDate(3, date2); 
+            ps.setString(2, date1); 
+            ps.setString(3, date2); 
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Statictis_DTO dtoStatistics = new Statictis_DTO(rs.getInt(1), rs.getString(2), rs.getLong(3), rs.getInt(4), rs.getLong(5));
@@ -125,16 +125,14 @@ public class MakeStatistic_CON {
         }
         return productList;
     }  
-public ArrayList<Statictis_DTO> MakeStatisticsOfTurnover(Date date1, Date date2){
+public ArrayList<Statictis_DTO> MakeStatisticsOfTurnover(String date1, String date2){
         ArrayList<Statictis_DTO> productList = new ArrayList<>();
         try {
             Connection con = DBConnection.getDBConnection();
-            String SQL =    "SELECT BILL_ID, BILL_DATE, TOTAL_MONEY\n" +
-                            "FROM BILL\n" +
-                            "WHERE BILL_DATE BETWEEN TO_DATE('?', 'dd/mm/yyyy') and TO_DATE('?', 'dd-mm-yyyy');";
+            String SQL ="SELECT BILL_ID, BILL_DATE, TOTAL_MONEY FROM BILL WHERE BILL_DATE BETWEEN TO_DATE(?, 'yyyy-MM-dd') and TO_DATE(?, 'yyyy-MM-dd')";
             PreparedStatement ps = con.prepareStatement(SQL);     
-            ps.setDate(1, date1); 
-            ps.setDate(2, date2); 
+            ps.setString(1, date1); 
+            ps.setString(2, date2); 
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Statictis_DTO dtoStatistics = new Statictis_DTO(rs.getInt(1), rs.getDate(2),rs.getLong(3));

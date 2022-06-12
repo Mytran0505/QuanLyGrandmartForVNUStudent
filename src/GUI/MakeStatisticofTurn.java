@@ -7,6 +7,7 @@ package GUI;
 import BUS.MakeStatistic_BUS;
 import DTO.Employee_DTO;
 import DTO.Statictis_DTO;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -137,7 +138,7 @@ public class MakeStatisticofTurn extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(0, 204, 255));
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Print out");
+        jButton2.setText("Export PDF");
         jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(315, 343, 165, 59));
 
         dcStartDate.setBackground(new java.awt.Color(255, 255, 255));
@@ -188,16 +189,13 @@ public class MakeStatisticofTurn extends javax.swing.JFrame {
          if(dcStartDate.getCalendar() == null || dcEndDate.getCalendar()==null)
             JOptionPane.showMessageDialog(this, "Required start/end date are empty", "Please enter product id!", JOptionPane.ERROR_MESSAGE);
         else{
-            java.util.Date d1 = dcStartDate.getDate();
-            java.sql.Date sqlStartDate = new java.sql.Date(d1.getTime());
-            java.util.Date d2 = dcEndDate.getDate();
-            java.sql.Date sqlEndDate = new java.sql.Date(d2.getTime());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             tblStatisticsModel.setRowCount(0);
-            list = busMakeStatistic.MakeStatisticsOfTurnover(sqlStartDate, sqlEndDate);
+            list = busMakeStatistic.MakeStatisticsOfTurnover(sdf.format(dcStartDate.getDate()), sdf.format(dcEndDate.getDate()));
             //Load employee information into the table
             for(int i = 0; i < list.size(); i++){
                 Statictis_DTO dtoStatistics = list.get(i);
-                String[] rows = {String.valueOf(dtoStatistics.getPro_id()),dtoStatistics.getName(),dtoStatistics.getBill_date().toString(),String.valueOf(dtoStatistics.getTolalTurnover())}; 
+                String[] rows = {String.valueOf(dtoStatistics.getBill_id()),dtoStatistics.getBill_date().toString(),String.valueOf(dtoStatistics.getTolalTurnover())}; 
                 tblStatisticsModel.addRow(rows);
             }
             if(tblStatisticsModel.getRowCount() < 1){
