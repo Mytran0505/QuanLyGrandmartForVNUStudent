@@ -477,9 +477,6 @@ public class InsBill2 extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_DismissActionPerformed
 
     private void btn_ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ConfirmActionPerformed
-        setVisible(false);
-        PrintBill pribill = new PrintBill();
-        pribill.setVisible(true);
     }//GEN-LAST:event_btn_ConfirmActionPerformed
 
     private void btn_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddActionPerformed
