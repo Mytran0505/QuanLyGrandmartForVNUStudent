@@ -48,7 +48,7 @@ public class SearchBill1 extends javax.swing.JFrame {
             if(tblSearch.getSelectedRow() >= 0){
                 Bill_DTO dtoBill = new Bill_DTO(Integer.valueOf(String.valueOf(tblSearch.getValueAt(tblSearch.getSelectedRow(), 0))));
                 setVisible(false);
-                new SearchBill2(dtoBill).setVisible(true);
+                new SearchBill2(dtoBill, dtoCashier).setVisible(true);
             }
         });   
     }
@@ -69,6 +69,7 @@ public class SearchBill1 extends javax.swing.JFrame {
         tblSearch = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Search Bill");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel6.setBackground(new java.awt.Color(0, 204, 255));

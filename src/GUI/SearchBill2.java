@@ -1,4 +1,3 @@
-
 package GUI;
 
 import BUS.BillDetails_BUS;
@@ -24,10 +23,11 @@ public class SearchBill2 extends javax.swing.JFrame {
     ArrayList<Product_DTO> list2 = new ArrayList<>();
     DefaultTableModel tblBillDetailsModel;
     DefaultTableModel tblProductModel;
-    public SearchBill2(Bill_DTO bill) {
+    public SearchBill2(Bill_DTO bill, Employee_DTO cashier) {
         initComponents();
         dtoBill = busBillManagement.getBillInfo(bill);
         dtoBillDetails = new BillDetails_DTO(bill.getId());
+        dtoCashier = cashier;
         setResizable(false);
         setLocationRelativeTo(null);
         txtEmpID.setText(String.valueOf(dtoBill.getEmp_id()));
@@ -107,6 +107,7 @@ public class SearchBill2 extends javax.swing.JFrame {
         tblBillDetails = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Search Bill");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel6.setBackground(new java.awt.Color(0, 204, 255));

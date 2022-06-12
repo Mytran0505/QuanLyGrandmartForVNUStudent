@@ -34,11 +34,11 @@ public class InsBill1 extends javax.swing.JFrame {
     //create bill details table
     DefaultTableModel tblBillDetailsModel;
     public void createTable(){
-        tblBillDetailsModel = new DefaultTableModel();
-        String title[] = {"Product ID", "Amount"};
-        tblBillDetailsModel.setColumnIdentifiers(title);
-        //tblBillDetailsModel.setRowCount(0);
-        tblBillDetails.setModel(tblBillDetailsModel);
+    tblBillDetailsModel = new DefaultTableModel();
+    String title[] = {"Product ID", "Amount"};
+    tblBillDetailsModel.setColumnIdentifiers(title);
+    //tblBillDetailsModel.setRowCount(0);
+    tblBillDetails.setModel(tblBillDetailsModel);
     }
 
     @SuppressWarnings("unchecked")
@@ -97,6 +97,7 @@ public class InsBill1 extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Insert Bill");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel6.setBackground(new java.awt.Color(0, 204, 255));
@@ -306,13 +307,13 @@ public class InsBill1 extends javax.swing.JFrame {
         jLabel10.setText("Date:");
         jLabel10.setToolTipText("");
 
-        txtEmpID.setBackground(new java.awt.Color(255, 255, 255));
+        txtEmpID.setBackground(new java.awt.Color(239, 250, 252));
         txtEmpID.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtEmpID.setForeground(new java.awt.Color(0, 0, 0));
         txtEmpID.setText("200002");
         txtEmpID.setBorder(null);
 
-        txtCashCounterID.setBackground(new java.awt.Color(255, 255, 255));
+        txtCashCounterID.setBackground(new java.awt.Color(239, 250, 252));
         txtCashCounterID.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtCashCounterID.setForeground(new java.awt.Color(0, 0, 0));
         txtCashCounterID.setBorder(null);
@@ -335,18 +336,18 @@ public class InsBill1 extends javax.swing.JFrame {
         jLabel13.setText("Total money");
         jLabel13.setToolTipText("");
 
-        txtSumUp.setBackground(new java.awt.Color(255, 255, 255));
+        txtSumUp.setBackground(new java.awt.Color(239, 250, 252));
         txtSumUp.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtSumUp.setForeground(new java.awt.Color(0, 0, 0));
         txtSumUp.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtSumUp.setBorder(null);
 
-        txtStuID.setBackground(new java.awt.Color(255, 255, 255));
+        txtStuID.setBackground(new java.awt.Color(239, 250, 252));
         txtStuID.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtStuID.setForeground(new java.awt.Color(0, 0, 0));
         txtStuID.setBorder(null);
 
-        txtTotalMoney.setBackground(new java.awt.Color(255, 255, 255));
+        txtTotalMoney.setBackground(new java.awt.Color(239, 250, 252));
         txtTotalMoney.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtTotalMoney.setForeground(new java.awt.Color(0, 0, 0));
         txtTotalMoney.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -488,7 +489,6 @@ public class InsBill1 extends javax.swing.JFrame {
             if(busBillManagement.insert(newBill)){
                 dtoBillDetails = busBillDetails.getBillDetailsInfo(newBill);
             }
-            dtoBillDetails = busBillDetails.getBillDetailsInfo(newBill);
             txtCashCounterID.setText(String.valueOf(newBill.getCash_id()));
             txtStuID.setText(String.valueOf(newBill.getStu_id()));
             txtTotalMoney.setText(String.valueOf(newBill.getTotal_money()));
@@ -516,7 +516,7 @@ public class InsBill1 extends javax.swing.JFrame {
     private void btn_ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ConfirmActionPerformed
             JOptionPane.showMessageDialog(this, "Bill information is inserted successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
             setVisible(false);
-            PrintBill pribill = new PrintBill();
+            PrintBill pribill = new PrintBill(newBill, dtoCashier);
             pribill.setVisible(true);
     }//GEN-LAST:event_btn_ConfirmActionPerformed
 

@@ -5,6 +5,7 @@ import BUS.BillManagement_BUS;
 import BUS.ProductManagement_BUS;
 import DTO.BillDetails_DTO;
 import DTO.Bill_DTO;
+import DTO.Employee_DTO;
 import DTO.Product_DTO;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -13,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class UpBill2 extends javax.swing.JFrame {
 
+    Employee_DTO dtoCashier = null;
     Bill_DTO dtoBill = null;
     BillDetails_DTO dtoBillDetails = null;
     BillManagement_BUS busBillManagement = new BillManagement_BUS();
@@ -22,8 +24,9 @@ public class UpBill2 extends javax.swing.JFrame {
     ArrayList<Product_DTO> list2 = new ArrayList<>();
     DefaultTableModel tblBillDetailsModel;
     DefaultTableModel tblProductModel;
-    public UpBill2(Bill_DTO bill) {
+    public UpBill2(Bill_DTO bill, Employee_DTO cashier) {
         initComponents();
+        dtoCashier = cashier;
         dtoBill = busBillManagement.getBillInfo(bill);
         dtoBillDetails = new BillDetails_DTO(bill.getId());
         setResizable(false);
@@ -114,6 +117,7 @@ public class UpBill2 extends javax.swing.JFrame {
         tblBillDetails = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Update Bill");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel6.setBackground(new java.awt.Color(0, 204, 255));
@@ -471,13 +475,13 @@ public class UpBill2 extends javax.swing.JFrame {
 
     private void btn_turnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_turnbackActionPerformed
         setVisible(false);
-        UpBill1 bill1 = new UpBill1(dtoBill);
+        UpBill1 bill1 = new UpBill1(dtoBill, dtoCashier);
         bill1.setVisible(true);
     }//GEN-LAST:event_btn_turnbackActionPerformed
 
     private void btn_DismissActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DismissActionPerformed
         setVisible(false);
-        UpBill1 bill1 = new UpBill1(dtoBill);
+        UpBill1 bill1 = new UpBill1(dtoBill, dtoCashier);
         bill1.setVisible(true);
     }//GEN-LAST:event_btn_DismissActionPerformed
 
@@ -505,7 +509,7 @@ public class UpBill2 extends javax.swing.JFrame {
             if(busBillManagement.update(Bill)){
                 JOptionPane.showMessageDialog(this, "Bill information is updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 setVisible(false);
-                UpBill1 bill1 = new UpBill1(dtoBill);
+                UpBill1 bill1 = new UpBill1(dtoBill, dtoCashier);
                 bill1.setVisible(true);
             }
             else{

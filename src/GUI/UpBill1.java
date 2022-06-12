@@ -15,9 +15,10 @@ public class UpBill1 extends javax.swing.JFrame {
     Employee_DTO dtoCashier;
     BillManagement_BUS busBillManagement = new BillManagement_BUS();
     ArrayList<Bill_DTO> list = new ArrayList<>();
-    public UpBill1(Bill_DTO bill) {
+    public UpBill1(Bill_DTO bill, Employee_DTO cashier) {
         initComponents();
         dtoBill = bill;
+        dtoCashier = cashier;
         setResizable(false);
         setLocationRelativeTo(null);
         createTable();
@@ -47,7 +48,7 @@ public class UpBill1 extends javax.swing.JFrame {
             if(tblSearch.getSelectedRow() >= 0){
                 Bill_DTO dtoBill = new Bill_DTO(Integer.valueOf(String.valueOf(tblSearch.getValueAt(tblSearch.getSelectedRow(), 0))));
                 setVisible(false);
-                new UpBill2(dtoBill).setVisible(true);
+                new UpBill2(dtoBill, dtoCashier).setVisible(true);
             }
         });    
     }
@@ -68,6 +69,7 @@ public class UpBill1 extends javax.swing.JFrame {
         tblSearch = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Update Bill");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel6.setBackground(new java.awt.Color(0, 204, 255));

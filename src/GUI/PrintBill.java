@@ -1,17 +1,82 @@
 package GUI;
 
+import BUS.BillDetails_BUS;
+import BUS.BillManagement_BUS;
+import BUS.ProductManagement_BUS;
+import DTO.BillDetails_DTO;
 import DTO.Bill_DTO;
 import DTO.Employee_DTO;
+import DTO.Product_DTO;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class PrintBill extends javax.swing.JFrame {
 
     Bill_DTO dtoBill = null;
     Employee_DTO dtoCashier = null;
-    public PrintBill() {
+    BillDetails_DTO dtoBillDetails = null;
+    BillManagement_BUS busBillManagement = new BillManagement_BUS();
+    BillDetails_BUS busBillDetails = new BillDetails_BUS();
+    ProductManagement_BUS busProductManagement = new ProductManagement_BUS();
+    ArrayList<BillDetails_DTO> list = new ArrayList<>();
+    ArrayList<Product_DTO> list2 = new ArrayList<>();
+    DefaultTableModel tblBillDetailsModel;
+    DefaultTableModel tblProductModel;
+    public PrintBill(Bill_DTO bill, Employee_DTO cashier) {
         initComponents();
+        dtoCashier = cashier;
         setResizable(false);
         setLocationRelativeTo(null);
+        dtoBill = busBillManagement.getBillInfo(bill);
+        dtoBillDetails = busBillDetails.getBillDetailsInfo(bill);
+        txtEmpID.setText(String.valueOf(dtoBill.getEmp_id()));
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        txtDate.setText(sdf.format(dtoBill.getBill_date()));
+        txtCashCounterID.setText(String.valueOf(dtoBill.getCash_id()));
+        txtBillid.setText(String.valueOf(dtoBillDetails.getId()));
+        txtStuID.setText(String.valueOf(dtoBill.getStu_id()));
+        txtTotalMoney.setText(String.valueOf(dtoBill.getTotal_money()));
+        //create table of bill details
+        tblBillDetailsModel = new DefaultTableModel();
+        String title[] = {"Product ID", "Amount", ""};
+        tblBillDetailsModel.setColumnIdentifiers(title);
+        tblBillDetailsModel.setRowCount(0);
+        list = busBillDetails.getBillDetailsList(dtoBillDetails.getId());
+        for(int i = 0; i < list.size(); i++){
+            BillDetails_DTO dtoBillDetails = list.get(i);
+            String[] rows = {String.valueOf(dtoBillDetails.getPro_id()), String.valueOf(dtoBillDetails.getAmount()) };
+            tblBillDetailsModel.addRow(rows);
+        }
+        tblBillDetails.setModel(tblBillDetailsModel);
+        tblBillDetails.setAutoCreateRowSorter(true);
+        tblBillDetails.setEnabled(false);
+        tblBillDetails.getColumnModel().getColumn(2).setPreferredWidth(10);
+        //create table product
+        tblProductModel = new DefaultTableModel();
+        String title2[] = {"Product name", "VAT(%)", "Original price", "Sale price"};
+        tblProductModel.setColumnIdentifiers(title2);
+        tblProductModel.setRowCount(0);
+        list2 = busProductManagement.getProductList(dtoBillDetails);
+        for(int i = 0; i < list2.size(); i++){
+            Product_DTO dtoProduct = list2.get(i);
+            String[] rows = {dtoProduct.getName(), String.valueOf(dtoProduct.getVAT()), String.valueOf(dtoProduct.getOriginal_price()), String.valueOf(dtoProduct.getSale_price())};
+            tblProductModel.addRow(rows);
+        }
+        tblProduct.setModel(tblProductModel);
+        tblProduct.setAutoCreateRowSorter(true);
+        tblProduct.setEnabled(false);
+        tblProduct.getColumnModel().getColumn(0).setPreferredWidth(90);
+        tblProduct.getColumnModel().getColumn(1).setPreferredWidth(60);
+        //Không được sửa
+        txtEmpID.disable();
+        txtDate.disable();
+        txtCashCounterID.disable();
+        txtBillid.disable();
+        txtStuID.disable();
+        txtTotalMoney.disable();
+        txtSumUp.disable();
     }
 
     @SuppressWarnings("unchecked")
@@ -27,23 +92,27 @@ public class PrintBill extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        txtEmpID = new javax.swing.JTextField();
+        txtCashCounterID = new javax.swing.JTextField();
+        txtDate = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        txtSumUp = new javax.swing.JTextField();
+        txtStuID = new javax.swing.JTextField();
+        txtTotalMoney = new javax.swing.JTextField();
         btn_Print = new javax.swing.JButton();
         btn_Dismiss = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
+        txtBillid = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblProduct = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblBillDetails = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Print Bill");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel6.setBackground(new java.awt.Color(0, 204, 255));
@@ -115,23 +184,23 @@ public class PrintBill extends javax.swing.JFrame {
         jLabel10.setText("Date:");
         jLabel10.setToolTipText("");
 
-        jTextField5.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField5.setText("E002");
-        jTextField5.setBorder(null);
+        txtEmpID.setBackground(new java.awt.Color(239, 250, 252));
+        txtEmpID.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtEmpID.setForeground(new java.awt.Color(0, 0, 0));
+        txtEmpID.setText("E002");
+        txtEmpID.setBorder(null);
 
-        jTextField6.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField6.setText("CC1");
-        jTextField6.setBorder(null);
+        txtCashCounterID.setBackground(new java.awt.Color(239, 250, 252));
+        txtCashCounterID.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtCashCounterID.setForeground(new java.awt.Color(0, 0, 0));
+        txtCashCounterID.setText("CC1");
+        txtCashCounterID.setBorder(null);
 
-        jTextField7.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField7.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField7.setText("11/05/2022");
-        jTextField7.setBorder(null);
+        txtDate.setBackground(new java.awt.Color(239, 250, 252));
+        txtDate.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtDate.setForeground(new java.awt.Color(0, 0, 0));
+        txtDate.setText("11/05/2022");
+        txtDate.setBorder(null);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
@@ -151,41 +220,25 @@ public class PrintBill extends javax.swing.JFrame {
         jLabel13.setText("Total money");
         jLabel13.setToolTipText("");
 
-        jTextField8.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField8.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField8.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField8.setText("207410");
-        jTextField8.setBorder(null);
+        txtSumUp.setBackground(new java.awt.Color(239, 250, 252));
+        txtSumUp.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtSumUp.setForeground(new java.awt.Color(0, 0, 0));
+        txtSumUp.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtSumUp.setText("207410");
+        txtSumUp.setBorder(null);
 
-        jTextField9.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField9.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField9.setText("S123456");
-        jTextField9.setBorder(null);
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
-            }
-        });
+        txtStuID.setBackground(new java.awt.Color(239, 250, 252));
+        txtStuID.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtStuID.setForeground(new java.awt.Color(0, 0, 0));
+        txtStuID.setText("S123456");
+        txtStuID.setBorder(null);
 
-        jTextField10.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField10.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField10.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField10.setText("197040");
-        jTextField10.setBorder(null);
-
-        jTable2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane2.setViewportView(jTable2);
+        txtTotalMoney.setBackground(new java.awt.Color(239, 250, 252));
+        txtTotalMoney.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtTotalMoney.setForeground(new java.awt.Color(0, 0, 0));
+        txtTotalMoney.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtTotalMoney.setText("197040");
+        txtTotalMoney.setBorder(null);
 
         btn_Print.setBackground(new java.awt.Color(0, 204, 255));
         btn_Print.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -213,11 +266,47 @@ public class PrintBill extends javax.swing.JFrame {
         jLabel14.setText("Bill ID:");
         jLabel14.setToolTipText("");
 
-        jTextField11.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField11.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField11.setText("B123");
-        jTextField11.setBorder(null);
+        txtBillid.setBackground(new java.awt.Color(239, 250, 252));
+        txtBillid.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtBillid.setForeground(new java.awt.Color(0, 0, 0));
+        txtBillid.setText("B123");
+        txtBillid.setBorder(null);
+
+        jPanel1.setPreferredSize(new java.awt.Dimension(610, 280));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tblProduct.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tblProduct);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 350, 280));
+
+        tblBillDetails.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3"
+            }
+        ));
+        jScrollPane1.setViewportView(tblBillDetails);
+        if (tblBillDetails.getColumnModel().getColumnCount() > 0) {
+            tblBillDetails.getColumnModel().getColumn(2).setPreferredWidth(10);
+        }
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 285, 280));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -225,48 +314,49 @@ public class PrintBill extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(218, 218, 218)
+                .addGap(132, 132, 132)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel13)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btn_Dismiss, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(47, 47, 47))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField10))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addComponent(jLabel9)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel14)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addGap(44, 44, 44)
-                            .addComponent(btn_Print, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(txtCashCounterID, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addGap(58, 58, 58)
+                                .addComponent(txtBillid, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(75, 75, 75)
-                            .addComponent(jLabel10)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addComponent(jLabel11)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField8))
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addComponent(jLabel12)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField9))))
-                .addGap(194, 194, 194))
+                            .addComponent(jLabel10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtEmpID)
+                            .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
+                        .addGap(108, 108, 108))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(115, 115, 115)
+                                .addComponent(btn_Print, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(97, 97, 97)
+                                .addComponent(btn_Dismiss, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel5Layout.createSequentialGroup()
+                                    .addComponent(jLabel13)
+                                    .addGap(53, 53, 53)
+                                    .addComponent(txtTotalMoney))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
+                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel11)
+                                        .addComponent(jLabel12))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtStuID, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtSumUp, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(108, Short.MAX_VALUE))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -275,31 +365,31 @@ public class PrintBill extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel10)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmpID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBillid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
                 .addGap(8, 8, 8)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCashCounterID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSumUp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtStuID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTotalMoney, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_Dismiss, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_Print, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -320,10 +410,6 @@ public class PrintBill extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_turnbackActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
-
     private void btn_PrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PrintActionPerformed
         
     }//GEN-LAST:event_btn_PrintActionPerformed
@@ -332,43 +418,8 @@ public class PrintBill extends javax.swing.JFrame {
         setVisible(false);
         InsBill1 bill1 = new InsBill1(dtoBill, dtoCashier);
         bill1.setVisible(true);
-             
     }//GEN-LAST:event_btn_DismissActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PrintBill.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PrintBill.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PrintBill.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PrintBill.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PrintBill().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Dismiss;
@@ -384,16 +435,19 @@ public class PrintBill extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTable tblBillDetails;
+    private javax.swing.JTable tblProduct;
+    private javax.swing.JTextField txtBillid;
+    private javax.swing.JTextField txtCashCounterID;
+    private javax.swing.JTextField txtDate;
+    private javax.swing.JTextField txtEmpID;
+    private javax.swing.JTextField txtStuID;
+    private javax.swing.JTextField txtSumUp;
+    private javax.swing.JTextField txtTotalMoney;
     // End of variables declaration//GEN-END:variables
 }

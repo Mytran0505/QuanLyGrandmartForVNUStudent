@@ -41,6 +41,7 @@ public class ManageBillInf extends javax.swing.JFrame {
         btn_search = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Manage Bill");
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 255));
 
@@ -215,13 +216,13 @@ public class ManageBillInf extends javax.swing.JFrame {
 
     private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
         setVisible(false);
-        DelBill1 del = new DelBill1(dtoBill);
+        DelBill1 del = new DelBill1(dtoBill, dtoCashier);
         del.setVisible(true);
     }//GEN-LAST:event_btn_deleteActionPerformed
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
         setVisible(false);
-        UpBill1 upd = new UpBill1(dtoBill);
+        UpBill1 upd = new UpBill1(dtoBill, dtoCashier);
         upd.setVisible(true);
     }//GEN-LAST:event_btn_updateActionPerformed
 

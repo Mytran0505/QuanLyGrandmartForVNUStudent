@@ -5,13 +5,15 @@ import BUS.BillManagement_BUS;
 import BUS.ProductManagement_BUS;
 import DTO.BillDetails_DTO;
 import DTO.Bill_DTO;
+import DTO.Employee_DTO;
 import DTO.Product_DTO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class DelBill2 extends javax.swing.JFrame {
-
+    
+    Employee_DTO dtoCashier = null;
     Bill_DTO dtoBill = null;
     BillDetails_DTO dtoBillDetails = null;
     BillManagement_BUS busBillManagement = new BillManagement_BUS();
@@ -21,8 +23,9 @@ public class DelBill2 extends javax.swing.JFrame {
     ArrayList<Product_DTO> list2 = new ArrayList<>();
     DefaultTableModel tblBillDetailsModel;
     DefaultTableModel tblProductModel;
-    public DelBill2(Bill_DTO bill) {
+    public DelBill2(Bill_DTO bill, Employee_DTO cashier) {
         initComponents();
+        dtoCashier = cashier;
         dtoBill = busBillManagement.getBillInfo(bill);
         dtoBillDetails = new BillDetails_DTO(bill.getId());
         setResizable(false);
@@ -105,6 +108,7 @@ public class DelBill2 extends javax.swing.JFrame {
         tblBillDetails = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Delete Bill");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel6.setBackground(new java.awt.Color(0, 204, 255));
@@ -364,7 +368,7 @@ public class DelBill2 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
                     .addComponent(txtSumUp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -387,7 +391,7 @@ public class DelBill2 extends javax.swing.JFrame {
 
     private void btn_turnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_turnbackActionPerformed
         setVisible(false);
-        DelBill1 delBill1 = new DelBill1(dtoBill);
+        DelBill1 delBill1 = new DelBill1(dtoBill, dtoCashier);
         delBill1.setVisible(true);
     }//GEN-LAST:event_btn_turnbackActionPerformed
 
@@ -395,11 +399,11 @@ public class DelBill2 extends javax.swing.JFrame {
         int ret = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this bill information?", "Confirm", JOptionPane.YES_NO_OPTION);
         if(ret == JOptionPane.YES_OPTION)
         {
-            if(busBillManagement.delete(dtoBill)){
-                if(busBillDetails.delete(dtoBillDetails)){
+            if(busBillDetails.delete(dtoBillDetails)){
+                if(busBillManagement.delete(dtoBill)){
                     JOptionPane.showMessageDialog(this, "Bill information has been deleted successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
                     setVisible(false);
-                    new DelBill1(dtoBill).setVisible(true);
+                    new DelBill1(dtoBill, dtoCashier).setVisible(true);
                 }
                 else{
                     JOptionPane.showMessageDialog(this, "Cannot delete bill details!", "Error", JOptionPane.ERROR_MESSAGE);
