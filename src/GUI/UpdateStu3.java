@@ -75,6 +75,7 @@ public class UpdateStu3 extends javax.swing.JFrame {
         jLabel27 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Update Student Information");
 
         jPanel8.setBackground(new java.awt.Color(239, 250, 252));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

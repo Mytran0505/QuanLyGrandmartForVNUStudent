@@ -20,22 +20,11 @@ public class InsertStudent extends javax.swing.JFrame {
         dtoStudent = student;
         setResizable(false);
         setLocationRelativeTo(null);
-        
-             
+        txtSpentMoney.disable();
+        txtPoint.disable();
     }
     
-     private void clearForm(){
-        txtFirstName.setText("");
-        txtLastName.setText("");
-        cbGender.setSelectedItem(null);
-        txtAddress.setText("");
-        txtPhone.setText("");
-        dcBirthday.setCalendar(null);
-        dcRegistrationDate.setCalendar(null);
-        txtSpentMoney.setText("");
-        txtPoint.setText("");
-        txtSchoolName.setText("");
-    }
+     
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -67,7 +56,6 @@ public class InsertStudent extends javax.swing.JFrame {
         cbGender = new javax.swing.JComboBox<>();
         dcBirthday = new com.toedter.calendar.JDateChooser();
         dcRegistrationDate = new com.toedter.calendar.JDateChooser();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -75,11 +63,11 @@ public class InsertStudent extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
         txtSpentMoney = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Insert Student Information");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -219,6 +207,7 @@ public class InsertStudent extends javax.swing.JFrame {
         txtPoint.setBackground(new java.awt.Color(255, 255, 255));
         txtPoint.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtPoint.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtPoint.setText("0");
         jPanel7.add(txtPoint, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 160, 200, 30));
 
         btnInsert.setBackground(new java.awt.Color(0, 204, 255));
@@ -242,11 +231,6 @@ public class InsertStudent extends javax.swing.JFrame {
 
         dcRegistrationDate.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.add(dcRegistrationDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, 200, 30));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel1.setText("(*)");
-        jPanel7.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 160, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 51));
@@ -283,14 +267,10 @@ public class InsertStudent extends javax.swing.JFrame {
         jLabel20.setText("(*)");
         jPanel7.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 80, -1, -1));
 
-        jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel21.setText("(*)");
-        jPanel7.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, -1, -1));
-
         txtSpentMoney.setBackground(new java.awt.Color(255, 255, 255));
         txtSpentMoney.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtSpentMoney.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtSpentMoney.setText("0");
         jPanel7.add(txtSpentMoney, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 120, 200, 30));
 
         jLabel30.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -320,12 +300,17 @@ public class InsertStudent extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(this, "Information fields are not entered enough.", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
         }
+        else{
+            if(dcBirthday.getCalendar().after(dcRegistrationDate.getCalendar())){
+                JOptionPane.showMessageDialog(this, "Registration Date must be before Birthday!", "Error!", JOptionPane.ERROR_MESSAGE);
+                }
+           
         else
         {
             Student_DTO newStudent = new Student_DTO (0, txtFirstName.getText(), txtLastName.getText(), cbGender.getSelectedItem().toString(), txtAddress.getText(), txtPhone.getText(), dcBirthday.getDate(), dcRegistrationDate.getDate(), Integer.parseInt(txtSpentMoney.getText()), Integer.parseInt(txtPoint.getText()), txtSchoolName.getText());
             setVisible(false);
             new InsertStudent2(newStudent).setVisible(true);
-        }
+        }}
     }//GEN-LAST:event_btnInsertActionPerformed
 
     private void txtFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFirstNameActionPerformed
@@ -344,7 +329,6 @@ public class InsertStudent extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbGender;
     private com.toedter.calendar.JDateChooser dcBirthday;
     private com.toedter.calendar.JDateChooser dcRegistrationDate;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -357,7 +341,6 @@ public class InsertStudent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
