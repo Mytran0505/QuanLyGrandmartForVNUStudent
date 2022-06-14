@@ -22,8 +22,6 @@ public class InsertStudent2 extends javax.swing.JFrame {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         txtBirthday.setText(sdf.format(newStudent.getBirthday()));
         txtRegistrationDate.setText(sdf.format(newStudent.getRegistrationDate()));
-        txtSpentMoney.setText(String.valueOf(newStudent.getSpentMoney()));
-        txtPoint.setText(String.valueOf(newStudent.getPoint()));
         txtSchoolName.setText(newStudent.getSchoolName());
         txtFirstName.disable();
         txtLastName.disable();
@@ -64,7 +62,6 @@ public class InsertStudent2 extends javax.swing.JFrame {
         txtAddress = new javax.swing.JTextField();
         txtPhone = new javax.swing.JTextField();
         txtPoint = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -72,7 +69,6 @@ public class InsertStudent2 extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
         txtSpentMoney = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
         btnConfirm = new javax.swing.JButton();
@@ -82,6 +78,7 @@ public class InsertStudent2 extends javax.swing.JFrame {
         txtBirthday = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Insert Student Information");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -199,12 +196,13 @@ public class InsertStudent2 extends javax.swing.JFrame {
         txtPoint.setBackground(new java.awt.Color(255, 255, 255));
         txtPoint.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtPoint.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtPoint.setText("0");
+        txtPoint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPointActionPerformed(evt);
+            }
+        });
         jPanel7.add(txtPoint, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 160, 200, 30));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel1.setText("(*)");
-        jPanel7.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 160, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 51));
@@ -241,14 +239,10 @@ public class InsertStudent2 extends javax.swing.JFrame {
         jLabel20.setText("(*)");
         jPanel7.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 80, -1, -1));
 
-        jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel21.setText("(*)");
-        jPanel7.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, -1, -1));
-
         txtSpentMoney.setBackground(new java.awt.Color(255, 255, 255));
         txtSpentMoney.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtSpentMoney.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtSpentMoney.setText("0");
         jPanel7.add(txtSpentMoney, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 120, 200, 30));
 
         jLabel30.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -322,6 +316,10 @@ public class InsertStudent2 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFirstNameActionPerformed
 
+    private void txtPointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPointActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPointActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -329,7 +327,6 @@ public class InsertStudent2 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirm;
     private javax.swing.JButton btnDismiss;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -342,7 +339,6 @@ public class InsertStudent2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;

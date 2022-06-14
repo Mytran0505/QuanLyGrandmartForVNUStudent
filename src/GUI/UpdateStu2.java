@@ -3,6 +3,7 @@ package GUI;
 
 import BUS.StudentManagement_BUS;
 import DTO.Student_DTO;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
 public class UpdateStu2 extends javax.swing.JFrame {
@@ -55,13 +56,11 @@ public class UpdateStu2 extends javax.swing.JFrame {
         dcBirthday = new com.toedter.calendar.JDateChooser();
         jLabel3 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         txtSpentMoney = new javax.swing.JTextField();
         txtLastName = new javax.swing.JTextField();
@@ -71,6 +70,8 @@ public class UpdateStu2 extends javax.swing.JFrame {
         btnTurnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Update Student Information");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel8.setBackground(new java.awt.Color(239, 250, 252));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -197,11 +198,6 @@ public class UpdateStu2 extends javax.swing.JFrame {
         jLabel20.setText("(*)");
         jPanel8.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel1.setText("(*)");
-        jPanel8.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 120, -1, -1));
-
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 0, 51));
         jLabel4.setText("(*)");
@@ -227,11 +223,6 @@ public class UpdateStu2 extends javax.swing.JFrame {
         jLabel2.setText("(*)");
         jPanel8.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, -1, -1));
 
-        jLabel24.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel24.setText("(*)");
-        jPanel8.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 80, -1, -1));
-
         jLabel25.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 0, 51));
         jLabel25.setText("(*)");
@@ -246,6 +237,8 @@ public class UpdateStu2 extends javax.swing.JFrame {
         txtLastName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtLastName.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jPanel8.add(txtLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 200, 30));
+
+        getContentPane().add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 820, 440));
 
         jPanel9.setBackground(new java.awt.Color(0, 204, 255));
 
@@ -277,7 +270,7 @@ public class UpdateStu2 extends javax.swing.JFrame {
                 .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTurnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,32 +282,7 @@ public class UpdateStu2 extends javax.swing.JFrame {
             .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 810, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 810, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 560, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(120, 120, 120)
-                            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -325,16 +293,27 @@ public class UpdateStu2 extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         if(txtFirstName.getText().equals("") || txtLastName.getText().equals("") || cbGender.getSelectedIndex()<1 || txtAddress.getText().equals("") || txtPhone.getText().equals("") || dcBirthday.getCalendar() == null || txtSchoolName.getText().equals("") || dcRegDate.getCalendar()==null || txtSpentMoney.getText().equals("") || txtPoint.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Information fields are not entered enough.", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
         }
+        else{
+            if(dcBirthday.getCalendar().after(dcRegDate.getCalendar())){
+                JOptionPane.showMessageDialog(this, "Registration Date must be after Birthday!", "Error!", JOptionPane.ERROR_MESSAGE);
+                }
+            else if(!txtPhone.getText().matches("[0-9]*") || !txtPoint.getText().matches("[0-9]*") || !txtSpentMoney.getText().matches("[0-9]*")){
+                JOptionPane.showMessageDialog(this, " Invalid data!", "Error!", JOptionPane.ERROR_MESSAGE);
+            }
+            else if(sdf.format(dcBirthday.getDate().getTime()).compareTo(sdf.format(dcRegDate.getDate().getTime()))==1){
+                JOptionPane.showMessageDialog(this, " Birthday must be less than start date", "Error!", JOptionPane.ERROR_MESSAGE);
+            }
         else
         {
             Student_DTO newStudent = new Student_DTO (Integer.parseInt(txtStuID.getText()), txtFirstName.getText(), txtLastName.getText(), cbGender.getSelectedItem().toString(), txtAddress.getText(), txtPhone.getText(), dcBirthday.getDate(), dcRegDate.getDate(), Integer.parseInt(txtSpentMoney.getText()), Integer.parseInt(txtPoint.getText()), txtSchoolName.getText());
             setVisible(false);
             new UpdateStu3(newStudent).setVisible(true);
-        }
+        }}
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnTurnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTurnBackActionPerformed
@@ -351,7 +330,6 @@ public class UpdateStu2 extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbGender;
     private com.toedter.calendar.JDateChooser dcBirthday;
     private com.toedter.calendar.JDateChooser dcRegDate;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -367,7 +345,6 @@ public class UpdateStu2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
