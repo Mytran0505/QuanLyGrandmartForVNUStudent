@@ -129,7 +129,7 @@ public ArrayList<Statictis_DTO> MakeStatisticsOfTurnover(String date1, String da
         ArrayList<Statictis_DTO> productList = new ArrayList<>();
         try {
             Connection con = DBConnection.getDBConnection();
-            String SQL ="SELECT BILL_ID, BILL_DATE, TOTAL_MONEY FROM BILL WHERE BILL_DATE BETWEEN TO_DATE(?, 'yyyy-MM-dd') and TO_DATE(?, 'yyyy-MM-dd')";
+            String SQL ="SELECT BILL_ID, BILL_DATE, TOTAL_MONEY FROM BILL WHERE BILL_DATE BETWEEN TO_DATE(?, 'yyyy-MM-dd') and TO_DATE(?, 'yyyy-MM-dd') ORDER BY BILL_ID";
             PreparedStatement ps = con.prepareStatement(SQL);     
             ps.setString(1, date1); 
             ps.setString(2, date2); 

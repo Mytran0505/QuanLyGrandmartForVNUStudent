@@ -7,9 +7,16 @@ package GUI;
 import BUS.MakeStatistic_BUS;
 import DTO.Employee_DTO;
 import DTO.Statictis_DTO;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -142,13 +149,18 @@ public class ProInventory_All extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Export PDF");
+        jLabel2.setText("Export Excel");
         jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 50));
 
         btn_PrintOut.setBackground(new java.awt.Color(51, 204, 255));
         btn_PrintOut.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn_PrintOut.setForeground(new java.awt.Color(255, 255, 255));
         btn_PrintOut.setBorder(null);
+        btn_PrintOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_PrintOutActionPerformed(evt);
+            }
+        });
         jPanel4.add(btn_PrintOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 50));
 
         jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 350, -1, 50));
@@ -168,6 +180,52 @@ public class ProInventory_All extends javax.swing.JFrame {
             pro.setVisible(true);
         }
     }//GEN-LAST:event_btn_turnbackActionPerformed
+
+    private void btn_PrintOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PrintOutActionPerformed
+        // TODO add your handling code here:
+        try {
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet spreadsheet = workbook.createSheet("Make statistics");
+
+            XSSFRow row = null;
+            Cell cell = null;
+
+            row = spreadsheet.createRow((short) 2);
+            row.setHeight((short) 500);
+            cell = row.createCell(0, CellType.STRING);
+            cell.setCellValue("THONG KE SAN PHAM TON KHO");
+
+            row = spreadsheet.createRow((short) 3);
+            row.setHeight((short) 500);
+            cell = row.createCell(0, CellType.STRING);
+            cell.setCellValue("STT");
+            cell = row.createCell(1, CellType.STRING);
+            cell.setCellValue("PRODUCT ID");
+            cell = row.createCell(2, CellType.STRING);
+            cell.setCellValue("PRODUCT NAME");
+            cell = row.createCell(3, CellType.STRING);
+            cell.setCellValue("IMPORTED DATE");
+            cell = row.createCell(4, CellType.STRING);
+            cell.setCellValue("REMAINING QUANTITY");   
+            list = busMakeStatistic.getAllProductListForMakeStatisticsInventory();
+            for(int i = 0; i < list.size(); i++){
+                Statictis_DTO dtoStatistics = list.get(i);
+                row = spreadsheet.createRow((short) 4 + i);
+                row.setHeight((short) 400);
+                row.createCell(0).setCellValue(i + 1);
+                row.createCell(1).setCellValue(String.valueOf(dtoStatistics.getPro_id()));
+                row.createCell(2).setCellValue(dtoStatistics.getName());
+                row.createCell(3).setCellValue(dtoStatistics.getImported_date().toString());
+                row.createCell(4).setCellValue(String.valueOf(dtoStatistics.getRemaining_quantity()));
+            }
+            FileOutputStream out = new FileOutputStream(new File("D:/Inventory Products.xlsx"));
+            workbook.write(out);
+            JOptionPane.showMessageDialog(this, "Export to excel successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btn_PrintOutActionPerformed
 
     /**
      * @param args the command line arguments

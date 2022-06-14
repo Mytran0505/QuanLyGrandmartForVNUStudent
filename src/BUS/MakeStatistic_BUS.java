@@ -31,6 +31,4 @@ public class MakeStatistic_BUS {
         public ArrayList<Statictis_DTO> MakeStatisticsOfTurnover(String date1, String date2){
             return conMakeStatistic.MakeStatisticsOfTurnover(date1, date2);
         }
-
-
 }

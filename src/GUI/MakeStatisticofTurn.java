@@ -8,14 +8,22 @@ import BUS.MakeStatistic_BUS;
 import DTO.Employee_DTO;
 import DTO.Statictis_DTO;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class MakeStatisticofTurn extends javax.swing.JFrame {
     ArrayList<Statictis_DTO> list = new ArrayList<>();
-    MakeStatistic_BUS busMakeStatistic = new MakeStatistic_BUS();    Employee_DTO dtoManager = null;
+    MakeStatistic_BUS busMakeStatistic = new MakeStatistic_BUS();
+    Employee_DTO dtoManager = null;
     public MakeStatisticofTurn(Employee_DTO manager) {
         initComponents();
         dtoManager = manager;
@@ -52,7 +60,7 @@ public class MakeStatisticofTurn extends javax.swing.JFrame {
         tblStatistics = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         txtTotalTurnover = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        btnExportPDF = new javax.swing.JButton();
         dcStartDate = new com.toedter.calendar.JDateChooser();
         dcEndDate = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
@@ -135,11 +143,16 @@ public class MakeStatisticofTurn extends javax.swing.JFrame {
         txtTotalTurnover.setBorder(null);
         jPanel2.add(txtTotalTurnover, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 290, 164, 33));
 
-        jButton2.setBackground(new java.awt.Color(0, 204, 255));
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Export PDF");
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(315, 343, 165, 59));
+        btnExportPDF.setBackground(new java.awt.Color(0, 204, 255));
+        btnExportPDF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnExportPDF.setForeground(new java.awt.Color(255, 255, 255));
+        btnExportPDF.setText("Export Excel");
+        btnExportPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportPDFActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnExportPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(315, 343, 165, 59));
 
         dcStartDate.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.add(dcStartDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 34, 181, 38));
@@ -207,14 +220,62 @@ public class MakeStatisticofTurn extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_MakeStatisticsActionPerformed
 
+    private void btnExportPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportPDFActionPerformed
+        // TODO add your handling code here:
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet spreadsheet = workbook.createSheet("Make statistics");
+
+            XSSFRow row = null;
+            Cell cell = null;
+
+            row = spreadsheet.createRow((short) 2);
+            row.setHeight((short) 500);
+            cell = row.createCell(0, CellType.STRING);
+            cell.setCellValue("THONG KE DOANH THU GRANDMART TU NGAY "+ sdf.format(dcStartDate.getDate())+" DEN NGAY "+sdf.format(dcEndDate.getDate()));
+
+            row = spreadsheet.createRow((short) 3);
+            row.setHeight((short) 500);
+            cell = row.createCell(0, CellType.STRING);
+            cell.setCellValue("STT");
+            cell = row.createCell(1, CellType.STRING);
+            cell.setCellValue("BILL_ID");
+            cell = row.createCell(2, CellType.STRING);
+            cell.setCellValue("BILL_DATE");
+            cell = row.createCell(3, CellType.STRING);
+            cell.setCellValue("TOTAL_MONEY");
+            cell = row.createCell(4, CellType.STRING);
+            cell.setCellValue("TOTAL TURNOVER"); 
+            row = spreadsheet.createRow((short) 4);
+            row.createCell(4).setCellValue(txtTotalTurnover.getText());
+            list = busMakeStatistic.MakeStatisticsOfTurnover(sdf.format(dcStartDate.getDate()), sdf.format(dcEndDate.getDate()));
+            for(int i = 0; i < list.size(); i++){
+                Statictis_DTO dtoStatistics = list.get(i);
+                row = spreadsheet.createRow((short) 4 + i);
+                row.setHeight((short) 400);
+                row.createCell(0).setCellValue(i + 1);
+                row.createCell(1).setCellValue(String.valueOf(dtoStatistics.getBill_id()));
+                row.createCell(2).setCellValue(dtoStatistics.getBill_date().toString());
+                row.createCell(3).setCellValue(String.valueOf(dtoStatistics.getTolalTurnover()));
+            }
+            FileOutputStream out = new FileOutputStream(new File("D:/Turnover("+sdf.format(dcStartDate.getDate())+" to "+sdf.format(dcEndDate.getDate())+").xlsx"));
+            workbook.write(out);
+            JOptionPane.showMessageDialog(this, "Export to excel successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnExportPDFActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExportPDF;
     private javax.swing.JButton btn_MakeStatistics;
     private javax.swing.JButton btn_turnback;
     private javax.swing.ButtonGroup buttonGroup1;
     private com.toedter.calendar.JDateChooser dcEndDate;
     private com.toedter.calendar.JDateChooser dcStartDate;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
