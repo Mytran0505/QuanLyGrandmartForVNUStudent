@@ -5,6 +5,7 @@ import DTO.Employee_DTO;
 import DTO.Student_DTO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 
 
 import javax.swing.JOptionPane;
@@ -296,21 +297,27 @@ public class InsertStudent extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_turnbackActionPerformed
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         if(txtFirstName.getText().equals("") || txtLastName.getText().equals("") || cbGender.getSelectedIndex()<1 || txtAddress.getText().equals("") || txtPhone.getText().equals("") || dcBirthday.getCalendar() == null || txtSchoolName.getText().equals("") || dcRegistrationDate.getCalendar()==null || txtSpentMoney.getText().equals("") || txtPoint.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Information fields are not entered enough.", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
         }
-        else{
+        else
             if(dcBirthday.getCalendar().after(dcRegistrationDate.getCalendar())){
                 JOptionPane.showMessageDialog(this, "Registration Date must be before Birthday!", "Error!", JOptionPane.ERROR_MESSAGE);
                 }
-           
+        else if(!txtPhone.getText().matches("[0-9]*") || !txtPoint.getText().matches("[0-9]*") || !txtSpentMoney.getText().matches("[0-9]*")){
+                JOptionPane.showMessageDialog(this, " Invalid data!", "Error!", JOptionPane.ERROR_MESSAGE);
+            }
+            else if(sdf.format(dcBirthday.getDate().getTime()).compareTo(sdf.format(dcRegistrationDate.getDate().getTime()))==1){
+                JOptionPane.showMessageDialog(this, " Birthday must be less than start date", "Error!", JOptionPane.ERROR_MESSAGE);
+            }   
         else
         {
             Student_DTO newStudent = new Student_DTO (0, txtFirstName.getText(), txtLastName.getText(), cbGender.getSelectedItem().toString(), txtAddress.getText(), txtPhone.getText(), dcBirthday.getDate(), dcRegistrationDate.getDate(), Integer.parseInt(txtSpentMoney.getText()), Integer.parseInt(txtPoint.getText()), txtSchoolName.getText());
             setVisible(false);
             new InsertStudent2(newStudent).setVisible(true);
-        }}
+        }
     }//GEN-LAST:event_btnInsertActionPerformed
 
     private void txtFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFirstNameActionPerformed
