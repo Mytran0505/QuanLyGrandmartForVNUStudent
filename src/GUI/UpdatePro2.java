@@ -26,38 +26,25 @@ public class UpdatePro2 extends javax.swing.JFrame {
         dtoProduct = busProductManagement.getProductInfo(product);
         setResizable(false);
         setLocationRelativeTo(null);
-        if(dtoProduct.getEXP() == null)
-        {
-            txtProID.setText(String.valueOf(dtoProduct.getPro_id()));
-            txtSupID.setText(String.valueOf(dtoProduct.getSup_id()));
-            txtProName.setText(dtoProduct.getName());
-            txtCountry.setText(dtoProduct.getCountry());
-            txtOPrice.setText(String.valueOf(dtoProduct.getOriginal_price()));
-            txtSPrice.setText(String.valueOf(dtoProduct.getSale_price()));
-            dcMFG.setDate(dtoProduct.getMFG());
-            txtProType.setText(dtoProduct.getType());
-            txtVAT.setText(String.valueOf(dtoProduct.getVAT()));
-            dcImportedDate.setDate(dtoProduct.getImported_date());
-            txtImportedQuantity.setText(String.valueOf(dtoProduct.getImported_quantity()));
-            txtRemainingQuantity.setText(String.valueOf(dtoProduct.getRemaining_quantity()));;
-        }
-        else
-        {
-            txtProID.setText(String.valueOf(dtoProduct.getPro_id()));
-            txtSupID.setText(String.valueOf(dtoProduct.getSup_id()));
-            txtProName.setText(dtoProduct.getName());
-            txtCountry.setText(dtoProduct.getCountry());
-            txtOPrice.setText(String.valueOf(dtoProduct.getOriginal_price()));
-            txtSPrice.setText(String.valueOf(dtoProduct.getSale_price()));
-            dcMFG.setDate(dtoProduct.getMFG());
+        
+        txtProID.setText(String.valueOf(dtoProduct.getPro_id()));
+        txtSupID.setText(String.valueOf(dtoProduct.getSup_id()));
+        txtProName.setText(dtoProduct.getName());
+        txtCountry.setText(dtoProduct.getCountry());
+        txtOPrice.setText(String.valueOf(dtoProduct.getOriginal_price()));
+        txtSPrice.setText(String.valueOf(dtoProduct.getSale_price()));
+        dcMFG.setDate(dtoProduct.getMFG());
+        if(dtoProduct.getEXP() != null){
             dcEXP.setDate(dtoProduct.getEXP());
-            txtProType.setText(dtoProduct.getType());
-            txtVAT.setText(String.valueOf(dtoProduct.getVAT()));
-            dcImportedDate.setDate(dtoProduct.getImported_date());
-            txtImportedQuantity.setText(String.valueOf(dtoProduct.getImported_quantity()));
-            txtRemainingQuantity.setText(String.valueOf(dtoProduct.getRemaining_quantity()));;
         }
-        txtProID.disable();       
+        txtProType.setText(dtoProduct.getType());
+        txtVAT.setText(String.valueOf(dtoProduct.getVAT()));
+        dcImportedDate.setDate(dtoProduct.getImported_date());
+        txtImportedQuantity.setText(String.valueOf(dtoProduct.getImported_quantity()));
+        txtRemainingQuantity.setText(String.valueOf(dtoProduct.getRemaining_quantity()));;
+        
+        txtProID.disable();
+        txtRemainingQuantity.disable();
     }
 
     /**
@@ -100,7 +87,6 @@ public class UpdatePro2 extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
@@ -278,11 +264,6 @@ public class UpdatePro2 extends javax.swing.JFrame {
         jLabel30.setText("(*)");
         jPanel8.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, -1, -1));
 
-        jLabel31.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel31.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel31.setText("(*)");
-        jPanel8.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 200, -1, -1));
-
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 51));
         jLabel2.setText("(*)");
@@ -320,6 +301,11 @@ public class UpdatePro2 extends javax.swing.JFrame {
 
         txtImportedQuantity.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtImportedQuantity.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtImportedQuantity.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtImportedQuantityKeyReleased(evt);
+            }
+        });
         jPanel8.add(txtImportedQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 160, 200, 30));
 
         jLabel37.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -346,20 +332,37 @@ public class UpdatePro2 extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(this, "Information fields are not entered enough.", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
         }
-        else{
-            if(dcEXP.getCalendar() == null){
-                Product_DTO dtoProduct = new Product_DTO(Integer.parseInt(txtProID.getText()), Integer.parseInt(txtSupID.getText()), txtProName.getText(), txtCountry.getText(), Long.parseLong(txtOPrice.getText()), Long.parseLong(txtSPrice.getText()), dcMFG.getDate(), txtProType.getText(), Integer.parseInt(txtVAT.getText()), dcImportedDate.getDate(), Integer.parseInt(txtImportedQuantity.getText()), Integer.parseInt(txtRemainingQuantity.getText()));
-                setVisible(false);
-                new UpdatePro3(dtoProduct).setVisible(true);
-            }
-            else{
-                Product_DTO dtoProduct = new Product_DTO(Integer.parseInt(txtProID.getText()), Integer.parseInt(txtSupID.getText()), txtProName.getText(), txtCountry.getText(), Long.parseLong(txtOPrice.getText()), Long.parseLong(txtSPrice.getText()), dcMFG.getDate(), dcEXP.getDate(), txtProType.getText(), Integer.parseInt(txtVAT.getText()), dcImportedDate.getDate(), Integer.parseInt(txtImportedQuantity.getText()), Integer.parseInt(txtRemainingQuantity.getText()));
-                setVisible(false);
-                new UpdatePro3(dtoProduct).setVisible(true);
-            }
-            
+        else if(!txtSupID.getText().matches("[0-9]*") || !txtOPrice.getText().matches("[0-9]*") || !txtSPrice.getText().matches("[0-9]*") || !txtVAT.getText().matches("[0-9]*") ||  !txtImportedQuantity.getText().matches("[0-9]*") || !txtRemainingQuantity.getText().matches("[0-9]*"))
+        {
+                JOptionPane.showMessageDialog(this, "Invalid data!", "Error!", JOptionPane.ERROR_MESSAGE);
         }
+            else{
+                if(dcEXP.getCalendar() == null){
+                    Product_DTO dtoProduct = new Product_DTO(Integer.parseInt(txtProID.getText()), Integer.parseInt(txtSupID.getText()), txtProName.getText(), txtCountry.getText(), Long.parseLong(txtOPrice.getText()), Long.parseLong(txtSPrice.getText()), dcMFG.getDate(), txtProType.getText(), Integer.parseInt(txtVAT.getText()), dcImportedDate.getDate(), Integer.parseInt(txtImportedQuantity.getText()), Integer.parseInt(txtRemainingQuantity.getText()));
+                    setVisible(false);
+                    new UpdatePro3(dtoProduct).setVisible(true);
+                }
+                else{
+                    if(dcEXP.getCalendar().before(dcMFG.getCalendar())){
+                        JOptionPane.showMessageDialog(this, "EXP must be after MFG!", "Error!", JOptionPane.ERROR_MESSAGE);
+                    }
+                    else{
+                    Product_DTO dtoProduct = new Product_DTO(Integer.parseInt(txtProID.getText()), Integer.parseInt(txtSupID.getText()), txtProName.getText(), txtCountry.getText(), Long.parseLong(txtOPrice.getText()), Long.parseLong(txtSPrice.getText()), dcMFG.getDate(), dcEXP.getDate(), txtProType.getText(), Integer.parseInt(txtVAT.getText()), dcImportedDate.getDate(), Integer.parseInt(txtImportedQuantity.getText()), Integer.parseInt(txtRemainingQuantity.getText()));
+                    setVisible(false);
+                    new UpdatePro3(dtoProduct).setVisible(true);
+                    }
+                }
+
+            }
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void txtImportedQuantityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtImportedQuantityKeyReleased
+        // TODO add your handling code here:
+        if(!txtImportedQuantity.getText().equals("") && txtImportedQuantity.getText().matches("[0-9]*")){
+        int x = Integer.parseInt(txtImportedQuantity.getText()) - dtoProduct.getImported_quantity();
+        txtRemainingQuantity.setText(String.valueOf(dtoProduct.getRemaining_quantity() + x));
+        }
+    }//GEN-LAST:event_txtImportedQuantityKeyReleased
 
     /**
      * @param args the command line arguments
@@ -388,7 +391,6 @@ public class UpdatePro2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;

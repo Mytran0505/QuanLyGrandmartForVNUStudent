@@ -26,6 +26,7 @@ public class InsertProForm extends javax.swing.JFrame {
         dtoProduct = product;
         setResizable(false);
         setLocationRelativeTo(null);
+        txtRemainingQuantity.disable();
     }
 
     private void clearForm(){
@@ -74,7 +75,6 @@ public class InsertProForm extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
@@ -211,11 +211,6 @@ public class InsertProForm extends javax.swing.JFrame {
         jLabel19.setText("(*)");
         jPanel7.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, -1, -1));
 
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel20.setText("(*)");
-        jPanel7.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 200, -1, -1));
-
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 51));
         jLabel2.setText("(*)");
@@ -253,6 +248,22 @@ public class InsertProForm extends javax.swing.JFrame {
 
         txtImportedQuantity.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtImportedQuantity.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtImportedQuantity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtImportedQuantityActionPerformed(evt);
+            }
+        });
+        txtImportedQuantity.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtImportedQuantityKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtImportedQuantityKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtImportedQuantityKeyTyped(evt);
+            }
+        });
         jPanel7.add(txtImportedQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 160, 200, 30));
 
         getContentPane().add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 810, 440));
@@ -304,27 +315,33 @@ public class InsertProForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
-        
+                
         if(txtSupID.getText().equals("") || txtProName.getText().equals("") || txtCountry.getText().equals("") || txtOPrice.getText().equals("") || txtSPrice.getText().equals("") || dcMFG.getCalendar() == null || txtProType.getText().equals("") || txtVAT.getText().equals("") || dcImportedDate.getCalendar() == null || txtImportedQuantity.getText().equals("") || txtRemainingQuantity.getText().equals("") )
         {
             JOptionPane.showMessageDialog(this, "Information fields are not entered enough.", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
         }
-        else if(!txtSupID.getText().matches("[0-9]*") || !txtOPrice.getText().matches("[0-9]*") || !txtSPrice.getText().matches("[0-9]*") || !txtVAT.getText().matches("[0-9]*") ||  !txtImportedQuantity.getText().matches("[0-9]*") || !txtRemainingQuantity.getText().matches("[0-9]*")){
-                JOptionPane.showMessageDialog(this, " Invalid data!", "Error!", JOptionPane.ERROR_MESSAGE);
-            }
-        else{
-            if(dcEXP.getCalendar() == null){
-                Product_DTO newProduct = new Product_DTO(0, Integer.parseInt(txtSupID.getText()), txtProName.getText(), txtCountry.getText(), Long.parseLong(txtOPrice.getText()), Long.parseLong(txtSPrice.getText()), dcMFG.getDate(), txtProType.getText(), Integer.parseInt(txtVAT.getText()), dcImportedDate.getDate(), Integer.parseInt(txtImportedQuantity.getText()), Integer.parseInt(txtRemainingQuantity.getText()));
-                setVisible(false);
-                new InsertPro2(newProduct).setVisible(true);
-            }
+        else if(!txtSupID.getText().matches("[0-9]*") || !txtOPrice.getText().matches("[0-9]*") || !txtSPrice.getText().matches("[0-9]*") || !txtVAT.getText().matches("[0-9]*") ||  !txtImportedQuantity.getText().matches("[0-9]*") || !txtRemainingQuantity.getText().matches("[0-9]*"))
+        {
+                JOptionPane.showMessageDialog(this, "Invalid data!", "Error!", JOptionPane.ERROR_MESSAGE);
+        }
             else{
-                Product_DTO newProduct = new Product_DTO(0, Integer.parseInt(txtSupID.getText()), txtProName.getText(), txtCountry.getText(), Long.parseLong(txtOPrice.getText()), Long.parseLong(txtSPrice.getText()), dcMFG.getDate(), dcEXP.getDate(), txtProType.getText(), Integer.parseInt(txtVAT.getText()), dcImportedDate.getDate(), Integer.parseInt(txtImportedQuantity.getText()), Integer.parseInt(txtRemainingQuantity.getText()));
-                setVisible(false);
-                new InsertPro2(newProduct).setVisible(true);
-            }
+                if(dcEXP.getCalendar() == null){
+                    Product_DTO newProduct = new Product_DTO(0, Integer.parseInt(txtSupID.getText()), txtProName.getText(), txtCountry.getText(), Long.parseLong(txtOPrice.getText()), Long.parseLong(txtSPrice.getText()), dcMFG.getDate(), txtProType.getText(), Integer.parseInt(txtVAT.getText()), dcImportedDate.getDate(), Integer.parseInt(txtImportedQuantity.getText()), Integer.parseInt(txtRemainingQuantity.getText()));
+                    setVisible(false);
+                    new InsertPro2(newProduct).setVisible(true);
+                }
+                else{
+                    if(dcEXP.getCalendar().before(dcMFG.getCalendar())){
+                        JOptionPane.showMessageDialog(this, "EXP must be after MFG!", "Error!", JOptionPane.ERROR_MESSAGE);
+                    }
+                    else{
+                    Product_DTO newProduct = new Product_DTO(0, Integer.parseInt(txtSupID.getText()), txtProName.getText(), txtCountry.getText(), Long.parseLong(txtOPrice.getText()), Long.parseLong(txtSPrice.getText()), dcMFG.getDate(), dcEXP.getDate(), txtProType.getText(), Integer.parseInt(txtVAT.getText()), dcImportedDate.getDate(), Integer.parseInt(txtImportedQuantity.getText()), Integer.parseInt(txtRemainingQuantity.getText()));
+                    setVisible(false);
+                    new InsertPro2(newProduct).setVisible(true);
+                    }
+                }
             
-        }  
+                }         
             
     }//GEN-LAST:event_btnInsertActionPerformed
 
@@ -337,6 +354,26 @@ public class InsertProForm extends javax.swing.JFrame {
             emp.setVisible(true);
         }
     }//GEN-LAST:event_btnTurnBackActionPerformed
+
+    private void txtImportedQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImportedQuantityActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtImportedQuantityActionPerformed
+
+    private void txtImportedQuantityKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtImportedQuantityKeyTyped
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtImportedQuantityKeyTyped
+
+    private void txtImportedQuantityKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtImportedQuantityKeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtImportedQuantityKeyPressed
+
+    private void txtImportedQuantityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtImportedQuantityKeyReleased
+        // TODO add your handling code here:
+        txtRemainingQuantity.setText(txtImportedQuantity.getText());
+    }//GEN-LAST:event_txtImportedQuantityKeyReleased
 
     /**
      * @param args the command line arguments
@@ -361,7 +398,6 @@ public class InsertProForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
