@@ -25,7 +25,6 @@ public class BillDetails_CON {
             return true;
         }
         catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
         }
         return false;
     }

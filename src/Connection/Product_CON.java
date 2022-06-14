@@ -1,9 +1,7 @@
 package Connection;
 
 import DTO.BillDetails_DTO;
-import DTO.Employee_DTO;
 import DTO.Product_DTO;
-import DTO.User_login_DTO;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;

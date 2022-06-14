@@ -1,7 +1,8 @@
 package Connection;
 
+import DTO.BillDetails_DTO;
 import DTO.Bill_DTO;
-import DTO.Employee_DTO;
+import DTO.Product_DTO;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -24,15 +25,13 @@ public class Bill_CON {
             ps.setInt(3, dtoBill.getStu_id());
             Date sqlBillDate = new java.sql.Date(dtoBill.getBill_date().getTime());
             ps.setDate(4, sqlBillDate);
-            ps.setFloat(5, dtoBill.getTotal_money());
+            ps.setLong(5, dtoBill.getTotal_money());
             ps.executeUpdate();
             ps.close();
             con.close();
             return true;
         } 
         catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-
         }
         return false;
     }
@@ -47,7 +46,7 @@ public class Bill_CON {
             ps.setInt(3, dtoBill.getStu_id());
             Date sqlBillDate = new java.sql.Date(dtoBill.getBill_date().getTime());
             ps.setDate(4, sqlBillDate);
-            ps.setFloat(5, dtoBill.getTotal_money());
+            ps.setLong(5, dtoBill.getTotal_money());
             ps.setInt(6, dtoBill.getId());
             ps.executeUpdate();
             con.close();
@@ -83,7 +82,7 @@ public class Bill_CON {
             ps.setInt(1, dtoBill.getId());
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                dtoBill = new Bill_DTO(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getDate(5), rs.getFloat(6));
+                dtoBill = new Bill_DTO(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getDate(5), rs.getLong(6));
             }
             con.close();
         } 
@@ -102,7 +101,7 @@ public class Bill_CON {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                dtoBill = new Bill_DTO(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getDate(5), rs.getFloat(6));
+                dtoBill = new Bill_DTO(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getDate(5), rs.getLong(6));
             }
             con.close();
         } 
@@ -120,7 +119,7 @@ public class Bill_CON {
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                Bill_DTO dtoBill = new Bill_DTO(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getDate(5), rs.getFloat(6));
+                Bill_DTO dtoBill = new Bill_DTO(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getDate(5), rs.getLong(6));
                 billList.add(dtoBill);
             }
             con.close();
@@ -129,5 +128,47 @@ public class Bill_CON {
             JOptionPane.showMessageDialog(null, e);
         }
         return billList;
+    }
+    
+    public Long sumUp(BillDetails_DTO dtoBillDetails, Product_DTO dtoProduct){
+        long sumUp = 0;
+        try {
+            Connection con = DBConnection.getDBConnection();
+            String SQL = "SELECT SUM(AMOUNT*SALE_PRICE*(1+VAT/100))\n" +
+                        "FROM BILL_DETAILS BD, PRODUCT P\n" +
+                        "WHERE BD.PRODUCT_ID = P.PRODUCT_ID AND BILL_ID = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, dtoBillDetails.getId());
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                sumUp = rs.getLong(1);
+            }
+            con.close();
+        } 
+        catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return sumUp;
+    }
+    
+    public Long getTotalMoney(BillDetails_DTO dtoBillDetails, Product_DTO dtoProduct){
+        long totalMoney = 0;
+        try {
+            Connection con = DBConnection.getDBConnection();
+            String SQL = "SELECT SUM(AMOUNT*SALE_PRICE*(1+VAT/100)*(1-0.05))\n" +
+                        "FROM BILL_DETAILS BD, PRODUCT P\n" +
+                        "WHERE BD.PRODUCT_ID = P.PRODUCT_ID AND BILL_ID = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, dtoBillDetails.getId());
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                totalMoney = rs.getLong(1);
+            }
+            con.close();
+        } 
+        catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return totalMoney;
     }
 }
