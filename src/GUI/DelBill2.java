@@ -16,6 +16,7 @@ public class DelBill2 extends javax.swing.JFrame {
     Employee_DTO dtoCashier = null;
     Bill_DTO dtoBill = null;
     BillDetails_DTO dtoBillDetails = null;
+    Product_DTO Product = null;
     BillManagement_BUS busBillManagement = new BillManagement_BUS();
     BillDetails_BUS busBillDetails = new BillDetails_BUS();
     ProductManagement_BUS busProductManagement = new ProductManagement_BUS();
@@ -28,8 +29,10 @@ public class DelBill2 extends javax.swing.JFrame {
         dtoCashier = cashier;
         dtoBill = busBillManagement.getBillInfo(bill);
         dtoBillDetails = new BillDetails_DTO(bill.getId());
+        Product = busProductManagement.getInformation(dtoBillDetails.getPro_id());
         setResizable(false);
         setLocationRelativeTo(null);
+        txtSumUp.setText(String.valueOf(busBillManagement.sumUp(dtoBillDetails, Product)));
         txtEmpID.setText(String.valueOf(dtoBill.getEmp_id()));
         txtBillDate.setText(String.valueOf(dtoBill.getBill_date()));
         txtCashCounterID.setText(String.valueOf(dtoBill.getCash_id()));

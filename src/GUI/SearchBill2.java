@@ -16,6 +16,7 @@ public class SearchBill2 extends javax.swing.JFrame {
     Bill_DTO dtoBill = null;
     Employee_DTO dtoCashier;
     BillDetails_DTO dtoBillDetails = null;
+    Product_DTO Product = null;
     BillManagement_BUS busBillManagement = new BillManagement_BUS();
     BillDetails_BUS busBillDetails = new BillDetails_BUS();
     ProductManagement_BUS busProductManagement = new ProductManagement_BUS();
@@ -27,9 +28,11 @@ public class SearchBill2 extends javax.swing.JFrame {
         initComponents();
         dtoBill = busBillManagement.getBillInfo(bill);
         dtoBillDetails = new BillDetails_DTO(bill.getId());
+        Product = busProductManagement.getInformation(dtoBillDetails.getPro_id());
         dtoCashier = cashier;
         setResizable(false);
         setLocationRelativeTo(null);
+        txtSumUp.setText(String.valueOf(busBillManagement.sumUp(dtoBillDetails, Product)));
         txtEmpID.setText(String.valueOf(dtoBill.getEmp_id()));
         txtDate.setText(String.valueOf(dtoBill.getBill_date()));
         txtCashCounterID.setText(String.valueOf(dtoBill.getCash_id()));

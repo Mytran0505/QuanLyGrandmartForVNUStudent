@@ -3,9 +3,11 @@ package GUI;
 import BUS.BillDetails_BUS;
 import BUS.BillManagement_BUS;
 import BUS.EmployeeManagement_BUS;
+import BUS.ProductManagement_BUS;
 import DTO.BillDetails_DTO;
 import DTO.Bill_DTO;
 import DTO.Employee_DTO;
+import DTO.Product_DTO;
 import java.util.Date;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -19,6 +21,7 @@ public class InsBill1 extends javax.swing.JFrame {
     BillDetails_BUS busBillDetails = new BillDetails_BUS();
     BillManagement_BUS busBillManagement = new BillManagement_BUS();
     EmployeeManagement_BUS busEmployeeManagement = new EmployeeManagement_BUS();
+    ProductManagement_BUS busProductManagement = new ProductManagement_BUS();
     public InsBill1(Bill_DTO bill, Employee_DTO cashier) {
         initComponents();
         dtoCashier = busEmployeeManagement.getInformation(cashier.getId());
@@ -29,7 +32,7 @@ public class InsBill1 extends javax.swing.JFrame {
         createTable();
         Date date = new Date();
         dcBillDate.setDate(date);
-        txtTotalMoney.setText("0.0");
+        txtTotalMoney.setText("0");
     }
     //create bill details table
     DefaultTableModel tblBillDetailsModel;
@@ -481,43 +484,100 @@ public class InsBill1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_turnbackActionPerformed
 
     private void btn_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddActionPerformed
-        if(txtStudentID.getText().equals("") || txtCounterID.getText().equals("") || dcBillDate.getCalendar() == null || txtTotalMoney.getText().equals("")){
+        if(txtCounterID.getText().equals("") || dcBillDate.getCalendar() == null || txtTotalMoney.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Information fields are not entered enough.", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
         }
         else{
-            newBill = new Bill_DTO(0, Integer.parseInt(txtEmpID.getText()), Integer.parseInt(txtCounterID.getText()), Integer.parseInt(txtStudentID.getText()), dcBillDate.getDate(), 0);
-            if(busBillManagement.insert(newBill)){
-                dtoBillDetails = busBillDetails.getBillDetailsInfo(newBill);
+            //truong hop khong phai la sinh vien
+            if(txtStudentID.getText().equals("")){
+                newBill = new Bill_DTO(0, Integer.parseInt(txtEmpID.getText()), Integer.parseInt(txtCounterID.getText()), 0, dcBillDate.getDate(), 0);
+                if(busBillManagement.insert(newBill)){
+                    dtoBillDetails = busBillDetails.getBillDetailsInfo(newBill);
+                    txtCashCounterID.setText(String.valueOf(newBill.getCash_id()));
+                    txtStuID.setText(String.valueOf(newBill.getStu_id()));
+                    txtTotalMoney.setText(String.valueOf(newBill.getTotal_money()));
+                    txtStudentID.disable();
+                    txtCounterID.disable();
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Khong co trong du lieu!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
-            txtCashCounterID.setText(String.valueOf(newBill.getCash_id()));
-            txtStuID.setText(String.valueOf(newBill.getStu_id()));
-            txtTotalMoney.setText(String.valueOf(newBill.getTotal_money()));
+            //truong hop la sinh vien
+            else{
+                //truong hop khong hop le
+                if(Integer.parseInt(txtStudentID.getText()) < 300001 || Integer.parseInt(txtStudentID.getText()) > 300999){
+                    JOptionPane.showMessageDialog(this, "Du lieu khong hop le!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
+                    newBill = new Bill_DTO(0, Integer.parseInt(txtEmpID.getText()), Integer.parseInt(txtCounterID.getText()), Integer.parseInt(txtStudentID.getText()), dcBillDate.getDate(), 0);
+                    if(busBillManagement.insert(newBill)){
+                        dtoBillDetails = busBillDetails.getBillDetailsInfo(newBill);
+                        txtCashCounterID.setText(String.valueOf(newBill.getCash_id()));
+                        txtStuID.setText(String.valueOf(newBill.getStu_id()));
+                        txtTotalMoney.setText(String.valueOf(newBill.getTotal_money()));
+                        txtStudentID.disable();
+                        txtCounterID.disable();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "Khong co trong du lieu!", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
         }
     }//GEN-LAST:event_btn_AddActionPerformed
-
+    long sumUp = 0;
+    long totalMoney = 0;
     private void btn_InsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InsertActionPerformed
         if(txtProductID.getText().equals("") || txtAmount.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Information fields are not entered enough.", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
         }
         else{
             BillDetails_DTO newBillDetails = new BillDetails_DTO(dtoBillDetails.getId(),Integer.parseInt(txtProductID.getText()), Integer.parseInt(txtAmount.getText()));
+            Product_DTO dtoProduct = busProductManagement.getInformation(newBillDetails.getPro_id());
             String rows[] = new String[2];
-            rows[0] = String.valueOf(txtProductID.getText());
-            rows[1] = String.valueOf(txtAmount.getText());
-            tblBillDetailsModel.addRow(rows);
-            busBillDetails.insert(newBillDetails);
+            if(busBillDetails.insert(newBillDetails)){
+                rows[0] = String.valueOf(txtProductID.getText());
+                rows[1] = String.valueOf(txtAmount.getText());
+                tblBillDetailsModel.addRow(rows);
+                //truong hop khong phai la sinh vien
+                if(Integer.parseInt(txtStuID.getText()) == 0){
+                    sumUp = busBillManagement.sumUp(newBillDetails, dtoProduct);
+                    txtSumUp.setText(String.valueOf(sumUp));
+                    txtTotalMoney.setText(String.valueOf(sumUp));
+                }
+                //truong hop la sinh vien se duoc giam
+                else{
+                    sumUp = busBillManagement.sumUp(newBillDetails, dtoProduct);
+                    txtSumUp.setText(String.valueOf(sumUp));
+                    totalMoney = busBillManagement.getTotalMoney(newBillDetails, dtoProduct);
+                    txtTotalMoney.setText(String.valueOf(totalMoney));
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Khong co trong du lieu!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btn_InsertActionPerformed
 
     private void btn_DismissActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DismissActionPerformed
         tblBillDetailsModel.getDataVector().removeAllElements();
+        createTable();
+        busBillDetails.delete(dtoBillDetails);
     }//GEN-LAST:event_btn_DismissActionPerformed
 
     private void btn_ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ConfirmActionPerformed
+        if(txtCounterID.getText().equals("") || dcBillDate.getCalendar() == null || txtTotalMoney.getText().equals("") || txtProductID.getText().equals("") || txtAmount.getText().equals("") || txtSumUp.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Information fields are not entered enough.", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            newBill = new Bill_DTO(dtoBillDetails.getId(), Integer.parseInt(txtEmpID.getText()), Integer.parseInt(txtCounterID.getText()), Integer.parseInt(txtStuID.getText()), dcBillDate.getDate(), Long.parseLong(txtTotalMoney.getText()));
+            busBillManagement.update(newBill);
             JOptionPane.showMessageDialog(this, "Bill information is inserted successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
             setVisible(false);
-            PrintBill pribill = new PrintBill(newBill, dtoCashier);
+            PrintBill pribill = new PrintBill(newBill, dtoCashier, sumUp);
             pribill.setVisible(true);
+        }
     }//GEN-LAST:event_btn_ConfirmActionPerformed
 
 

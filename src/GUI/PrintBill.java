@@ -24,13 +24,14 @@ public class PrintBill extends javax.swing.JFrame {
     ArrayList<Product_DTO> list2 = new ArrayList<>();
     DefaultTableModel tblBillDetailsModel;
     DefaultTableModel tblProductModel;
-    public PrintBill(Bill_DTO bill, Employee_DTO cashier) {
+    public PrintBill(Bill_DTO bill, Employee_DTO cashier, long sumUp) {
         initComponents();
         dtoCashier = cashier;
         setResizable(false);
         setLocationRelativeTo(null);
         dtoBill = busBillManagement.getBillInfo(bill);
         dtoBillDetails = busBillDetails.getBillDetailsInfo(bill);
+        txtSumUp.setText(String.valueOf(sumUp));
         txtEmpID.setText(String.valueOf(dtoBill.getEmp_id()));
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         txtDate.setText(sdf.format(dtoBill.getBill_date()));
@@ -381,7 +382,7 @@ public class PrintBill extends javax.swing.JFrame {
                     .addComponent(jLabel11)
                     .addComponent(txtSumUp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
                     .addComponent(txtStuID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -411,7 +412,7 @@ public class PrintBill extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_turnbackActionPerformed
 
     private void btn_PrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PrintActionPerformed
-        
+        busBillManagement.printBill(dtoBill);
     }//GEN-LAST:event_btn_PrintActionPerformed
 
     private void btn_DismissActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DismissActionPerformed

@@ -1,12 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package GUI;
 
 import BUS.EmployeeManagement_BUS;
 import DTO.Employee_DTO;
-import java.util.Calendar;
 import javax.swing.JOptionPane;
 
 
@@ -175,11 +170,6 @@ public class UpdateEmp2 extends javax.swing.JFrame {
         cbGender.setBackground(new java.awt.Color(255, 255, 255));
         cbGender.setForeground(new java.awt.Color(0, 0, 0));
         cbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose gender", "Male", "Female" }));
-        cbGender.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbGenderActionPerformed(evt);
-            }
-        });
         jPanel7.add(cbGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 200, 30));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -225,11 +215,6 @@ public class UpdateEmp2 extends javax.swing.JFrame {
         cbRole.setBackground(new java.awt.Color(255, 255, 255));
         cbRole.setForeground(new java.awt.Color(0, 0, 0));
         cbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose role", "Manager", "Cashier", "Salesperson", "Storekeeper", "Customer Service Assistant", "Security Guard", "Sanitation Worker", "Quality Checker" }));
-        cbRole.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbRoleActionPerformed(evt);
-            }
-        });
         jPanel7.add(cbRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, 200, 30));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -319,20 +304,15 @@ public class UpdateEmp2 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbGenderActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbGenderActionPerformed
-
-    private void cbRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRoleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbRoleActionPerformed
-
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         if(cbRole.getSelectedItem().toString().equals("Security Guard") || cbRole.getSelectedItem().toString().equals("Sanitation Worker") || cbRole.getSelectedItem().toString().equals("Quality Checker")){
             if(txtFirstName.getText().equals("") || txtLastName.getText().equals("") || cbGender.getSelectedIndex() < 1 || dcBirthday.getDate().toString().equals("")  || txtPhone.getText().equals("") || txtAddress.getText().equals("") || dcStartDate.getDate().toString().equals("") || txtSalary.getText().equals("") || cbRole.getSelectedIndex() < 1 )
             {
                 JOptionPane.showMessageDialog(this, "Information fields are not entered enough.", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
+            }
+            else if(!txtPhone.getText().matches("[0-9]*") || !txtSalary.getText().matches("[0-9]*")){
+                JOptionPane.showMessageDialog(this, " Invalid data!", "Error!", JOptionPane.ERROR_MESSAGE);
             }
             else{
                 Employee_DTO newEmployee = new Employee_DTO(Integer.parseInt(txtEmpID.getText()), txtFirstName.getText(), txtLastName.getText(), cbGender.getSelectedItem().toString(), dcBirthday.getDate() , txtPhone.getText(), txtAddress.getText(), dcStartDate.getDate(), Long.parseLong(txtSalary.getText()), cbRole.getSelectedItem().toString());
@@ -344,6 +324,9 @@ public class UpdateEmp2 extends javax.swing.JFrame {
             if(txtEmpLoginID.getText().equals("") || txtFirstName.getText().equals("") || txtLastName.getText().equals("") || cbGender.getSelectedIndex() < 1 || dcBirthday.getDate().toString().equals("")  || txtPhone.getText().equals("") || txtAddress.getText().equals("") || dcStartDate.getDate().toString().equals("") || txtSalary.getText().equals("") || cbRole.getSelectedIndex() < 1 )
             {
                 JOptionPane.showMessageDialog(this, "Information fields are not entered enough.", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
+            }
+            else if(!txtPhone.getText().matches("[0-9]*") || !txtSalary.getText().matches("[0-9]*")){
+                JOptionPane.showMessageDialog(this, " Invalid data!", "Error!", JOptionPane.ERROR_MESSAGE);
             }
             else{
                 Employee_DTO newEmployee = new Employee_DTO(Integer.parseInt(txtEmpID.getText()), txtFirstName.getText(), txtLastName.getText(), cbGender.getSelectedItem().toString(), dcBirthday.getDate() , txtPhone.getText(), txtAddress.getText(), dcStartDate.getDate(), Long.parseLong(txtSalary.getText()), Integer.parseInt(txtEmpLoginID.getText()), cbRole.getSelectedItem().toString());

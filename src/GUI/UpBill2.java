@@ -17,6 +17,7 @@ public class UpBill2 extends javax.swing.JFrame {
     Employee_DTO dtoCashier = null;
     Bill_DTO dtoBill = null;
     BillDetails_DTO dtoBillDetails = null;
+    Product_DTO Product = null;
     BillManagement_BUS busBillManagement = new BillManagement_BUS();
     BillDetails_BUS busBillDetails = new BillDetails_BUS();
     ProductManagement_BUS busProductManagement = new ProductManagement_BUS();
@@ -29,8 +30,10 @@ public class UpBill2 extends javax.swing.JFrame {
         dtoCashier = cashier;
         dtoBill = busBillManagement.getBillInfo(bill);
         dtoBillDetails = new BillDetails_DTO(bill.getId());
+        Product = busProductManagement.getInformation(dtoBillDetails.getPro_id());
         setResizable(false);
         setLocationRelativeTo(null);
+        txtSumUp.setText(String.valueOf(busBillManagement.sumUp(dtoBillDetails, Product)));
         txtEmpID.setText(String.valueOf(dtoBill.getEmp_id()));
         dcBillDate.setDate(dtoBill.getBill_date());
         txtCashCounterID.setText(String.valueOf(dtoBill.getCash_id()));
@@ -492,11 +495,15 @@ public class UpBill2 extends javax.swing.JFrame {
         else{
             BillDetails_DTO billDetails = new BillDetails_DTO(Integer.parseInt(txtBillID.getText()),Integer.parseInt(txtProductID.getText()), Integer.parseInt(txtAmount.getText()));
             busBillDetails.update(billDetails);
+            Product = busProductManagement.getInformation(billDetails.getPro_id());
             String rows[] = new String[2];
             rows[0] = String.valueOf(txtProductID.getText());
             rows[1] = String.valueOf(txtAmount.getText());
             tblBillDetails.setValueAt(rows[0], tblBillDetails.getSelectedRow(), 0);
-            tblBillDetails.setValueAt(rows[1], tblBillDetails.getSelectedRow(), 1);  
+            tblBillDetails.setValueAt(rows[1], tblBillDetails.getSelectedRow(), 1);
+            txtSumUp.setText(String.valueOf(busBillManagement.sumUp(billDetails, Product)));
+            txtTotalMoney.setText(String.valueOf(busBillManagement.getTotalMoney(billDetails, Product)));
+            txtAmount.disable();
         }
     }//GEN-LAST:event_btn_UpdateActionPerformed
 
@@ -505,7 +512,7 @@ public class UpBill2 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Information fields are not entered enough.", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
         }
         else{
-            Bill_DTO Bill = new Bill_DTO(Integer.parseInt(txtBillID.getText()), Integer.parseInt(txtEmpID.getText()), Integer.parseInt(txtCashCounterID.getText()), Integer.parseInt(txtStuID.getText()), dcBillDate.getDate(), Float.parseFloat(txtTotalMoney.getText()));
+            Bill_DTO Bill = new Bill_DTO(Integer.parseInt(txtBillID.getText()), Integer.parseInt(txtEmpID.getText()), Integer.parseInt(txtCashCounterID.getText()), Integer.parseInt(txtStuID.getText()), dcBillDate.getDate(), Long.parseLong(txtTotalMoney.getText()));
             if(busBillManagement.update(Bill)){
                 JOptionPane.showMessageDialog(this, "Bill information is updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 setVisible(false);
