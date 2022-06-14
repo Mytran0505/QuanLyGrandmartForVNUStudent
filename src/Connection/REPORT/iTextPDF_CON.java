@@ -22,15 +22,15 @@ public class iTextPDF_CON {
         Date date = new Date();
         String filename = "Hoa don ngay " + sdf.format(date) + "_" + dtoBill.getId();
         try {
-            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("D:\\Java\\"+ filename + ".pdf"));
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("D:\\"+ filename + ".pdf"));
             document.open();
-            File filefontTieuDe = new File("D:\\Java\\DoAn\\src\\Connection\\Report\\fonts\\vuArialBold.ttf");
+            File filefontTieuDe = new File("D:\\UITer\\HK4\\LAP_TRINH_JAVA\\QuanLyMinimartForVNUStudent\\src\\Connection\\REPORT\\FONTS\\vuArialBold.ttf");
             BaseFont bfTieuDe = BaseFont.createFont(filefontTieuDe.getAbsolutePath(), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             Font fontTieuDe1 = new Font(bfTieuDe, 16);
             Font fontTieuDe2 = new Font(bfTieuDe, 13);
             Font fontTieuDe3 = new Font(bfTieuDe, 12);
             
-            File filefontNoiDung = new File("D:\\Java\\DoAn\\src\\Connection\\Report\\fonts\\vuArial.ttf");
+            File filefontNoiDung = new File("D:\\UITer\\HK4\\LAP_TRINH_JAVA\\QuanLyMinimartForVNUStudent\\src\\Connection\\REPORT\\FONTS\\vuArial.ttf");
             BaseFont bfNoiDung = BaseFont.createFont(filefontNoiDung.getAbsolutePath(), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             Font fontNoiDung1 = new Font(bfNoiDung, 13);
             Font fontNoiDung2 = new Font(bfNoiDung, 12);
@@ -60,7 +60,7 @@ public class iTextPDF_CON {
             
             List list = new List(List.UNORDERED);
             list.add(new ListItem("Employee ID: " + dtoBill.getEmp_id() + "                     Cashier counter ID: " + dtoBill.getCash_id(), fontNoiDung2));
-            list.add(new ListItem("Bill ID: " + dtoBill.getId() +"                                              Date: " + sdf.format(dtoBill.getBill_date()), fontNoiDung2));
+            list.add(new ListItem("Bill ID: " + dtoBill.getId() +"                                                Date: " + sdf.format(dtoBill.getBill_date()), fontNoiDung2));
             document.add(list);
             Paragraph tn = new Paragraph("---------------------------------------------------------------------------------------", fontNoiDung2);
             tn.setAlignment(Element.ALIGN_CENTER);
