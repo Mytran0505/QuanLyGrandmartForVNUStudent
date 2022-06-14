@@ -6,12 +6,12 @@ import java.util.Date;
 public class Bill_DTO {
     private int id, emp_id, cash_id, stu_id;
     private Date bill_date;
-    private float total_money; 
+    private long total_money; 
 
     public Bill_DTO() {
     }
 
-    public Bill_DTO(int id, int emp_id, int cash_id, int stu_id, Date bill_date, float total_money) {
+    public Bill_DTO(int id, int emp_id, int cash_id, int stu_id, Date bill_date, long total_money) {
         this.id = id;
         this.emp_id = emp_id;
         this.cash_id = cash_id;
@@ -44,7 +44,7 @@ public class Bill_DTO {
         this.bill_date = bill_date;
     }
 
-    public void setTotal_money(float total_money) {
+    public void setTotal_money(long total_money) {
         this.total_money = total_money;
     }
 
@@ -68,7 +68,7 @@ public class Bill_DTO {
         return bill_date;
     }
 
-    public float getTotal_money() {
+    public long getTotal_money() {
         return total_money;
     }
     
