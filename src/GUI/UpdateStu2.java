@@ -26,6 +26,7 @@ public class UpdateStu2 extends javax.swing.JFrame {
         txtPoint.setText(String.valueOf(dtoStudent.getPoint()));
         txtSchoolName.setText(dtoStudent.getSchoolName());
         txtStuID.disable();
+        txtSpentMoney.disable();
     }
 
     @SuppressWarnings("unchecked")
