@@ -32,7 +32,7 @@ public class BillManagement_BUS {
     public Long getTotalMoney(BillDetails_DTO dtoBillDetails, Product_DTO dtoProduct){
         return conBill.getTotalMoney(dtoBillDetails, dtoProduct);
     }
-//    public void printBill(Bill_DTO dtoBill){
-//        conReport.printBill(dtoBill);
-//    }
+    public void printBill(Bill_DTO dtoBill){
+        conReport.printBill(dtoBill);
+    }
 }
