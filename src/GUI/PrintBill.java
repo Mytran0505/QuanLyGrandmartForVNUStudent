@@ -413,6 +413,8 @@ public class PrintBill extends javax.swing.JFrame {
 
     private void btn_PrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PrintActionPerformed
         busBillManagement.printBill(dtoBill);
+        setVisible(false);
+        new ManageBillInf(dtoBill, dtoCashier).setVisible(true);
     }//GEN-LAST:event_btn_PrintActionPerformed
 
     private void btn_DismissActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DismissActionPerformed

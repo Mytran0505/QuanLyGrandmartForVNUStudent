@@ -558,6 +558,8 @@ public class InsBill1 extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Khong co trong du lieu!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
+        txtProductID.setText("");
+        txtAmount.setText("");
     }//GEN-LAST:event_btn_InsertActionPerformed
 
     private void btn_DismissActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DismissActionPerformed
@@ -567,7 +569,7 @@ public class InsBill1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_DismissActionPerformed
 
     private void btn_ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ConfirmActionPerformed
-        if(txtCounterID.getText().equals("") || dcBillDate.getCalendar() == null || txtTotalMoney.getText().equals("") || txtProductID.getText().equals("") || txtAmount.getText().equals("") || txtSumUp.getText().equals("")){
+        if(txtCounterID.getText().equals("") || dcBillDate.getCalendar() == null || txtTotalMoney.getText().equals("") || txtSumUp.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Information fields are not entered enough.", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
         }
         else{
