@@ -80,7 +80,7 @@ public class UpdateEmp2 extends javax.swing.JFrame {
         jLabel6.setText("UPDATE EMPLOYEE INFORMATION");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Update");
+        setTitle(" Update Employee Information");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel6.setBackground(new java.awt.Color(0, 204, 255));

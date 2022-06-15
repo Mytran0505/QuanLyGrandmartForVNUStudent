@@ -174,6 +174,11 @@ public class InsBill1 extends javax.swing.JFrame {
         btn_Add.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn_Add.setForeground(new java.awt.Color(255, 255, 255));
         btn_Add.setText("Add");
+        btn_Add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btn_AddMouseReleased(evt);
+            }
+        });
         btn_Add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_AddActionPerformed(evt);
@@ -506,10 +511,10 @@ public class InsBill1 extends javax.swing.JFrame {
             //truong hop la sinh vien
             else{
                 //truong hop khong hop le
-                if(Integer.parseInt(txtStudentID.getText()) < 300001 || Integer.parseInt(txtStudentID.getText()) > 300999){
-                    JOptionPane.showMessageDialog(this, "Du lieu khong hop le!", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-                else{
+//                if(Integer.parseInt(txtStudentID.getText()) < 300001 || Integer.parseInt(txtStudentID.getText()) > 300999){
+//                    JOptionPane.showMessageDialog(this, "Du lieu khong hop le!", "Error", JOptionPane.ERROR_MESSAGE);
+//                }
+//                else{
                     newBill = new Bill_DTO(0, Integer.parseInt(txtEmpID.getText()), Integer.parseInt(txtCounterID.getText()), Integer.parseInt(txtStudentID.getText()), dcBillDate.getDate(), 0);
                     if(busBillManagement.insert(newBill)){
                         dtoBillDetails = busBillDetails.getBillDetailsInfo(newBill);
@@ -523,7 +528,7 @@ public class InsBill1 extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Khong co trong du lieu!", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
-            }
+            //}
         }
     }//GEN-LAST:event_btn_AddActionPerformed
     long sumUp = 0;
@@ -581,6 +586,11 @@ public class InsBill1 extends javax.swing.JFrame {
             pribill.setVisible(true);
         }
     }//GEN-LAST:event_btn_ConfirmActionPerformed
+
+    private void btn_AddMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AddMouseReleased
+        // TODO add your handling code here:
+        btn_Add.setEnabled(false);
+    }//GEN-LAST:event_btn_AddMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -68,7 +68,7 @@ public class MakeStatisticofTurn extends javax.swing.JFrame {
         btn_MakeStatistics = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("MakeStatisticsOfTurnover");
+        setTitle("Make Statistics Of Turnover");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 255));

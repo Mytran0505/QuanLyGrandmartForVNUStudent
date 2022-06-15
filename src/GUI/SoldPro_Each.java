@@ -72,6 +72,7 @@ public class SoldPro_Each extends javax.swing.JFrame {
         tblStatistics = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Make Statistics Of Sold Product (Each Product)");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 255));
