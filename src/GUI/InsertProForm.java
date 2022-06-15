@@ -7,6 +7,7 @@ package GUI;
 import BUS.ProductManagement_BUS;
 import DTO.Product_DTO;
 import DTO.Employee_DTO;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -20,6 +21,7 @@ public class InsertProForm extends javax.swing.JFrame {
     ProductManagement_BUS busProductManagement = new ProductManagement_BUS();
     Product_DTO dtoProduct = null;
     Employee_DTO dtoStorekeeper = null;
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     
     public InsertProForm(Product_DTO product) {
         initComponents();
@@ -27,21 +29,6 @@ public class InsertProForm extends javax.swing.JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         txtRemainingQuantity.disable();
-    }
-
-    private void clearForm(){
-        txtSupID.setText("");
-        txtProName.setText("");
-        txtCountry.setText("");
-        txtOPrice.setText("");
-        txtSPrice.setText("");
-        dcMFG.setCalendar(null);
-        dcEXP.setCalendar(null);
-        txtProType.setText("");
-        txtVAT.setText("");
-        dcImportedDate.setCalendar(null);
-        txtImportedQuantity.setText("");
-        txtRemainingQuantity.setText("");
     }
     
     @SuppressWarnings("unchecked")
@@ -325,13 +312,16 @@ public class InsertProForm extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Invalid data!", "Error!", JOptionPane.ERROR_MESSAGE);
         }
             else{
-                if(dcEXP.getCalendar() == null){
+                if(sdf.format(dcImportedDate.getDate()).compareTo(sdf.format(dcMFG.getDate())) < 0){
+                    JOptionPane.showMessageDialog(this, "Imported date must be equals or after MFG!", "Error!", JOptionPane.ERROR_MESSAGE);
+                }
+                else if(dcEXP.getCalendar() == null){
                     Product_DTO newProduct = new Product_DTO(0, Integer.parseInt(txtSupID.getText()), txtProName.getText(), txtCountry.getText(), Long.parseLong(txtOPrice.getText()), Long.parseLong(txtSPrice.getText()), dcMFG.getDate(), txtProType.getText(), Integer.parseInt(txtVAT.getText()), dcImportedDate.getDate(), Integer.parseInt(txtImportedQuantity.getText()), Integer.parseInt(txtRemainingQuantity.getText()));
                     setVisible(false);
                     new InsertPro2(newProduct).setVisible(true);
                 }
                 else{
-                    if(dcEXP.getCalendar().before(dcMFG.getCalendar())){
+                    if(sdf.format(dcEXP.getDate()).compareTo(sdf.format(dcMFG.getDate())) <= 0){
                         JOptionPane.showMessageDialog(this, "EXP must be after MFG!", "Error!", JOptionPane.ERROR_MESSAGE);
                     }
                     else{

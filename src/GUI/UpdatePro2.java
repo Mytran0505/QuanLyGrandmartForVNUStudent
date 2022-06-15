@@ -6,6 +6,7 @@ package GUI;
 
 import BUS.ProductManagement_BUS;
 import DTO.Product_DTO;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 
@@ -17,6 +18,7 @@ public class UpdatePro2 extends javax.swing.JFrame {
 
     ProductManagement_BUS busProductManagement = new ProductManagement_BUS();
     Product_DTO dtoProduct = null;
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     
     /**
      * Creates new form UpdatePro2
@@ -337,13 +339,16 @@ public class UpdatePro2 extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Invalid data!", "Error!", JOptionPane.ERROR_MESSAGE);
         }
             else{
-                if(dcEXP.getCalendar() == null){
+                if(sdf.format(dcImportedDate.getDate()).compareTo(sdf.format(dcMFG.getDate())) < 0){
+                    JOptionPane.showMessageDialog(this, "Imported date must be equals or after MFG!", "Error!", JOptionPane.ERROR_MESSAGE);
+                }
+                else if(dcEXP.getCalendar() == null){
                     Product_DTO dtoProduct = new Product_DTO(Integer.parseInt(txtProID.getText()), Integer.parseInt(txtSupID.getText()), txtProName.getText(), txtCountry.getText(), Long.parseLong(txtOPrice.getText()), Long.parseLong(txtSPrice.getText()), dcMFG.getDate(), txtProType.getText(), Integer.parseInt(txtVAT.getText()), dcImportedDate.getDate(), Integer.parseInt(txtImportedQuantity.getText()), Integer.parseInt(txtRemainingQuantity.getText()));
                     setVisible(false);
                     new UpdatePro3(dtoProduct).setVisible(true);
                 }
                 else{
-                    if(dcEXP.getCalendar().before(dcMFG.getCalendar())){
+                    if(sdf.format(dcEXP.getDate()).compareTo(sdf.format(dcMFG.getDate())) <= 0){
                         JOptionPane.showMessageDialog(this, "EXP must be after MFG!", "Error!", JOptionPane.ERROR_MESSAGE);
                     }
                     else{
