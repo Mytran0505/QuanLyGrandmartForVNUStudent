@@ -560,7 +560,7 @@ public class InsBill1 extends javax.swing.JFrame {
                 }
             }
             else{
-                JOptionPane.showMessageDialog(this, "Khong co trong du lieu!", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Du lieu khong hop le!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
         txtProductID.setText("");

@@ -413,6 +413,7 @@ public class PrintBill extends javax.swing.JFrame {
 
     private void btn_PrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PrintActionPerformed
         busBillManagement.printBill(dtoBill);
+        JOptionPane.showMessageDialog(this, "Print successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
         setVisible(false);
         new ManageBillInf(dtoBill, dtoCashier).setVisible(true);
     }//GEN-LAST:event_btn_PrintActionPerformed
