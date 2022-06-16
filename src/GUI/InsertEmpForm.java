@@ -1,19 +1,28 @@
 package GUI;
 
 import BUS.EmployeeManagement_BUS;
+import BUS.User_login_BUS;
 import DTO.Employee_DTO;
+import DTO.User_login_DTO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 
 public class InsertEmpForm extends javax.swing.JFrame {
 
     EmployeeManagement_BUS busEmployeeManagement = new EmployeeManagement_BUS();
+    User_login_BUS busUserLogin = new User_login_BUS();
     Employee_DTO dtoManager = null;
+    Employee_DTO newEmployee = null;
+    ArrayList<Employee_DTO> listEmp = new ArrayList<>();
+    ArrayList<User_login_DTO> listLogin = new ArrayList<>();
+            
     public InsertEmpForm(Employee_DTO manager) {
         initComponents();
+        newEmployee = busEmployeeManagement.getEmployeeInfo(manager);
         dtoManager = manager;
         setResizable(false);
         setLocationRelativeTo(null);
@@ -83,7 +92,7 @@ public class InsertEmpForm extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Insert");
+        setTitle(" Insert Employee Information");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -296,6 +305,7 @@ public class InsertEmpForm extends javax.swing.JFrame {
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
         //Check if the user input is enough or not
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
         if(cbRole.getSelectedItem().toString().equals("Security Guard") || cbRole.getSelectedItem().toString().equals("Sanitation Worker") || cbRole.getSelectedItem().toString().equals("Quality Checker")){
             if(txtFirstName.getText().equals("") || txtLastName.getText().equals("") || cbGender.getSelectedIndex() < 1 || dcBirthday.getCalendar() == null || txtPhone.getText().equals("") || txtAddress.getText().equals("") || dcStartDate.getCalendar() == null || txtSalary.getText().equals("") || cbRole.getSelectedIndex() < 1 )
             {
@@ -307,9 +317,8 @@ public class InsertEmpForm extends javax.swing.JFrame {
             else if(sdf.format(dcBirthday.getDate().getTime()).compareTo(sdf.format(dcStartDate.getDate().getTime()))==1){
                 JOptionPane.showMessageDialog(this, " Birthday must be less than start date", "Error!", JOptionPane.ERROR_MESSAGE);
             }
-            else if(Integer.parseInt(txtEmpLoginID.getText()) < 100001 || Integer.parseInt(txtEmpLoginID.getText()) > 100050){
-                    JOptionPane.showMessageDialog(this, "Emp_LOGIN_ID NOT EXISTS", "Error", JOptionPane.ERROR_MESSAGE);
-                }            else{
+                      
+            else{
                 Employee_DTO newEmployee = new Employee_DTO(0, txtFirstName.getText(), txtLastName.getText(), cbGender.getSelectedItem().toString(), dcBirthday.getDate(), txtPhone.getText(), txtAddress.getText(), dcStartDate.getDate(), Long.parseLong(txtSalary.getText()), cbRole.getSelectedItem().toString());
                 setVisible(false);
                 new InsertEmp2(newEmployee).setVisible(true);
@@ -323,10 +332,52 @@ public class InsertEmpForm extends javax.swing.JFrame {
             else if(!txtPhone.getText().matches("[0-9]*") || !txtSalary.getText().matches("[0-9]*")){
                 JOptionPane.showMessageDialog(this, " Invalid data!", "Error!", JOptionPane.ERROR_MESSAGE);
             }
+//            else if(!busEmployeeManagement.insert(newEmployee)){
+//                JOptionPane.showMessageDialog(this, "EMP_LOGIN_ID ERROR!", "Error", JOptionPane.ERROR_MESSAGE);
+//            }
+            /*else if(Integer.parseInt(txtEmpLoginID.getText()) < 100001 || Integer.parseInt(txtEmpLoginID.getText()) > 100050){
+                JOptionPane.showMessageDialog(this, "Emp_LOGIN_ID NOT EXISTS", "Error", JOptionPane.ERROR_MESSAGE);
+            
+            }*/
+            else if(sdf.format(dcBirthday.getDate().getTime()).compareTo(sdf.format(dcStartDate.getDate().getTime()))==1){
+                JOptionPane.showMessageDialog(this, " Birthday must be less than start date", "Error!", JOptionPane.ERROR_MESSAGE);
+            }
             else{
+                listEmp = busEmployeeManagement.getEmployeeList();
+                Employee_DTO dtoEmployee = null;
+                boolean flagExist = false;
+                for(int i = 0; i < listEmp.size(); i++){
+                    dtoEmployee = listEmp.get(i);
+                    if(dtoEmployee.getEmp_id() == Integer.parseInt(txtEmpLoginID.getText())){
+                        flagExist = true;
+                        break;
+                    }
+                }
+                
+                listLogin = busUserLogin.getUserLoginList();
+                User_login_DTO dtoUserLogin = null;
+                boolean flagNotExist = true;
+                for(int i = 0; i < listLogin.size(); i++){
+                    dtoUserLogin = listLogin.get(i);
+                    if(dtoUserLogin.getId() == Integer.parseInt(txtEmpLoginID.getText())){
+                        flagNotExist = false;
+                        break;
+                    }
+                }
+                
+                if(flagExist == true){
+                    JOptionPane.showMessageDialog(this, "Emp_LOGIN_ID ALREADY EXISTED", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
+                if(flagNotExist == true){
+                    JOptionPane.showMessageDialog(this, "Emp_LOGIN_ID NOT EXIST", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
                 Employee_DTO newEmployee = new Employee_DTO(0, txtFirstName.getText(), txtLastName.getText(), cbGender.getSelectedItem().toString(), dcBirthday.getDate(), txtPhone.getText(), txtAddress.getText(), dcStartDate.getDate(), Long.parseLong(txtSalary.getText()), Integer.parseInt(txtEmpLoginID.getText()), cbRole.getSelectedItem().toString());
                 setVisible(false);
                 new InsertEmp2(newEmployee).setVisible(true);
+                }
+                }
             }  
         }
     }//GEN-LAST:event_btnInsertActionPerformed
