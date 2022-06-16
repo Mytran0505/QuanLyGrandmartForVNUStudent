@@ -329,7 +329,7 @@ public class InsertEmpForm extends javax.swing.JFrame {
             {
                 JOptionPane.showMessageDialog(this, "Information fields are not entered enough.", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
             }
-            else if(!txtPhone.getText().matches("[0-9]*") || !txtSalary.getText().matches("[0-9]*")){
+            else if(!txtPhone.getText().matches("[0-9]*") || !txtSalary.getText().matches("[0-9]*") || !txtEmpLoginID.getText().matches("[0-9]*")){
                 JOptionPane.showMessageDialog(this, " Invalid data!", "Error!", JOptionPane.ERROR_MESSAGE);
             }
 //            else if(!busEmployeeManagement.insert(newEmployee)){

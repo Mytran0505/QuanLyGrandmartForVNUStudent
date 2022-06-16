@@ -138,7 +138,7 @@ public class LookUpStudentInformation extends javax.swing.JFrame {
         btnSearch.setBackground(new java.awt.Color(0, 204, 255));
         btnSearch.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnSearch.setForeground(new java.awt.Color(255, 255, 255));
-        btnSearch.setText("Search");
+        btnSearch.setText("Look up");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchActionPerformed(evt);
