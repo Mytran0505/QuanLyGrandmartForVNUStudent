@@ -345,11 +345,11 @@ public class InsertEmpForm extends javax.swing.JFrame {
             else{
                 listEmp = busEmployeeManagement.getEmployeeList();
                 Employee_DTO dtoEmployee = null;
-                boolean flagExist = false;
+                boolean flagUsed = false;
                 for(int i = 0; i < listEmp.size(); i++){
                     dtoEmployee = listEmp.get(i);
                     if(dtoEmployee.getEmp_id() == Integer.parseInt(txtEmpLoginID.getText())){
-                        flagExist = true;
+                        flagUsed = true;
                         break;
                     }
                 }
@@ -365,8 +365,8 @@ public class InsertEmpForm extends javax.swing.JFrame {
                     }
                 }
                 
-                if(flagExist == true){
-                    JOptionPane.showMessageDialog(this, "Emp_LOGIN_ID ALREADY EXISTED", "Error", JOptionPane.ERROR_MESSAGE);
+                if(flagUsed == true){
+                    JOptionPane.showMessageDialog(this, "Emp_LOGIN_ID ALREADY BEING USED", "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 else{
                 if(flagNotExist == true){

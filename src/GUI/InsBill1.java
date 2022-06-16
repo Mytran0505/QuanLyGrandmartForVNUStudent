@@ -512,9 +512,10 @@ public class InsBill1 extends javax.swing.JFrame {
                     txtTotalMoney.setText(String.valueOf(newBill.getTotal_money()));
                     txtStudentID.disable();
                     txtCounterID.disable();
+                    btn_Add.setEnabled(false);
                 }
                 else{
-                    JOptionPane.showMessageDialog(this, "Khong co trong du lieu!", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "NO data found!", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
             //truong hop la sinh vien
@@ -535,7 +536,7 @@ public class InsBill1 extends javax.swing.JFrame {
                         btn_Add.setEnabled(false);
                     }
                     else{
-                        JOptionPane.showMessageDialog(this, "Khong co trong du lieu!", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "NO data found!", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             //}
@@ -570,7 +571,7 @@ public class InsBill1 extends javax.swing.JFrame {
                 }
             }
             else{
-                JOptionPane.showMessageDialog(this, "Du lieu khong hop le!", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Invalid data!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
         txtProductID.setText("");

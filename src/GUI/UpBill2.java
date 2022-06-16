@@ -503,7 +503,8 @@ public class UpBill2 extends javax.swing.JFrame {
             tblBillDetails.setValueAt(rows[1], tblBillDetails.getSelectedRow(), 1);
             txtSumUp.setText(String.valueOf(busBillManagement.sumUp(billDetails, Product)));
             txtTotalMoney.setText(String.valueOf(busBillManagement.getTotalMoney(billDetails, Product)));
-            txtAmount.disable();
+            txtProductID.setText("");
+            txtAmount.setText("");
         }
     }//GEN-LAST:event_btn_UpdateActionPerformed
 
