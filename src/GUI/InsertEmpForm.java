@@ -323,15 +323,6 @@ public class InsertEmpForm extends javax.swing.JFrame {
             else if(!txtPhone.getText().matches("[0-9]*") || !txtSalary.getText().matches("[0-9]*")){
                 JOptionPane.showMessageDialog(this, " Invalid data!", "Error!", JOptionPane.ERROR_MESSAGE);
             }
-//            else if(!busEmployeeManagement.insert(newEmployee)){
-//                JOptionPane.showMessageDialog(this, "EMP_LOGIN_ID ERROR!", "Error", JOptionPane.ERROR_MESSAGE);
-//            }
-//            else if(Integer.parseInt(txtEmpLoginID.getText()) < 100001 || Integer.parseInt(txtEmpLoginID.getText()) > 100050){
-//                JOptionPane.showMessageDialog(this, "Emp_LOGIN_ID NOT EXISTS", "Error", JOptionPane.ERROR_MESSAGE);
-//            } 
-            else if(sdf.format(dcBirthday.getDate().getTime()).compareTo(sdf.format(dcStartDate.getDate().getTime()))==1){
-                JOptionPane.showMessageDialog(this, " Birthday must be less than start date", "Error!", JOptionPane.ERROR_MESSAGE);
-            }
             else{
                 Employee_DTO newEmployee = new Employee_DTO(0, txtFirstName.getText(), txtLastName.getText(), cbGender.getSelectedItem().toString(), dcBirthday.getDate(), txtPhone.getText(), txtAddress.getText(), dcStartDate.getDate(), Long.parseLong(txtSalary.getText()), Integer.parseInt(txtEmpLoginID.getText()), cbRole.getSelectedItem().toString());
                 setVisible(false);
