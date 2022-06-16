@@ -1,15 +1,22 @@
 package GUI;
 
 import BUS.EmployeeManagement_BUS;
+import BUS.User_login_BUS;
 import DTO.Employee_DTO;
+import DTO.User_login_DTO;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 
 public class UpdateEmp2 extends javax.swing.JFrame {
 
     EmployeeManagement_BUS busEmployeeManagement = new EmployeeManagement_BUS();
+    User_login_BUS busUserLogin = new User_login_BUS();
     Employee_DTO dtoEmployee = null;
+    ArrayList<Employee_DTO> listEmp = new ArrayList<>();
+    ArrayList<User_login_DTO> listLogin = new ArrayList<>();
+    
     public UpdateEmp2(Employee_DTO employee) {
             initComponents();
             dtoEmployee = busEmployeeManagement.getEmployeeInfo(employee);
@@ -333,10 +340,44 @@ public class UpdateEmp2 extends javax.swing.JFrame {
             else if(!txtPhone.getText().matches("[0-9]*") || !txtSalary.getText().matches("[0-9]*")){
                 JOptionPane.showMessageDialog(this, " Invalid data!", "Error!", JOptionPane.ERROR_MESSAGE);
             }
+            else if(sdf.format(dcBirthday.getDate().getTime()).compareTo(sdf.format(dcStartDate.getDate().getTime()))==1){
+                JOptionPane.showMessageDialog(this, " Birthday must be less than start date", "Error!", JOptionPane.ERROR_MESSAGE);
+            }
             else{
+                listEmp = busEmployeeManagement.getEmployeeList();
+                Employee_DTO compareEmployee = null;
+                boolean flagUsed = false;
+                for(int i = 0; i < listEmp.size(); i++){
+                    compareEmployee = listEmp.get(i);
+                    if(compareEmployee.getEmp_id() == Integer.parseInt(txtEmpLoginID.getText()) && compareEmployee.getEmp_id() != dtoEmployee.getEmp_id()){
+                        flagUsed = true;
+                        break;
+                    }
+                }
+                
+                listLogin = busUserLogin.getUserLoginList();
+                User_login_DTO dtoUserLogin = null;
+                boolean flagNotExist = true;
+                for(int i = 0; i < listLogin.size(); i++){
+                    dtoUserLogin = listLogin.get(i);
+                    if(dtoUserLogin.getId() == Integer.parseInt(txtEmpLoginID.getText())){
+                        flagNotExist = false;
+                        break;
+                    }
+                }
+                if(flagUsed == true){
+                    JOptionPane.showMessageDialog(this, "Emp_LOGIN_ID ALREADY BEING USED", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
+                if(flagNotExist == true){
+                    JOptionPane.showMessageDialog(this, "Emp_LOGIN_ID NOT EXIST", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
                 Employee_DTO newEmployee = new Employee_DTO(Integer.parseInt(txtEmpID.getText()), txtFirstName.getText(), txtLastName.getText(), cbGender.getSelectedItem().toString(), dcBirthday.getDate() , txtPhone.getText(), txtAddress.getText(), dcStartDate.getDate(), Long.parseLong(txtSalary.getText()), Integer.parseInt(txtEmpLoginID.getText()), cbRole.getSelectedItem().toString());
                 setVisible(false);
                 new UpdateEmp3(newEmployee).setVisible(true);
+                }
+                }
             }
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
