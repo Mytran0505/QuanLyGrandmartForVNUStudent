@@ -1,27 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package GUI;
 
 import BUS.ProductManagement_BUS;
 import DTO.Product_DTO;
 import DTO.Employee_DTO;
+import DTO.Supplier_DTO;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author LENOVO
- */
+
 public class InsertProForm extends javax.swing.JFrame {
     
     ProductManagement_BUS busProductManagement = new ProductManagement_BUS();
     Product_DTO dtoProduct = null;
     Employee_DTO dtoStorekeeper = null;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    ArrayList<Supplier_DTO> listSupplier = new ArrayList<>();
     
     public InsertProForm(Product_DTO product) {
         initComponents();
@@ -235,20 +231,9 @@ public class InsertProForm extends javax.swing.JFrame {
 
         txtImportedQuantity.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtImportedQuantity.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtImportedQuantity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtImportedQuantityActionPerformed(evt);
-            }
-        });
         txtImportedQuantity.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtImportedQuantityKeyPressed(evt);
-            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtImportedQuantityKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtImportedQuantityKeyTyped(evt);
             }
         });
         jPanel7.add(txtImportedQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 160, 200, 30));
@@ -316,23 +301,52 @@ public class InsertProForm extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Imported date must be equals or after MFG!", "Error!", JOptionPane.ERROR_MESSAGE);
                 }
                 else if(dcEXP.getCalendar() == null){
-                    Product_DTO newProduct = new Product_DTO(0, Integer.parseInt(txtSupID.getText()), txtProName.getText(), txtCountry.getText(), Long.parseLong(txtOPrice.getText()), Long.parseLong(txtSPrice.getText()), dcMFG.getDate(), txtProType.getText(), Integer.parseInt(txtVAT.getText()), dcImportedDate.getDate(), Integer.parseInt(txtImportedQuantity.getText()), Integer.parseInt(txtRemainingQuantity.getText()));
-                    setVisible(false);
-                    new InsertPro2(newProduct).setVisible(true);
+                        listSupplier = busProductManagement.getSupplierList();
+                        Supplier_DTO dtoSupplier = null;
+                        boolean flagNotExist = true;
+                        for(int i = 0; i < listSupplier.size(); i++){
+                            dtoSupplier = listSupplier.get(i);
+                            if(dtoSupplier.getId() == Integer.parseInt(txtSupID.getText())){
+                                flagNotExist = false;
+                                break;
+                            }
+                        }
+                        if(flagNotExist == true){
+                            JOptionPane.showMessageDialog(this, "Supplier_ID NOT EXIST", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                        else{
+                            Product_DTO newProduct = new Product_DTO(0, Integer.parseInt(txtSupID.getText()), txtProName.getText(), txtCountry.getText(), Long.parseLong(txtOPrice.getText()), Long.parseLong(txtSPrice.getText()), dcMFG.getDate(), txtProType.getText(), Integer.parseInt(txtVAT.getText()), dcImportedDate.getDate(), Integer.parseInt(txtImportedQuantity.getText()), Integer.parseInt(txtRemainingQuantity.getText()));
+                            setVisible(false);
+                            new InsertPro2(newProduct).setVisible(true);
+                        }                   
                 }
                 else{
                     if(sdf.format(dcEXP.getDate()).compareTo(sdf.format(dcMFG.getDate())) <= 0){
                         JOptionPane.showMessageDialog(this, "EXP must be after MFG!", "Error!", JOptionPane.ERROR_MESSAGE);
                     }
                     else{
-                    Product_DTO newProduct = new Product_DTO(0, Integer.parseInt(txtSupID.getText()), txtProName.getText(), txtCountry.getText(), Long.parseLong(txtOPrice.getText()), Long.parseLong(txtSPrice.getText()), dcMFG.getDate(), dcEXP.getDate(), txtProType.getText(), Integer.parseInt(txtVAT.getText()), dcImportedDate.getDate(), Integer.parseInt(txtImportedQuantity.getText()), Integer.parseInt(txtRemainingQuantity.getText()));
-                    setVisible(false);
-                    new InsertPro2(newProduct).setVisible(true);
-                    }
+                        listSupplier = busProductManagement.getSupplierList();
+                        Supplier_DTO dtoSupplier = null;
+                        boolean flagNotExist = true;
+                        for(int i = 0; i < listSupplier.size(); i++){
+                            dtoSupplier = listSupplier.get(i);
+                            if(dtoSupplier.getId() == Integer.parseInt(txtSupID.getText())){
+                                flagNotExist = false;
+                                break;
+                            }
+                        }
+                        if(flagNotExist == true){
+                            JOptionPane.showMessageDialog(this, "Supplier_ID NOT EXIST", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                        else{
+                        Product_DTO newProduct = new Product_DTO(0, Integer.parseInt(txtSupID.getText()), txtProName.getText(), txtCountry.getText(), Long.parseLong(txtOPrice.getText()), Long.parseLong(txtSPrice.getText()), dcMFG.getDate(), dcEXP.getDate(), txtProType.getText(), Integer.parseInt(txtVAT.getText()), dcImportedDate.getDate(), Integer.parseInt(txtImportedQuantity.getText()), Integer.parseInt(txtRemainingQuantity.getText()));
+                        setVisible(false);
+                        new InsertPro2(newProduct).setVisible(true);
+                        }                    
                 }
             
-                }         
-            
+            }         
+        }  
     }//GEN-LAST:event_btnInsertActionPerformed
 
     private void btnTurnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTurnBackActionPerformed
@@ -344,21 +358,6 @@ public class InsertProForm extends javax.swing.JFrame {
             emp.setVisible(true);
         }
     }//GEN-LAST:event_btnTurnBackActionPerformed
-
-    private void txtImportedQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImportedQuantityActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_txtImportedQuantityActionPerformed
-
-    private void txtImportedQuantityKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtImportedQuantityKeyTyped
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_txtImportedQuantityKeyTyped
-
-    private void txtImportedQuantityKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtImportedQuantityKeyPressed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_txtImportedQuantityKeyPressed
 
     private void txtImportedQuantityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtImportedQuantityKeyReleased
         // TODO add your handling code here:
