@@ -294,13 +294,13 @@ public class UpdateStu2 extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         if(txtFirstName.getText().equals("") || txtLastName.getText().equals("") || cbGender.getSelectedIndex()<1 || txtAddress.getText().equals("") || txtPhone.getText().equals("") || dcBirthday.getCalendar() == null || txtSchoolName.getText().equals("") || dcRegDate.getCalendar()==null || txtSpentMoney.getText().equals("") || txtPoint.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Information fields are not entered enough.", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
         }
         else{
-            if(dcBirthday.getCalendar().after(dcRegDate.getCalendar())){
+            if(sdf.format(dcBirthday.getDate().getTime()).compareTo(sdf.format(dcRegDate.getDate().getTime()))==1){
                 JOptionPane.showMessageDialog(this, "Registration Date must be after Birthday!", "Error!", JOptionPane.ERROR_MESSAGE);
                 }
             else if(!txtPhone.getText().matches("[0-9]*") || !txtPoint.getText().matches("[0-9]*") || !txtSpentMoney.getText().matches("[0-9]*")){

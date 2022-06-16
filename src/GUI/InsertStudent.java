@@ -297,13 +297,13 @@ public class InsertStudent extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_turnbackActionPerformed
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
-
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         if(txtFirstName.getText().equals("") || txtLastName.getText().equals("") || cbGender.getSelectedIndex()<1 || txtAddress.getText().equals("") || txtPhone.getText().equals("") || dcBirthday.getCalendar() == null || txtSchoolName.getText().equals("") || dcRegistrationDate.getCalendar()==null || txtSpentMoney.getText().equals("") || txtPoint.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Information fields are not entered enough.", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
         }
         else
-            if(dcBirthday.getCalendar().after(dcRegistrationDate.getCalendar())){
+            if(sdf.format(dcBirthday.getDate().getTime()).compareTo(sdf.format(dcRegistrationDate.getDate().getTime()))==1){
                 JOptionPane.showMessageDialog(this, "Registration Date must be before Birthday!", "Error!", JOptionPane.ERROR_MESSAGE);
                 }
         else if(!txtPhone.getText().matches("[0-9]*") || !txtPoint.getText().matches("[0-9]*") || !txtSpentMoney.getText().matches("[0-9]*")){
