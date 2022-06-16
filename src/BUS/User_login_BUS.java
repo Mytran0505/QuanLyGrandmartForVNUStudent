@@ -4,6 +4,7 @@ import Connection.Employee_CON;
 import Connection.User_login_CON;
 import DTO.Employee_DTO;
 import DTO.User_login_DTO;
+import java.util.ArrayList;
 
 
 public class User_login_BUS {
@@ -21,4 +22,8 @@ public class User_login_BUS {
     public String getRole(User_login_DTO dtoUserLogin){
         return conEmployee.getRole(dtoUserLogin);
     }
+    public ArrayList<User_login_DTO> getUserLoginList(){
+        return conUserLogin.getUserLoginList();
+    }
 }
+
