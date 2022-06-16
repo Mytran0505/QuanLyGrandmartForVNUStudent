@@ -46,6 +46,7 @@ public class MakeStatisticsOfProInventory extends javax.swing.JFrame {
         btn_AllPro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Make Statistics Of Product Inventory");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 255));

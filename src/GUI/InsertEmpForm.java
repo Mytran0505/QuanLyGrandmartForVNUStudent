@@ -327,9 +327,9 @@ public class InsertEmpForm extends javax.swing.JFrame {
 //            else if(!busEmployeeManagement.insert(newEmployee)){
 //                JOptionPane.showMessageDialog(this, "EMP_LOGIN_ID ERROR!", "Error", JOptionPane.ERROR_MESSAGE);
 //            }
-            else if(Integer.parseInt(txtEmpLoginID.getText()) < 100001 || Integer.parseInt(txtEmpLoginID.getText()) > 100050){
-                JOptionPane.showMessageDialog(this, "Emp_LOGIN_ID NOT EXISTS", "Error", JOptionPane.ERROR_MESSAGE);
-            } 
+//            else if(Integer.parseInt(txtEmpLoginID.getText()) < 100001 || Integer.parseInt(txtEmpLoginID.getText()) > 100050){
+//                JOptionPane.showMessageDialog(this, "Emp_LOGIN_ID NOT EXISTS", "Error", JOptionPane.ERROR_MESSAGE);
+//            } 
             else if(sdf.format(dcBirthday.getDate().getTime()).compareTo(sdf.format(dcStartDate.getDate().getTime()))==1){
                 JOptionPane.showMessageDialog(this, " Birthday must be less than start date", "Error!", JOptionPane.ERROR_MESSAGE);
             }
