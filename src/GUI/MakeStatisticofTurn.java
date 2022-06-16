@@ -245,10 +245,6 @@ public class MakeStatisticofTurn extends javax.swing.JFrame {
             cell.setCellValue("BILL_DATE");
             cell = row.createCell(3, CellType.STRING);
             cell.setCellValue("TOTAL_MONEY");
-            cell = row.createCell(4, CellType.STRING);
-            cell.setCellValue("TOTAL TURNOVER"); 
-            row = spreadsheet.createRow((short) 4);
-            row.createCell(4).setCellValue(txtTotalTurnover.getText());
             list = busMakeStatistic.MakeStatisticsOfTurnover(sdf.format(dcStartDate.getDate()), sdf.format(dcEndDate.getDate()));
             for(int i = 0; i < list.size(); i++){
                 Statictis_DTO dtoStatistics = list.get(i);
@@ -259,6 +255,10 @@ public class MakeStatisticofTurn extends javax.swing.JFrame {
                 row.createCell(2).setCellValue(dtoStatistics.getBill_date().toString());
                 row.createCell(3).setCellValue(String.valueOf(dtoStatistics.getTolalTurnover()));
             }
+            row = spreadsheet.createRow((short) 4 + list.size());
+            cell = row.createCell(2, CellType.STRING);
+            cell.setCellValue("TOTAL TURNOVER"); 
+            row.createCell(3).setCellValue(txtTotalTurnover.getText());
             FileOutputStream out = new FileOutputStream(new File("D:/Turnover("+sdf.format(dcStartDate.getDate())+" to "+sdf.format(dcEndDate.getDate())+").xlsx"));
             workbook.write(out);
             JOptionPane.showMessageDialog(this, "Export to excel successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
