@@ -2,6 +2,7 @@ package Connection;
 
 import DTO.BillDetails_DTO;
 import DTO.Product_DTO;
+import DTO.Supplier_DTO;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -169,5 +170,23 @@ public class Product_CON {
             JOptionPane.showMessageDialog(null, e);
         }
         return productList;
+    }
+    public ArrayList<Supplier_DTO> getSupplierList(){
+        ArrayList<Supplier_DTO> supplierList = new ArrayList<>();
+        try {
+            Connection con = DBConnection.getDBConnection();
+            String SQL = "SELECT * FROM SUPPLIER ORDER BY SUPPLIER_ID";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Supplier_DTO dtoSupplier = new Supplier_DTO(rs.getInt(1));
+                supplierList.add(dtoSupplier);
+            }
+            con.close();
+        } 
+        catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return supplierList;
     }
 }
