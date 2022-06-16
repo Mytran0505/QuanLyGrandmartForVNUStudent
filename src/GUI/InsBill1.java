@@ -33,6 +33,7 @@ public class InsBill1 extends javax.swing.JFrame {
         Date date = new Date();
         dcBillDate.setDate(date);
         txtTotalMoney.setText("0");
+        btn_Insert.setEnabled(false);
     }
     //create bill details table
     DefaultTableModel tblBillDetailsModel;
@@ -100,7 +101,7 @@ public class InsBill1 extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle(" ");
+        setTitle("Insert Bill Information");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel6.setBackground(new java.awt.Color(0, 204, 255));
@@ -513,6 +514,7 @@ public class InsBill1 extends javax.swing.JFrame {
                     txtStudentID.disable();
                     txtCounterID.disable();
                     btn_Add.setEnabled(false);
+                    btn_Insert.setEnabled(true);
                 }
                 else{
                     JOptionPane.showMessageDialog(this, "NO data found!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -534,6 +536,7 @@ public class InsBill1 extends javax.swing.JFrame {
                         txtStudentID.disable();
                         txtCounterID.disable();
                         btn_Add.setEnabled(false);
+                        btn_Insert.setEnabled(true);
                     }
                     else{
                         JOptionPane.showMessageDialog(this, "NO data found!", "Error", JOptionPane.ERROR_MESSAGE);
