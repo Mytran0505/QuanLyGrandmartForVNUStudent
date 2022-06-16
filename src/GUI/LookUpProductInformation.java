@@ -95,6 +95,7 @@ public class LookUpProductInformation extends javax.swing.JFrame {
         tblSearch = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Look Up Product Information");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel6.setBackground(new java.awt.Color(0, 204, 255));
@@ -109,7 +110,6 @@ public class LookUpProductInformation extends javax.swing.JFrame {
 
         btn_turnback.setBackground(new java.awt.Color(239, 250, 252));
         btn_turnback.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btn_turnback.setForeground(new java.awt.Color(0, 0, 0));
         btn_turnback.setText("Turn back");
         btn_turnback.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,10 +144,8 @@ public class LookUpProductInformation extends javax.swing.JFrame {
         jPanel7.setBackground(new java.awt.Color(239, 250, 252));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Search bar:");
 
-        txtSearch.setBackground(new java.awt.Color(255, 255, 255));
         txtSearch.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         btnSearch.setBackground(new java.awt.Color(0, 204, 255));

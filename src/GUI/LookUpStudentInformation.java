@@ -82,6 +82,7 @@ public class LookUpStudentInformation extends javax.swing.JFrame {
         tblSearch = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Look Up Student Information");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel6.setBackground(new java.awt.Color(0, 204, 255));
@@ -96,7 +97,6 @@ public class LookUpStudentInformation extends javax.swing.JFrame {
 
         btn_turnback.setBackground(new java.awt.Color(239, 250, 252));
         btn_turnback.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btn_turnback.setForeground(new java.awt.Color(0, 0, 0));
         btn_turnback.setText("Turn back to home");
         btn_turnback.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +114,7 @@ public class LookUpStudentInformation extends javax.swing.JFrame {
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_turnback)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,10 +131,8 @@ public class LookUpStudentInformation extends javax.swing.JFrame {
         jPanel7.setBackground(new java.awt.Color(239, 250, 252));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Search bar:");
 
-        txtSearch.setBackground(new java.awt.Color(255, 255, 255));
         txtSearch.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         btnSearch.setBackground(new java.awt.Color(0, 204, 255));
