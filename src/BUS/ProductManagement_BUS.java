@@ -3,6 +3,7 @@ package BUS;
 import Connection.Product_CON;
 import DTO.BillDetails_DTO;
 import DTO.Product_DTO;
+import DTO.Supplier_DTO;
 import java.util.ArrayList;
 
 public class ProductManagement_BUS {
@@ -27,5 +28,8 @@ public class ProductManagement_BUS {
     }
     public ArrayList<Product_DTO> getProductList(BillDetails_DTO dtoBillDetails){
         return conProduct.getProductList(dtoBillDetails);
+    }
+    public ArrayList<Supplier_DTO> getSupplierList(){
+        return conProduct.getSupplierList();
     }
 }
