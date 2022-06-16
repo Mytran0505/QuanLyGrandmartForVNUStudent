@@ -283,7 +283,7 @@ public class iTextPDF_CON {
         
         try
         {
-            File file = new File("D:\\Java\\"+ filename + ".pdf");
+            File file = new File("D:\\"+ filename + ".pdf");
             if(!Desktop.isDesktopSupported())
             {
                 System.out.println("Not supported");
