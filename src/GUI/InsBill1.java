@@ -482,9 +482,18 @@ public class InsBill1 extends javax.swing.JFrame {
         int ret = JOptionPane.showConfirmDialog(null, "Confirm", "Do you want to turn back?", JOptionPane.YES_NO_OPTION);
         if(ret == JOptionPane.YES_OPTION)
         {
-            setVisible(false);
-            ManageBillInf backbill = new ManageBillInf(newBill, dtoCashier);
-            backbill.setVisible(true);
+            if(txtCounterID.getText().equals("") || txtStudentID.getText().equals("")){
+                setVisible(false);
+                ManageBillInf backbill = new ManageBillInf(newBill, dtoCashier);
+                backbill.setVisible(true);
+            }
+            else{
+                newBill = new Bill_DTO(dtoBillDetails.getId(), Integer.parseInt(txtEmpID.getText()), Integer.parseInt(txtCounterID.getText()), Integer.parseInt(txtStuID.getText()), dcBillDate.getDate(), Long.parseLong(txtTotalMoney.getText()));
+                busBillManagement.delete(newBill);
+                setVisible(false);
+                ManageBillInf backbill = new ManageBillInf(newBill, dtoCashier);
+                backbill.setVisible(true);
+            }
         }
     }//GEN-LAST:event_btn_turnbackActionPerformed
 
@@ -523,6 +532,7 @@ public class InsBill1 extends javax.swing.JFrame {
                         txtTotalMoney.setText(String.valueOf(newBill.getTotal_money()));
                         txtStudentID.disable();
                         txtCounterID.disable();
+                        btn_Add.setEnabled(false);
                     }
                     else{
                         JOptionPane.showMessageDialog(this, "Khong co trong du lieu!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -574,7 +584,7 @@ public class InsBill1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_DismissActionPerformed
 
     private void btn_ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ConfirmActionPerformed
-        if(txtCounterID.getText().equals("") || dcBillDate.getCalendar() == null || txtTotalMoney.getText().equals("") || txtSumUp.getText().equals("")){
+        if(txtCounterID.getText().equals("") || txtTotalMoney.getText().equals("") || txtSumUp.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Information fields are not entered enough.", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
         }
         else{
@@ -589,7 +599,7 @@ public class InsBill1 extends javax.swing.JFrame {
 
     private void btn_AddMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AddMouseReleased
         // TODO add your handling code here:
-        btn_Add.setEnabled(false);
+        //btn_Add.setEnabled(false);
     }//GEN-LAST:event_btn_AddMouseReleased
 
 
