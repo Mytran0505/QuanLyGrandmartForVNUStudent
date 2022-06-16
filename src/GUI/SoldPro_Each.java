@@ -197,10 +197,13 @@ public class SoldPro_Each extends javax.swing.JFrame {
 
     private void btn_MakeStatisticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MakeStatisticsActionPerformed
         // TODO add your handling code here:
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         if(dcStartDate.getCalendar() == null || dcEndDate.getCalendar()==null||txtProID.getText().equals("")||!txtProID.getText().matches("[0-9]*"))
             JOptionPane.showMessageDialog(this, "Wrong data, please check and enter again", "Please enter again!", JOptionPane.ERROR_MESSAGE);
+        else if(sdf.format(dcStartDate.getDate().getTime()).compareTo(sdf.format(dcEndDate.getDate().getTime()))==1){
+            JOptionPane.showMessageDialog(this, "Invalid data", "Please enter product id!", JOptionPane.ERROR_MESSAGE);
+         }
         else{
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             tblStatisticsModel.setRowCount(0);
             list = busMakeStatistic.getEachProductForMakeStatisticsSold(Integer.parseInt(txtProID.getText()), sdf.format(dcStartDate.getDate()), sdf.format(dcEndDate.getDate()));
             //Load employee information into the table
